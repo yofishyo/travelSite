@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Roboto+Mono:wght@400;500&display=swap">
+<title>沖繩五天四夜</title>
+<style>
+  :root{
+    --ground:#F1EFE8; --surface:#FBFAF6; --surface-2:#E8E5DA;
+    --ink:#16272B; --ink-soft:#3C4F53; --muted:#6B7A79; --line:#DAD5C9;
+    --accent:#AE3A28; --accent-soft:#F4E2DD;
+    --sea:#14606E; --sea-soft:#DDEAEC;
+    --band:#123238; --band-ink:#EFEADF; --band-dim:#9DB3B4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1518; --surface:#162024; --surface-2:#1E2A2E;
+      --ink:#E8E4D9; --ink-soft:#C3CBC9; --muted:#93A3A1; --line:#2A393D;
+      --accent:#E58068; --accent-soft:#3A211C;
+      --sea:#6FBDCA; --sea-soft:#14282D;
+      --band:#081215; --band-ink:#E8E4D9; --band-dim:#7C9294;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1518; --surface:#162024; --surface-2:#1E2A2E;
+    --ink:#E8E4D9; --ink-soft:#C3CBC9; --muted:#93A3A1; --line:#2A393D;
+    --accent:#E58068; --accent-soft:#3A211C;
+    --sea:#6FBDCA; --sea-soft:#14282D;
+    --band:#081215; --band-ink:#E8E4D9; --band-dim:#7C9294;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",system-ui,sans-serif;
+    font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding-inline:18px}
+
+  .masthead{background:var(--band);color:var(--band-ink)}
+  .masthead .wrap{padding-block:32px 26px}
+  .eyebrow{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--band-dim);margin:0 0 10px}
+  h1{font-family:"Noto Serif TC",serif;font-weight:700;font-size:clamp(28px,7.5vw,40px);line-height:1.25;margin:0 0 6px;text-wrap:balance}
+  .dates{font-family:"Roboto Mono",ui-monospace,monospace;font-size:14px;color:var(--band-dim);margin:0 0 20px;font-variant-numeric:tabular-nums}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px 18px;border-top:1px solid rgba(157,179,180,.28);padding-top:17px}
+  .fact dt{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--band-dim);margin:0 0 3px}
+  .fact dd{margin:0;font-size:14px;line-height:1.55}
+  .fact dd b{font-weight:500}
+
+  .daynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+  .daynav .scroller{display:flex;gap:6px;overflow-x:auto;padding:9px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .daynav .scroller::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;text-decoration:none;white-space:nowrap;font-family:"Roboto Mono",ui-monospace,monospace;font-size:12.5px;color:var(--muted);padding:5px 11px;border-radius:999px;border:1px solid transparent;font-variant-numeric:tabular-nums}
+  .chip:hover{color:var(--ink)}
+  .chip.on{background:var(--sea-soft);color:var(--sea);border-color:var(--sea)}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .day{padding-block:32px 8px;border-top:1px solid var(--line)}
+  .day:first-of-type{border-top:0}
+  .dayhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .daynum{font-family:"Noto Serif TC",serif;font-weight:700;font-size:26px;color:var(--sea);font-variant-numeric:tabular-nums}
+  .daytitle{font-family:"Noto Serif TC",serif;font-weight:600;font-size:19px;margin:0}
+  .daykind{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:2px 6px}
+  .daylede{color:var(--ink-soft);margin:0 0 20px;font-size:14.5px;max-width:62ch}
+
+  .stops{display:flex;flex-direction:column;gap:17px}
+  .stop{display:grid;grid-template-columns:50px 12px minmax(0,1fr);gap:0 11px;position:relative}
+  .rail{text-align:right;padding-top:11px}
+  .time{font-family:"Roboto Mono",ui-monospace,monospace;font-size:13px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;display:block}
+  .dur{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;color:var(--muted);display:block;margin-top:2px}
+  .spine{position:relative}
+  .spine::before{content:"";position:absolute;left:5px;top:16px;width:2px;bottom:-17px;background:var(--line)}
+  .stop:last-child .spine::before{display:none}
+  .spine::after{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--surface);border:2px solid var(--sea)}
+  .stop[data-kind="move"] .spine::after{border-color:var(--line);background:var(--line)}
+  .stop[data-kind="eat"] .spine::after{border-color:var(--accent)}
+  .stop[data-kind="bus"] .spine::after{border-color:var(--accent);background:var(--accent)}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 15px 15px}
+  .stop[data-kind="move"] .card{background:transparent;border:0;padding:8px 0 0}
+  .cardhead{display:flex;align-items:flex-start;gap:10px}
+  .cardhead .names{flex:1;min-width:0}
+  h3{font-family:"Noto Serif TC",serif;font-weight:600;font-size:17px;margin:0;line-height:1.4;text-wrap:balance}
+  .stop[data-kind="move"] h3{font-family:inherit;font-weight:500;font-size:15px;color:var(--ink-soft)}
+  .jp{display:block;font-size:12px;color:var(--muted);margin-top:2px;font-weight:400}
+  .lede{margin:9px 0 0;color:var(--ink-soft);font-size:14.5px}
+  ul.points{margin:10px 0 0;padding-left:1.05em;display:flex;flex-direction:column;gap:5px}
+  ul.points li{font-size:14px;line-height:1.62}
+  ul.points li::marker{color:var(--sea)}
+  .note{margin-top:12px;padding:8px 0 8px 12px;border-left:3px solid var(--accent);font-size:13.5px;line-height:1.62;color:var(--ink-soft)}
+  .note b{color:var(--accent);font-weight:500}
+  .note.calm{border-left-color:var(--sea)}
+  .note.calm b{color:var(--sea)}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:11px;border-top:1px dashed var(--line)}
+  .tag{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;color:var(--muted);background:var(--surface-2);border-radius:4px;padding:3px 7px;font-variant-numeric:tabular-nums}
+  .tag.free{color:var(--sea);background:var(--sea-soft)}
+  .tag.warn{color:var(--accent);background:var(--accent-soft)}
+
+  .subhead{font-family:"Noto Serif TC",serif;font-weight:600;font-size:14px;margin:15px 0 4px;color:var(--ink)}
+  .tablewrap{overflow-x:auto;margin-top:6px;-webkit-overflow-scrolling:touch}
+  table.mini{border-collapse:collapse;width:100%;min-width:250px;font-size:13px}
+  table.mini th,table.mini td{border-bottom:1px solid var(--line);padding:6px 10px 6px 0;text-align:left;vertical-align:top}
+  table.mini th{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;white-space:nowrap}
+  table.mini td{font-variant-numeric:tabular-nums;line-height:1.55}
+  table.mini td:first-child{font-family:"Roboto Mono",ui-monospace,monospace;white-space:nowrap;color:var(--ink-soft)}
+  table.mini tr.hi td,table.mini tr.hi td b{color:var(--accent)}
+
+  .tick{flex:0 0 auto;width:22px;height:22px;margin-top:2px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;padding:0;color:transparent;font-size:12px;line-height:1;transition:border-color .15s,color .15s,background .15s}
+  .tick:hover{border-color:var(--sea)}
+  .tick:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .tick[aria-pressed="true"]{background:var(--sea);border-color:var(--sea);color:#fff}
+  .stop.done .card{opacity:.6}
+  .stop.done h3{text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:var(--muted)}
+
+  .block{padding-block:32px;border-top:1px solid var(--line)}
+  h2{font-family:"Noto Serif TC",serif;font-weight:600;font-size:21px;margin:0 0 16px;text-wrap:balance}
+  .memo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .memo li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.62}
+  .memo .n{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;color:var(--sea);border:1px solid var(--sea);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;margin-top:3px}
+  .memo b{font-weight:500}
+
+  footer{background:var(--surface-2);color:var(--muted);font-size:12.5px;line-height:1.65}
+  footer .wrap{padding-block:20px 26px}
+  footer p{margin:0 0 6px}
+  footer b{color:var(--ink-soft);font-weight:500}
+  a{color:var(--sea)}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+  html{scroll-behavior:smooth}
+  .day,.block{scroll-margin-top:52px}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Okinawa · 自助行程</p>
+    <h1>沖繩五天四夜</h1>
+    <p class="dates">2026/09/28（一）– 10/02（五）· 台中 ↔ 那霸</p>
+    <dl class="facts">
+      <div class="fact"><dt>去程</dt><dd><b>JX312</b>　9/28 16:40 台中清泉崗 → 19:10 那霸</dd></div>
+      <div class="fact"><dt>回程</dt><dd><b>JX313</b>　10/2 20:10 那霸 → 20:50 台中清泉崗</dd></div>
+      <div class="fact"><dt>住宿</dt><dd>那霸縣廳前阿爾蒙特酒店<br>久茂地 1-3-5，縣廳前站步行 3 分</dd></div>
+      <div class="fact"><dt>時差</dt><dd>沖繩比台灣快 1 小時<br>飛行約 1.5 小時，機上有供餐</dd></div>
+    </dl>
+  </div>
+</header>
+
+<nav class="daynav" aria-label="日期導覽">
+  <div class="scroller">
+    <a class="chip" href="#d0928">9/28 出發</a>
+    <a class="chip" href="#d0929">9/29 山原</a>
+    <a class="chip" href="#d0930">9/30 水族館</a>
+    <a class="chip" href="#d1001">10/1 那霸</a>
+    <a class="chip" href="#d1002">10/2 回程</a>
+    <a class="chip" href="#memo">隨身備忘</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="day" id="d0928">
+    <div class="dayhead"><span class="daynum">9/28</span><h2 class="daytitle">出發日</h2><span class="daykind">移動</span></div>
+    <p class="daylede">抵達已過 19:00，落地、入住、吃個宵夜就好。</p>
+    <div class="stops">
+      <div class="stop" data-kind="move" data-id="a1"><div class="rail"><span class="time">16:40</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>台中清泉崗機場出發（JX312）</h3></div></div></div></div>
+      <div class="stop" data-kind="move" data-id="a2"><div class="rail"><span class="time">19:10</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>抵達那霸機場</h3><span class="jp">單軌電車到「縣廳前站」約 12 分鐘</span></div></div></div></div>
+      <div class="stop" data-id="a3">
+        <div class="rail"><span class="time">20:30</span><span class="dur">入住</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>那霸縣廳前阿爾蒙特酒店<span class="jp">アルモントホテル那覇県庁前／久茂地 1-3-5</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">單軌「縣廳前站」步行 3 分，隔壁是琉貿百貨 RYUBO，走幾步就是國際通起點。接下來三天的集合點都在這一帶。</p>
+          <ul class="points">
+            <li>第一晚可以去國際通吃碗沖繩麵，或到唐吉訶德（24 小時）探路。</li>
+            <li>隔天 07:50 縣廳前集合，早點休息。</li>
+          </ul>
+          <div class="note calm"><b>入住時問一句：</b>10/2 退房後行李能不能寄放櫃台。飯店標準退房 <b>11:00</b>（不是行程表寫的 10:00）。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="d0929">
+    <div class="dayhead"><span class="daynum">9/29</span><h2 class="daytitle">山原（やんばる）北部一日遊</h2><span class="daykind">跟團</span></div>
+    <p class="daylede">跑本島最北端。看的不是海灘，而是 2021 年登錄<b>世界自然遺產</b>的亞熱帶原始林、隆起珊瑚礁斷崖與琉球神話的起源聖地。車程長，帶暈車藥。</p>
+    <div class="stops">
+      <div class="stop" data-kind="move" data-id="b0"><div class="rail"><span class="time">07:50</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>沖繩縣廳前集合出發</h3></div></div></div></div>
+
+      <div class="stop" data-id="b1">
+        <div class="rail"><span class="time">10:00</span><span class="dur">40分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>山原之森遊客中心<span class="jp">道の駅おおぎみ やんばるの森ビジターセンター／大宜味村津波 95</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">進入山原國立公園的門戶，兼公路休息站、物產直賣所與自然解說中心。</p>
+          <ul class="points">
+            <li><b>A 棟（免費）</b>直賣所「がじゅまる館」：大宜味村是<b>香檬產量日本第一</b>，香檬原汁、香檬醋、果醬最值得買。</li>
+            <li>小吃部「くがに」有香檬醬汁漢堡、<b>カラキ（沖繩肉桂）霜淇淋</b>。</li>
+            <li><b>B 棟映像廳（¥300）</b>：360° 圓頂劇院，<b>可以躺著看</b>，25 分鐘講完山原的自然為何珍貴。另有 VR 與 2 樓展望台，看得到古宇利島。</li>
+          </ul>
+          <div class="note"><b>40 分鐘只能二選一。</b>影片就要 25 分鐘 —— 想搞懂「山原在紅什麼」就進劇院，想買伴手禮就留在 A 棟。</div>
+          <div class="meta"><span class="tag free">直賣所免費</span><span class="tag">映像廳 ¥300／兒童 ¥100</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="eat" data-id="b2">
+        <div class="rail"><span class="time">10:55</span><span class="dur">50分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>國頭港食堂 — 午餐<span class="jp">国頭港食堂／国頭村浜 477-1・浜漁港內</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">開在漁港裡的食堂，用定置網現撈的魚。<b>本次吃炸魚刺身套餐（刺身五點盛＋地魚炸物），團費已含</b> —— 正好是店裡第一人氣。</p>
+          <ul class="points">
+            <li>午餐時段白飯可以續。</li>
+            <li>店前草坪有幾組<b>吊床與鞦韆</b>，正對著海 —— 吃完還有時間的話，這是全天最舒服的 10 分鐘。</li>
+          </ul>
+          <div class="meta"><span class="tag free">團費已含</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="b3">
+        <div class="rail"><span class="time">12:20</span><span class="dur">20分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>邊戶岬<span class="jp">辺戸岬／国頭村字辺戸</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">沖繩本島<b>最北端</b>。珊瑚礁隆起的斷崖，左邊東海、右邊太平洋，兩股浪在腳下互撞。</p>
+          <ul class="points">
+            <li>天氣好能望見 22 公里外、屬鹿兒島縣的<b>與論島</b>。</li>
+            <li>地標是 11.5 公尺高的<b>山原秧雞雕像展望台</b> —— 這種不會飛的鳥只住在山原森林裡。</li>
+            <li>中央的<b>「祖國復歸鬥爭碑」</b>立於 1972 年：沖繩戰後被美軍統治到那年才回歸日本。</li>
+          </ul>
+          <div class="note"><b>風非常大。</b>帽子壓好、手機拿穩，長裙洋裝慎選。</div>
+          <div class="meta"><span class="tag free">免費</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="b4">
+        <div class="rail"><span class="time">12:45</span><span class="dur">1時20分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>ASMUI Spiritual Hikes（原大石林山）<span class="jp">アスムイハイクス／国頭村宜名真 1241</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">今天的重頭戲。2024 年底從「大石林山」改為現名 —— 取自琉球神話中開闢女神<b>阿摩美久最早降臨的聖地「安須森（Asmui）」</b>，沖繩人心中一切的起點。</p>
+          <ul class="points">
+            <li>兩億年前的石灰岩侵蝕成的奇岩森林，26 處看點：孫悟空岩、生命輪迴之石，以及能遠眺邊戶岬的展望台。</li>
+            <li>有接駁車上山。<b>1 小時 20 分走「標準路線」（約 60 分、26 個景點）剛好。</b></li>
+          </ul>
+          <div class="note"><b>先在飯店 Wi-Fi 下載「Pocket Curator」App。</b>語音導覽全靠它，而<b>園區收訊很差</b>，現場才裝來不及。穿好走的鞋，這是真的在走山路。</div>
+          <div class="meta"><span class="tag free">門票團費已含</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="b5">
+        <div class="rail"><span class="time">14:45</span><span class="dur">30分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>大宜味 Shikuwasa Park<span class="jp">大宜味シークヮーサーパーク／大宜味村津波 1424-1</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">以香檬為主題的觀光工廠。香檬是沖繩北部自生的小柑橘，直徑只有 3～4 公分。</p>
+          <ul class="points">
+            <li>招牌體驗：<b>水龍頭直接流出香檬果汁，免費喝到飽。</b></li>
+            <li><b>9～11 月是採收季</b>，這段期間才看得到真正的榨汁生產線運作。</li>
+            <li>餐廳有專屬甜點師做的<b>香檬蒙布朗</b>。</li>
+          </ul>
+          <div class="note">和早上的道の駅同屬大宜味村、主題都是香檬 —— 香檬伴手禮在這裡一次買齊就好，別重複。</div>
+          <div class="meta"><span class="tag free">入場免費</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="b6">
+        <div class="rail"><span class="time">15:45</span><span class="dur">30分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>古宇利島<span class="jp">古宇利島／今帰仁村</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">直徑約 2 公里的小島，靠全長 <b>2,020 公尺的古宇利大橋</b>連上本島。島上流傳著沖繩版亞當夏娃的神話，又叫「戀之島」。</p>
+          <ul class="points">
+            <li>30 分鐘的正確玩法：<b>在橋頭沙灘拍古宇利大橋</b>。</li>
+            <li>最北端的「心形岩」太遠，這次去不了；明天會再來一次。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="move" data-id="b7"><div class="rail"><span class="time">17:30</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>回到縣民廣場解散</h3></div></div></div></div>
+    </div>
+  </section>
+
+  <section class="day" id="d0930">
+    <div class="dayhead"><span class="daynum">9/30</span><h2 class="daytitle">美麗海水族館一日遊</h2><span class="daykind">跟團</span></div>
+    <p class="daylede">象鼻岩、鯨鯊、美式海濱小鎮的日落。<b>最後一段跟團車不載回程，自己搭 TK05，末班 20:15。</b></p>
+    <div class="stops">
+      <div class="stop" data-kind="move" data-id="c0"><div class="rail"><span class="time">08:20</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>BLUE SEAL 店前集合出發</h3><span class="jp">BLUE SEAL：1948 年為駐日美軍而生的沖繩美式冰淇淋老牌</span></div></div></div></div>
+
+      <div class="stop" data-id="c1">
+        <div class="rail"><span class="time">09:40</span><span class="dur">30分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>萬座毛<span class="jp">万座毛／恩納村</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">沖繩最經典的那張明信片：被海浪侵蝕成<b>大象鼻子</b>的珊瑚礁斷崖。名字來自琉球國王尚敬王的一句「可容萬人坐下的原野（毛）」。</p>
+          <ul class="points">
+            <li>步道一圈 10～15 分鐘，平緩。<b>這個時段是順光，拍象鼻岩最清楚。</b></li>
+            <li>入口設施 1 樓售票與伴手禮、3 樓展望台免費。</li>
+          </ul>
+          <div class="meta"><span class="tag">入場 ¥100</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="eat" data-id="c2">
+        <div class="rail"><span class="time">11:15</span><span class="dur">50分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>古宇利島 — 蝦蝦飯午餐<span class="jp">Kouri Shrimp／今帰仁村古宇利 314</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">源自夏威夷的蒜香奶油蝦飯。<b>團費已附餐，外帶「原味蒜香」</b>，直接取餐、不必排隊。</p>
+          <ul class="points">
+            <li>拿了就能找位子，50 分鐘夠邊吃邊拍古宇利大橋。</li>
+            <li>想加點其他口味或飲料，才要自己排隊。</li>
+          </ul>
+          <div class="note">手會沾滿蒜香奶油，<b>記得帶濕紙巾</b>。</div>
+          <div class="meta"><span class="tag free">團費已附餐</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="c3">
+        <div class="rail"><span class="time">12:30</span><span class="dur">3.5小時</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>沖繩美麗海水族館<span class="jp">沖縄美ら海水族館／海洋博公園內・本部町</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">招牌是 7,500 立方公尺的巨型水槽<b>「黑潮之海」</b>，養著世界最大的魚——鯨鯊，以及全球首次人工繁殖成功的鬼蝠魟。</p>
+          <ul class="points">
+            <li><b>🐋 鯨鯊餵食解說 15:00</b>：鯨鯊立起身體在水面進食，最震撼的一幕。<b>提前 20 分鐘到黑潮之海前卡位。</b></li>
+            <li><b>🐬 海豚秀（オキちゃん劇場）免費</b>，建議看 <b>13:00</b> 那場 —— 15:00 場和鯨鯊餵食衝突。</li>
+            <li>劇場在水族館<b>外面</b>，走過去 10 分鐘以上且是下坡，回程要爬坡（有園內電動車）。</li>
+            <li>海龜館、海牛館也在公園區，免費。</li>
+          </ul>
+          <div class="note">「黑潮探險」（從水槽正上方俯瞰鯨鯊）只在 08:30–11:00 與 17:30 後開放，<b>這次看不到，不用白跑</b>。</div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="c4">
+        <div class="rail"><span class="time">17:20</span><span class="dur">2時55分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>美國村<span class="jp">美浜アメリカンビレッジ／北谷町</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">美軍基地文化長出來的美西風海濱小鎮，超過 200 間店。<b>Depot Island</b> 餐飲最密集，<b>American Depot</b> 是服飾雜貨藥妝。</p>
+
+          <p class="subhead">建議這樣走</p>
+          <div class="tablewrap"><table class="mini">
+            <tr><td>17:20–17:30</td><td>下車，走到 Depot Island</td></tr>
+            <tr><td>17:30–18:10</td><td><b>晚餐</b>（剛過開店，不用排隊）</td></tr>
+            <tr><td>18:10–18:45</td><td>日落海灘看日落（<b>日落 18:17</b>）</td></tr>
+            <tr><td>18:45–19:50</td><td>逛街；入夜霓虹是另一個拍照點</td></tr>
+            <tr class="hi"><td>19:50–20:00</td><td><b>走回 1 號月台</b></td></tr>
+          </table></div>
+          <div class="note calm">想悠閒一點：17:40 直接進海景餐廳，邊吃邊看日落，19:10 再出來逛。一進門先問有沒有靠海的位子。</div>
+
+          <p class="subhead">吃什麼</p>
+          <ul class="points">
+            <li><b>タコライスcafe きじむなぁ</b>（Depot Island C 棟 2F）｜オムタコ 發源店，オムタコ ¥1,078、タコライス ¥968。<b>出餐最快。</b></li>
+            <li><b>VONGO &amp; ANCHOR</b>（ベッセルホテルカンパーナ別館 1F）｜海景第一排，夏威夷碗、手工塔可、精釀啤酒。</li>
+            <li><b>SOLiS GRANDE</b>（Depot Island 海濱）｜義法料理配紅酒，店名取自拉丁文 Solis（日落）。</li>
+            <li><b>ステーキハウス88</b>｜沖繩風塔可牛排，晚餐約 ¥3,000–5,000。</li>
+          </ul>
+          <div class="note"><b>美國村已經沒有摩天輪了</b>（舊的 SKYMAX60 已拆除，原址是 2026 年春開幕的麗嘉皇家度假酒店）。另外<b>琉球の牛</b>是排隊名店，趕末班車的這天別排。</div>
+          <div class="meta"><span class="tag free">入場免費</span><span class="tag">日落 18:17</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="bus" data-id="c5">
+        <div class="rail"><span class="time">20:15</span><span class="dur">末班</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>回程：TK05 北谷直行接駁巴士<span class="jp">北谷ゲートウェイ → 國際通入口（デパートリウボウ 前）</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede"><b>搭車處：Aeon 北谷店旁公共停車場 A 區，1 號月台。</b>下車的國際通入口就在飯店所在的縣廳前一帶。</p>
+          <div class="tablewrap"><table class="mini">
+            <tr><th>北谷發</th><th>國際通入口</th><th>那霸機場</th></tr>
+            <tr><td>19:00</td><td>19:45</td><td>20:00</td></tr>
+            <tr class="hi"><td><b>20:15</b></td><td><b>21:00</b></td><td>不停靠</td></tr>
+          </table></div>
+          <ul class="points">
+            <li>車資 <b>¥1,000</b>（兒童 ¥500），上車付，可現金／交通 IC／信用卡。</li>
+            <li><b>免預約</b>，先到先得、49 席全坐席，行李可放行李廂。</li>
+          </ul>
+          <div class="note"><b>20:15 之後沒有車了。</b>錯過只剩國道 58 號「美浜アメリカンビレッジ入口」站的路線巴士（20／28／29／120 號，較慢）或計程車。<b>把 20:00 設成手機鬧鐘。</b></div>
+          <div class="meta"><span class="tag">¥1,000・免預約</span><span class="tag">約 45 分鐘</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="d1001">
+    <div class="dayhead"><span class="daynum">10/1</span><h2 class="daytitle">那霸市區自由日</h2><span class="daykind">自由</span></div>
+    <p class="daylede">全程在單軌沿線。動線：<b>飯店 → 琉貿百貨 → 國際通 → 牧志市場</b>（午餐）<b>→ 單軌到歌町站 → 新都心</b>，傍晚回國際通。</p>
+    <div class="stops">
+      <div class="stop" data-id="e1">
+        <div class="rail"><span class="time">上午</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>琉貿百貨 2F — oHacorte<span class="jp">デパートリウボウ／パレットくもじ 2F・縣廳前站直結</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">那霸唯一的百貨公司，飯店步行 3 分。2 樓 FOOD HALL 有 <b>oHacorte</b> —— 沖繩最有名的水果塔專門店。</p>
+          <ul class="points">
+            <li>依季節換水果的水果塔，<b>推薦桃子塔、檸檬蛋糕</b>；也有可帶回台灣的餅乾禮盒。</li>
+            <li>本店在浦添港川外人住宅區，常要排隊 —— 這裡最省事。營業 10:00–20:30。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stop" data-id="e2">
+        <div class="rail"><span class="time">上午</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>國際通<span class="jp">国際通り／約 1.6 公里</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">那霸的主街，600 多間店。戰後從一片焦土迅速復興，因此被稱為「奇蹟的一英里」。</p>
+          <ul class="points">
+            <li>必買：風獅爺陶器、泡盛、紅芋塔、金楚糕、海鹽零食。唐吉訶德 24 小時。</li>
+            <li>中段的<b>浮島通、壺屋通</b>有陶器工房與小咖啡館，比大街有趣。</li>
+          </ul>
+          <div class="note"><b>別在國際通買伴手禮。</b>同樣的零食在超市（尤其下午要去的 SAN-A）便宜一截。</div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="eat" data-id="e3">
+        <div class="rail"><span class="time">午餐</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>第一牧志公設市場<span class="jp">第一牧志公設市場／那霸的廚房</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">2023 年改建後明亮又有冷氣。玩法是這裡獨有的<b>「一樓買、二樓煮」</b>。</p>
+          <ul class="points">
+            <li><b>1 樓</b>挑活海鮮（龍蝦、夜光貝、石斑）或和牛、阿古豬，<b>拿到 2 樓代客料理</b>，加工費每道 ¥500 起。</li>
+            <li>嫌麻煩的話，2 樓也可以直接點餐。</li>
+          </ul>
+          <div class="meta"><span class="tag free">免費入場</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="e4">
+        <div class="rail"><span class="time">下午</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>新都心商圈<span class="jp">おもろまち／單軌「歌町站」步行 5 分</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">舊美軍基地還地後重劃的新市區，路寬、店新、人不擠，那霸最好逛的一區。</p>
+          <ul class="points">
+            <li><b>Naha Main Place</b>：1 樓「SAN-A 食品館」是<b>沖繩最大的超市</b>，伴手禮在這買；2 樓美食街推薦「和風亭」。</li>
+            <li><b>沖繩縣立博物館・美術館</b>（對面）：外觀仿琉球石灰岩城砦，很好拍。<b>有免費中文語音導覽</b>，想弄懂琉球王國到沖繩戰，這裡最完整。今天 09:00–18:00，博物館 ¥530、美術館 ¥400。</li>
+            <li><b>天久 RYUBO 樂市</b>與街邊的 Uniqlo、無印良品、運動用品店。</li>
+          </ul>
+          <div class="note">只做一件事的話：<b>在 SAN-A 食品館把伴手禮買齊</b>。明天下午跟團，沒有購物時間。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="day" id="d1002">
+    <div class="dayhead"><span class="daynum">10/2</span><h2 class="daytitle">回程日</h2><span class="daykind">上午自由・下午跟團</span></div>
+    <p class="daylede">上午最緊，<b>09:00 出發</b>（行程表寫的 10:00 幾乎零緩衝，最遲 09:30）。午餐回飯店附近吃。下午跟團，<b>行李放車上</b>，兩個景點都能空手逛。</p>
+    <div class="stops">
+      <div class="stop" data-kind="move" data-id="f0"><div class="rail"><span class="time">09:00</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>退房、行李寄櫃台 → 出發</h3><span class="jp">單軌 縣廳前 → 首里 8 分・¥320 → 首里站步行上坡約 15 分到守禮門（不想爬坡就搭計程車）</span></div></div></div></div>
+
+      <div class="stop" data-id="f1">
+        <div class="rail"><span class="time">09:35</span><span class="dur">1時40分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>首里城<span class="jp">首里城公園／世界遺產「琉球王國的城堡及相關遺產群」</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">琉球王國 450 年的王宮，也是琉球在中國、日本、東南亞之間走出自己樣貌的舞台。2019 年大火燒毀正殿，目前仍在復原。</p>
+          <ul class="points">
+            <li><b>守禮門</b>（2000 日圓紙鈔上那座）、園比屋武御嶽石門、歡會門、<b>東之阿座那展望台</b>（看整個那霸市與海）。</li>
+            <li><b>高台見學平台</b>：正殿外觀 2025 年 7 月已完工、遮蔽的素屋根也拆了，可以從高處近距離看屋頂與裝飾。</li>
+            <li><b>復興展示室、世誇殿</b>：復原工法的解說與正殿裝飾品試作物 —— 只有現在這幾年看得到。</li>
+          </ul>
+          <div class="note"><b>正殿內部要到 2026/11/23 才開放</b>，這趟進不去。也因此門票現在仍是 ¥400（之後漲到 ¥1,000）。</div>
+          <div class="meta"><span class="tag">入園 ¥400・高中生 ¥300・中小學生 ¥160</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="eat" data-id="f1b">
+        <div class="rail"><span class="time">11:45</span><span class="dur">1小時</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>午餐：飯店附近<span class="jp">11:15 離開首里城 → 11:30 單軌首里發 → 11:40 縣廳前</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">三個選擇都在飯店步行 3 分內。</p>
+          <ul class="points">
+            <li><b>RYUBO FOOD HALL（パレットくもじ 2F）— 最省事</b>｜約 350 席、7 間店（中華、和食、義法、西班牙小酒館、和牛、沖繩精釀、oHacorté）。<b>手機掃 QR 跨店點餐、送到桌上</b>，一群人各吃各的不必分頭排隊。</li>
+            <li><b>B1 牛たん 東山</b>｜想吃定食就這家，入口菜單板後方有吧台席。</li>
+            <li><b>三丁目そば</b>（縣廳前站步行 4 分）｜想吃沖繩麵，出餐快。<b>ゆうなんぎい</b>（1970 年創業的家庭料理，12:00 開，只收現金、會排隊）。</li>
+          </ul>
+          <div class="note"><b>不要買便當。</b>B1 食品館沒有公共用餐區，2F FOOD HALL 不能帶外食；日本飯店大廳也幾乎都禁止飲食。</div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="move" data-id="f2"><div class="rail"><span class="time">12:45</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>回飯店拿行李 → 13:05 步行到 LeaLea（7 分）→ 13:20 集合</h3><span class="jp">行李直接上車，護照、機票與貴重物品隨身</span></div></div></div></div>
+
+      <div class="stop" data-id="f3">
+        <div class="rail"><span class="time">14:20</span><span class="dur">2小時</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>岡嘎拉河谷<span class="jp">ガンガラーの谷／南城市</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">數十萬年前鐘乳洞崩塌留下的太古之谷，只能跟著導遊走，全程約 1 公里。</p>
+          <ul class="points">
+            <li><b>大主榕樹（ウフシュガジュマル）</b>：被稱為「開口說話的森林賢者」的巨大榕樹。</li>
+            <li><b>武芸洞</b>：約 22,300 年前「港川人」的生活痕跡，路線終點。</li>
+            <li><b>イナグ洞・イキガ洞</b>：分別祈求良緣安產與生命誕生的女性之洞、男性之洞。</li>
+            <li><b>CAVE CAFE</b>：開在真正的鐘乳石洞裡，也是集合點，只有參加者能進。</li>
+          </ul>
+          <div class="note"><b>穿好走的鞋、出發前先上廁所。</b>谷內濕度高、地面濕滑（涼鞋可以，高跟鞋不行），下雨帶雨衣（傘在林間不好用）。導覽中會提供香片茶。</div>
+          <div class="meta"><span class="tag free">導覽團費已含</span><span class="tag">2 小時含導覽</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="f4">
+        <div class="rail"><span class="time">16:30</span><span class="dur">30分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>琉球玻璃村<span class="jp">琉球ガラス村／糸満市福地 169</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">沖繩最大的玻璃工房，免費入場。琉球玻璃的起源很沖繩 —— 戰後物資匱乏，師傅回收美軍的可樂瓶再吹製，氣泡與厚實感就此成了特色。</p>
+          <ul class="points">
+            <li>可以隔著玻璃看師傅用「宙吹法」現場製作，每件純手工。</li>
+            <li>賣店也有沖繩零食 —— <b>回國前最後一次補貨的機會</b>。</li>
+          </ul>
+          <div class="note"><b>30 分鐘只夠逛賣店。</b>吹玻璃體驗要 20～40 分鐘，成品還得冷卻後約 3 天才宅配寄出，當天帶不走。</div>
+          <div class="meta"><span class="tag free">入場免費</span></div>
+        </div>
+      </div>
+
+      <div class="stop" data-id="f5">
+        <div class="rail"><span class="time">17:45</span><span class="dur">2時25分</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>那霸機場<span class="jp">那覇空港／國內線・際內連結・國際線 三棟相連</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede"><b>先報到、再吃飯。</b>行李託運掉才能輕鬆走動，而且報到有截止時間、吃飯沒有。</p>
+
+          <p class="subhead">記住：1F 下車 → 3F 報到 → 2F 出境</p>
+          <div class="tablewrap"><table class="mini">
+            <tr><th>樓層</th><th>機能</th><th>能否換棟</th></tr>
+            <tr><td>1F</td><td>到達・遊覽車下客</td><td>不互通</td></tr>
+            <tr class="hi"><td>2F</td><td>出境審查／<b>連絡通道</b></td><td><b>唯一換棟路線</b></td></tr>
+            <tr><td>3F</td><td>報到櫃台</td><td>—</td></tr>
+            <tr><td>4F</td><td>餐飲</td><td>不互通</td></tr>
+          </table></div>
+          <ul class="points">
+            <li><b>停國際線</b>：1F 下車 → 上 3F 報到（17:45–18:15）→ 吃飯 → 19:15 下到 2F 出境。</li>
+            <li><b>停國內線</b>：1F 下車 → 上 2F 走連絡通道（約 355 公尺、有頂蓋，5–10 分）到國際線 → 3F 報到（17:55–18:25）→ 吃飯 → 19:15 下到 2F 出境。</li>
+          </ul>
+          <div class="note">別「先吃飯再去報到」—— 會卡在起飛前約 60 分鐘的截止線上。若櫃台還沒開，先在國際線 4F 吃，<b>19:00 前回 3F 報到</b>。</div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="eat" data-id="f5b">
+        <div class="rail"><span class="time">18:15</span><span class="dur">1小時</span></div><div class="spine"></div>
+        <div class="card">
+          <div class="cardhead"><div class="names"><h3>機場晚餐<span class="jp">最後一頓沖繩</span></h3></div><button class="tick" type="button" aria-pressed="false" aria-label="標記已完成">✓</button></div>
+          <p class="lede">機場餐廳多在 20:00–20:30 打烊、L.O. 更早，<b>19:00 前入座</b>。過了 2F 出境審查就只剩免稅店。機上有供餐，不必吃太撐。</p>
+          <ul class="points">
+            <li><b>空港食堂</b>｜國內線 1F（到着口 A 側最裡面）｜L.O. 19:30｜機場最便宜也最道地：沖繩麵 ¥700、ソーキそば ¥800、ポーク玉子そば ¥750。<b>想用一碗沖繩麵當句點就是這裡。</b></li>
+            <li><b>HELIOS NAHA airport Brewery</b>｜國際線 4F｜<b>L.O. 19:00</b>｜日本第一家機場內釀酒廠，沖繩精釀現釀現喝。</li>
+            <li><b>ステーキハウス88</b>｜際內連結航廈 3F｜窗邊看得到飛機起降，40 多年的沖繩牛排老店。</li>
+            <li><b>レストラン風月</b>｜國內線 4F｜L.O. 20:00｜看得到跑道，有ソーキそば、咖哩、海鮮丼。</li>
+            <li><b>A&amp;W</b>｜國內線 3F｜打烊 20:00｜沖繩限定漢堡＋Root Beer，台灣喝不到。</li>
+          </ul>
+          <div class="note calm">想輕鬆就在國際線 4F 或連結航廈 3F 解決；想要個沖繩的句點，就走 2F 連絡通道去國內線吃<b>空港食堂</b>（來回 15–20 分，時間夠）。</div>
+        </div>
+      </div>
+
+      <div class="stop" data-kind="move" data-id="f6"><div class="rail"><span class="time">20:10</span></div><div class="spine"></div><div class="card"><div class="cardhead"><div class="names"><h3>JX313 那霸起飛 → 20:50 抵達台中清泉崗</h3></div></div></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="memo">
+    <h2>隨身備忘</h2>
+    <ul class="memo">
+      <li><span class="n">1</span><span><b>10 月初還是夏天</b>，27–30°C、紫外線強；但遊覽車和水族館冷氣很冷，帶件薄外套。</span></li>
+      <li><span class="n">2</span><span><b>帶點現金。</b>市場代客料理、小食堂、萬座毛入場費用現金最快；ゆうなんぎい 只收現金。</span></li>
+      <li><span class="n">3</span><span><b>鞋子要好走。</b>ASMUI 走山路、岡嘎拉河谷地面濕滑，都不適合涼鞋或新鞋。</span></li>
+      <li><span class="n">4</span><span><b>遊覽車上禁止飲食。</b>有蓋飲料可以，正餐請在車下吃完。</span></li>
+      <li><span class="n">5</span><span><b>時間與票價以現場公告為準。</b>機場部分店家（ロイヤルホスト、そじ坊、ポーたま、吉野家）與 ステーキハウス88 的營業時間各來源不一，當天看現場。</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p style="margin:0 0 10px"><a href="../">← 所有行程</a></p>
+  <div class="wrap">
+    <p>資料查證日 2026/09/24。勾選紀錄只存在你自己的瀏覽器裡，不會同步給其他人。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "okinawa-2026-done";
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".stop[data-id]"), function(stop){
+    var btn = stop.querySelector(".tick");
+    if (!btn) return;
+    var id = stop.getAttribute("data-id");
+    if (done[id]) { btn.setAttribute("aria-pressed", "true"); stop.classList.add("done"); }
+    btn.addEventListener("click", function(){
+      var on = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", on ? "false" : "true");
+      stop.classList.toggle("done", !on);
+      if (on) { delete done[id]; } else { done[id] = 1; }
+      save();
+    });
+  });
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  var targets = chips.map(function(c){ return document.querySelector(c.getAttribute("href")); });
+  function mark(el){ chips.forEach(function(c, i){ c.classList.toggle("on", targets[i] === el); }); }
+  mark(targets[0]);
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      var best = null;
+      entries.forEach(function(en){
+        if (en.isIntersecting && (!best || en.boundingClientRect.top < best.boundingClientRect.top)) best = en;
+      });
+      if (best) mark(best.target);
+    }, { rootMargin: "-56px 0px -70% 0px", threshold: 0 });
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

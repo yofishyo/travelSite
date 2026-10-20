@@ -1,0 +1,17 @@
+# 個人文件，不上傳
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.csv
+*收據*
+*契約*
+*機票*
+*同意書*
+*voucher*
+
+# 系統檔
+Thumbs.db
+desktop.ini
+.DS_Store

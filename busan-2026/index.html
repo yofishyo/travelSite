@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>釜山五天四夜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#F4F6F7;
+    --surface:#FFFFFF;
+    --surface-2:#EDF1F2;
+    --ink:#16232B;
+    --muted:#5F7480;
+    --faint:#8EA1AA;
+    --line:#DDE4E7;
+    --line-soft:#E8EDEF;
+    --camellia:#C32F4A;
+    --camellia-soft:#FBEDEF;
+    --sea:#2B6E8C;
+    --sea-soft:#EAF2F6;
+    --on-camellia:#FFFFFF;
+    --warn:#9A6208;
+    --warn-soft:#FBF2E2;
+    --ok:#1C6B63;
+    --ok-soft:#E6F2F0;
+
+    --cjk:"PingFang TC","Hiragino Sans TC","Microsoft JhengHei","Noto Sans CJK TC","Noto Sans TC","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    --latin:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font:var(--latin),var(--cjk);
+
+    --rail:58px;
+    --gutter:16px;
+    --maxw:720px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0F181D;
+      --surface:#18242B;
+      --surface-2:#1E2C34;
+      --ink:#E7EDEF;
+      --muted:#93A6AF;
+      --faint:#6F848E;
+      --line:#2A3A43;
+      --line-soft:#223038;
+      --camellia:#F0607A;
+      --camellia-soft:#2E1A20;
+      --sea:#62ACCB;
+      --sea-soft:#152831;
+      --on-camellia:#17110F;
+      --warn:#E0A851;
+      --warn-soft:#2A2314;
+      --ok:#6FC3B7;
+      --ok-soft:#142725;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F181D;
+    --surface:#18242B;
+    --surface-2:#1E2C34;
+    --ink:#E7EDEF;
+    --muted:#93A6AF;
+    --faint:#6F848E;
+    --line:#2A3A43;
+    --line-soft:#223038;
+    --camellia:#F0607A;
+    --camellia-soft:#2E1A20;
+    --sea:#62ACCB;
+    --sea-soft:#152831;
+    --on-camellia:#17110F;
+    --warn:#E0A851;
+    --warn-soft:#2A2314;
+    --ok:#6FC3B7;
+    --ok-soft:#142725;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+
+  /* ---------- masthead ---------- */
+  .mast{padding-block:28px 18px}
+  .eyebrow{
+    font-family:var(--latin);
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--camellia);
+  }
+  h1{
+    margin:6px 0 0;
+    font-size:clamp(28px,8vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.1;
+    text-wrap:balance;
+  }
+  .sub{margin:8px 0 0;color:var(--muted);font-size:14px}
+  .flights{
+    margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;
+  }
+  .flight{
+    flex:1 1 220px;
+    display:flex;align-items:baseline;gap:8px;
+    padding:10px 12px;border:1px solid var(--line);border-radius:8px;
+    background:var(--surface);
+    font-size:13px;
+  }
+  .flight b{font-family:var(--latin);font-variant-numeric:tabular-nums;font-weight:600}
+  .flight .code{color:var(--sea);font-weight:600;font-family:var(--latin)}
+
+  /* ---------- key strip ---------- */
+  .keys{display:grid;gap:10px;margin-top:14px}
+  @media(min-width:560px){.keys{grid-template-columns:1fr 1fr}}
+  .key{
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+  }
+  .key h3{
+    margin:0 0 6px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-family:var(--latin);
+  }
+  .key p{margin:0;font-size:13.5px}
+  .key .big{font-family:var(--latin);font-weight:600;font-variant-numeric:tabular-nums;color:var(--camellia)}
+
+  /* ---------- sticky nav ---------- */
+  nav{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+    background:var(--bg);
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    margin-top:18px;
+  }
+  .navin{
+    max-width:var(--maxw);margin:0 auto;
+    display:flex;gap:4px;overflow-x:auto;padding:8px var(--gutter);
+    scrollbar-width:none;
+  }
+  .navin::-webkit-scrollbar{display:none}
+  nav a{
+    flex:0 0 auto;
+    font-family:var(--latin);font-size:12.5px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);text-decoration:none;
+    padding:6px 11px;border-radius:999px;white-space:nowrap;
+    border:1px solid transparent;
+  }
+  nav a:hover{color:var(--ink)}
+  nav a.on{background:var(--camellia);color:var(--on-camellia);border-color:var(--camellia)}
+
+  /* ---------- overview ---------- */
+  section{padding-block:30px;scroll-margin-top:72px}
+  .sechead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+  h2{
+    margin:0;font-size:22px;font-weight:700;letter-spacing:-.01em;
+  }
+  .daytag{
+    font-family:var(--latin);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--on-camellia);background:var(--camellia);padding:3px 8px;border-radius:5px;
+  }
+  .dateline{font-family:var(--latin);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .route{
+    margin:12px 0 0;padding:10px 12px;border-radius:8px;
+    background:var(--sea-soft);color:var(--sea);
+    font-size:12.5px;line-height:1.7;word-break:break-word;
+  }
+  .note{
+    margin:12px 0 0;padding:11px 13px;border-radius:8px;
+    background:var(--surface-2);font-size:13px;color:var(--muted);
+  }
+  .note b{color:var(--ink)}
+  .note.warn{background:var(--warn-soft);color:var(--warn)}
+  .note.warn b{color:var(--warn)}
+
+  /* ---------- overview grid ---------- */
+  .ov{margin-top:14px;border-top:1px solid var(--line)}
+  .ov a{
+    display:grid;grid-template-columns:46px 1fr;gap:12px;
+    padding:12px 2px;border-bottom:1px solid var(--line-soft);
+    text-decoration:none;color:inherit;align-items:start;
+  }
+  .ov a:hover{background:var(--surface-2)}
+  .ov .d{font-family:var(--latin);font-weight:700;font-size:13px;color:var(--camellia);padding-top:1px}
+  .ov .t{font-weight:600;font-size:14px}
+  .ov .m{color:var(--muted);font-size:12.5px;margin-top:2px}
+
+  /* ---------- timeline ---------- */
+  .tl{margin-top:16px}
+  .row{
+    display:grid;grid-template-columns:var(--rail) 1fr;gap:12px;
+    padding:13px 0 13px 0;border-top:1px solid var(--line-soft);
+    align-items:start;
+  }
+  .row:first-child{border-top:1px solid var(--line)}
+  .time{
+    font-family:var(--latin);font-weight:600;font-size:13px;
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+    color:var(--muted);padding-top:1px;white-space:nowrap;
+  }
+  .row.key-row .time{color:var(--ink);font-weight:700}
+  .row.pin{
+    border-left:3px solid var(--warn);
+    padding-left:9px;
+    background:linear-gradient(90deg,var(--warn-soft),transparent 70%);
+  }
+  .row.pin .time{margin-left:-3px}
+  .what{min-width:0}
+  .what .h{font-weight:600;font-size:14.5px;line-height:1.45}
+  .what .d{color:var(--muted);font-size:13px;margin-top:3px}
+  .what .go{
+    color:var(--sea);font-size:12.5px;margin-top:5px;display:flex;gap:6px;align-items:baseline;
+  }
+  .what .go::before{content:"→";flex:0 0 auto;opacity:.6}
+  .what .warnline{color:var(--warn);font-size:12.5px;margin-top:5px;font-weight:500}
+
+  .tok{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:19px;height:19px;border-radius:50%;
+    background:var(--camellia);color:var(--on-camellia);
+    font-family:var(--latin);font-size:11px;font-weight:700;
+    margin-right:6px;vertical-align:1px;
+  }
+  .free{
+    display:inline-block;font-family:var(--latin);font-size:10.5px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ok);background:var(--ok-soft);padding:1px 6px;border-radius:4px;
+    margin-left:6px;vertical-align:1.5px;
+  }
+  .jump{
+    display:inline-block;margin-top:6px;font-size:12.5px;font-weight:600;
+    color:var(--camellia);text-decoration:none;
+    border-bottom:1px solid currentColor;
+  }
+
+  /* ---------- tables ---------- */
+  .tscroll{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;font-size:13px;min-width:min(100%,420px)}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  th{
+    font-family:var(--latin);font-size:10.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  td.num{font-family:var(--latin);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+  tr.total td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
+  tr.total td.num{color:var(--camellia)}
+
+  /* ---------- checklist ---------- */
+  .checks{margin-top:14px;display:grid;gap:2px}
+  .chk{
+    display:flex;gap:10px;align-items:flex-start;
+    padding:9px 10px;border-radius:7px;cursor:pointer;
+  }
+  .chk:hover{background:var(--surface-2)}
+  .chk input{
+    flex:0 0 auto;width:17px;height:17px;margin:2px 0 0;
+    accent-color:var(--camellia);cursor:pointer;
+  }
+  .chk span{font-size:13.5px}
+  .chk input:checked + span{color:var(--faint);text-decoration:line-through}
+
+  .grade{
+    font-family:var(--latin);font-size:10.5px;font-weight:700;letter-spacing:.08em;
+    padding:2px 7px;border-radius:4px;margin-right:7px;
+  }
+  .g1{background:var(--camellia);color:var(--on-camellia)}
+  .g2{background:var(--warn-soft);color:var(--warn)}
+  .g3{background:var(--surface-2);color:var(--muted)}
+
+  /* ---------- backup cards ---------- */
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:16px;margin-top:14px;
+  }
+  .card h3{margin:0 0 4px;font-size:16px;font-weight:700}
+  .card h4{margin:16px 0 4px;font-size:13.5px;font-weight:700;color:var(--camellia)}
+  .card p{margin:6px 0 0;font-size:13.5px;color:var(--muted)}
+  .card p b,.card li b{color:var(--ink)}
+  .card ul,.card ol{margin:8px 0 0;padding-left:20px;font-size:13.5px;color:var(--muted)}
+  .card li{margin:4px 0}
+  .card .tscroll table{font-size:12.5px}
+
+  hr.rule{border:0;border-top:1px solid var(--line);margin:0}
+
+  footer{
+    padding-block:26px 40px;color:var(--faint);font-size:12px;line-height:1.7;
+  }
+  footer a{color:var(--sea)}
+  .srcs{margin-top:8px}
+  .srcs a{margin-right:10px;white-space:nowrap}
+
+  a:focus-visible,input:focus-visible,label:focus-visible{
+    outline:2px solid var(--camellia);outline-offset:2px;border-radius:4px;
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow">Busan · Solo · 2026</div>
+    <h1>釜山五天四夜</h1>
+    <p class="sub">11/03（二）– 11/07（六）｜一人｜不自駕，全程大眾運輸</p>
+    <div class="flights">
+      <div class="flight"><span class="code">LJ586</span><span>台中 <b>16:15</b> → 釜山 <b>19:35</b></span></div>
+      <div class="flight"><span class="code">LJ585</span><span>釜山 <b>14:00</b> → 台中 <b>15:15</b></span></div>
+    </div>
+    <div class="keys">
+      <div class="key">
+        <h3>Visit Busan Pass 24H</h3>
+        <p><span class="big">11/5 14:00</span> → <span class="big">11/6 14:00</span><br>
+        5 個景點，原價約 ₩95,000，省約 <b>₩40,000</b></p>
+      </div>
+      <div class="key">
+        <h3>住宿</h3>
+        <p>11/3–11/6　東橫INN <b>釜山西面</b><br>
+        11/6–11/7　東橫INN <b>釜山站1號店</b><br>
+        <span style="color:var(--warn)">退房 10:00 前・入住 16:00</span></p>
+      </div>
+    </div>
+  </header>
+</div>
+
+<nav>
+  <div class="navin">
+    <a href="#overview">總覽</a>
+    <a href="#pass">Pass</a>
+    <a href="#d1">D1</a>
+    <a href="#d2">D2</a>
+    <a href="#d3">D3</a>
+    <a href="#d4">D4</a>
+    <a href="#d5">D5</a>
+    <a href="#check">待確認</a>
+    <a href="#backup">備案</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ===== OVERVIEW ===== -->
+  <section id="overview">
+    <div class="sechead"><h2>五天總覽</h2></div>
+    <div class="ov">
+      <a href="#d1"><span class="d">D1</span><span><span class="t">抵達</span><span class="m">領 Pass 實體卡、買 T-money、西面覓食</span></span></a>
+      <a href="#d2"><span class="d">D2</span><span><span class="t">健行主場</span><span class="m">二妓台海岸步道 4.7km → 五六島天空步道 → 廣安里夜景</span></span></a>
+      <a href="#d3"><span class="d">D3</span><span><span class="t">Pass 日</span><span class="m">冬柏島 → 鱈魚湯 → 海岸列車 → 足湯看日落 → 市場晚餐 → 百樓夜景</span></span></a>
+      <a href="#d4"><span class="d">D4</span><span><span class="t">換飯店＋採買</span><span class="m">松島纜車 → 南浦 → 樂天超市掃貨</span></span></a>
+      <a href="#d5"><span class="d">D5</span><span><span class="t">回程</span><span class="m">早餐 → 退房 → 機場，不排採買</span></span></a>
+    </div>
+    <div class="note">
+      <b>三個排序原則</b><br>
+      1. 健行排最前面（體力最好），隔天才泡汗蒸幕放鬆<br>
+      2. 採買往後擺，最後一天完全不排<br>
+      3. Pass 的 5 個景點壓在同一個 24 小時窗口內
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== PASS ===== -->
+  <section id="pass">
+    <div class="sechead"><h2>Visit Busan Pass</h2><span class="dateline">24 小時券</span></div>
+    <p class="sub" style="margin-top:8px">啟用 <b>11/5（四）14:00</b>（海岸列車）→ 到期 <b>11/6（五）14:00</b></p>
+
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>#</th><th>景點</th><th>時間</th><th class="num">原價 ₩</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tok">①</span></td><td>海雲台海岸列車</td><td>D3 14:20</td><td class="num">10,000</td></tr>
+          <tr><td><span class="tok">②</span></td><td>Club D Oasis 汗蒸幕</td><td>D3 16:20</td><td class="num">33,000</td></tr>
+          <tr><td><span class="tok">③</span></td><td>BUSAN X the SKY</td><td>D3 20:00</td><td class="num">27,000</td></tr>
+          <tr><td><span class="tok">④</span></td><td>松島海上纜車</td><td>D4 11:40</td><td class="num">24,000</td></tr>
+          <tr><td><span class="tok">⑤</span></td><td>松島龍宮雲橋</td><td>D4 12:45</td><td class="num">1,000</td></tr>
+          <tr><td></td><td>合計</td><td></td><td class="num">約 95,000</td></tr>
+          <tr><td></td><td>24H 券</td><td></td><td class="num">−55,000</td></tr>
+          <tr class="total"><td></td><td>省</td><td></td><td class="num">約 40,000<br><span style="font-weight:400;color:var(--muted)">NT$900</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">海岸列車實際換到的是<b>全區間自由搭乘券</b>（原價 ₩16,000，可多次上下車），實際省更多。</div>
+    <div class="note warn">最後一項是 <b>D4 12:45 的龍宮雲橋</b>，距離 14:00 到期只有 <b>1 小時 15 分</b>，那天早上不要拖。</div>
+
+    <h3 style="margin:22px 0 0;font-size:15px">領實體卡（機場）</h3>
+    <div class="tl">
+      <div class="row">
+        <div class="time">1st</div>
+        <div class="what">
+          <div class="h">自助兌換機 · Gate 4 出口左邊</div>
+          <div class="d">掃 <b>KKday QR Code</b> 自助領卡，不用排隊，出關順路</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">2nd</div>
+        <div class="what">
+          <div class="h">WiFi Dosirak 真人櫃檯 · 1F 3 號出口</div>
+          <div class="d">機台讀不到時找這裡　<b>06:00–10:00 / 17:00–21:30</b>，全年無休</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">兌換要帶 <b>電子憑證（QR Code）＋ 護照</b>。</div>
+
+    <h3 style="margin:22px 0 0;font-size:15px">交通卡另外買 T-money</h3>
+    <div class="note">
+      Pass 只涵蓋 24 小時，其餘 4 天都要自己刷。機場便利商店買 <b>T-money</b>（空卡約 ₩2,500–4,000），儲值 <b>₩25,000</b> 全程夠用。<br><br>
+      · T-money 市佔率最高、全國通用，便利商店和地鐵站都能儲值<br>
+      · Pass 實體卡雖有交通卡功能，但<b>不附贈儲值金</b>、仍要自己加值，不如單獨買一張單純
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== DAY 1 ===== -->
+  <section id="d1">
+    <div class="sechead"><span class="daytag">Day 1</span><h2>抵達</h2><span class="dateline">11/3 (二)</span></div>
+    <div class="tl">
+      <div class="row key-row">
+        <div class="time">19:35</div>
+        <div class="what"><div class="h">抵達金海機場 PUS</div></div>
+      </div>
+      <div class="row">
+        <div class="time">~20:15</div>
+        <div class="what">
+          <div class="h">🎫 領 Pass 實體卡 ＋ 💳 買 T-money</div>
+          <div class="d">Gate 4 左邊自助機掃 QR；讀不到就去 1F 3 號出口 WiFi Dosirak（開到 21:30）。T-money 儲值 ₩25,000。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">20:30</div>
+        <div class="what">
+          <div class="h">機場 → 西面</div>
+          <div class="d">約 55–65 分，<b>2 號線直達不用轉車</b>，拖行李最輕鬆的一段</div>
+          <div class="go">輕軌「공항」→「사상」17 分 → 2 號線「서면」20 分</div>
+          <div class="go">西面站走 <b>11 號出口有電梯</b></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">21:30</div>
+        <div class="what"><div class="h">🏨 東橫INN 釜山西面 check in</div><div class="d">24h 櫃台・西面站步行 5 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">21:45</div>
+        <div class="what"><div class="h">🍽 西面覓食</div><div class="d">豬肉湯飯一條街（多家 24 小時）／西面市場</div></div>
+      </div>
+      <div class="row">
+        <div class="time">22:15</div>
+        <div class="what"><div class="h">🛍 Olive Young 西面店</div><div class="d">多數分店到 22:30–23:00</div></div>
+      </div>
+    </div>
+    <div class="note">💤 隔天健行 4.5 小時，早點休息。輕軌末班 <b>23:48</b>、2 號線西面站末班 <b>23:59</b>。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== DAY 2 ===== -->
+  <section id="d2">
+    <div class="sechead"><span class="daytag">Day 2</span><h2>二妓台海岸步道 → 五六島</h2><span class="dateline">11/4 (三)</span></div>
+    <div class="route">경성대역 → 이기대입구 → 동생말 → 海岸步道 4.7km → 五六島 → 廣安里</div>
+    <div class="tl">
+      <div class="row">
+        <div class="time">08:00</div>
+        <div class="what"><div class="h">🍳 飯店早餐</div><div class="d"><b>吃飽一點</b>，步道上沒有商店</div></div>
+      </div>
+      <div class="row">
+        <div class="time">09:00</div>
+        <div class="what"><div class="h">西面出發</div><div class="go">2 號線 →「경성대·부경대역」約 22 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">09:35</div>
+        <div class="what">
+          <div class="h">→「이기대입구」下車</div>
+          <div class="go">5 號出口搭 <b>20／22／24／27／39／131</b> 或小巴 <b>남구2／2-1</b>，約 15 分</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">09:50</div>
+        <div class="what">
+          <div class="h">步行上坡至 동생말 步道入口</div>
+          <div class="d">約 15–20 分</div>
+          <div class="warnline">往 동생말 的支線公車 2024/5 起停駛，只能走路</div>
+        </div>
+      </div>
+      <div class="row key-row">
+        <div class="time">10:15</div>
+        <div class="what">
+          <div class="h">🥾 二妓台海岸散策路 4.7km<span class="free">免費</span></div>
+          <div class="d">約 2.5–3 小時。釜山國家地質公園，可見約 8,000 萬年前火山岩地層；木棧道、吊橋、礁岩交替，起伏不大但路面變化多。</div>
+          <div class="warnline">沿途無商店，第一個廁所在約 3km 處的 어울마당</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">13:00</div>
+        <div class="what">
+          <div class="h">🌲 五六島天空步道<span class="free">免費</span></div>
+          <div class="d">09:00–18:00。懸崖上的玻璃棧道，需套鞋套。旁邊有海波朗路起點諮詢處與廁所，坐下來休息。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">14:05</div>
+        <div class="what"><div class="h">→ 慶星大</div><div class="go">公車 <b>27／남구2</b> 約 25 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">14:35</div>
+        <div class="what"><div class="h">🍽 慶星大商圈午餐</div><div class="d">大學城，一人食堂、小吃多，價格便宜</div></div>
+      </div>
+      <div class="row">
+        <div class="time">15:45</div>
+        <div class="what"><div class="h">→ 廣安里</div><div class="go">2 號線 2 站約 6 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">16:00</div>
+        <div class="what"><div class="h">☕ All Sunday Bagel</div><div class="d">10:00–21:30。廣安里海景貝果，坐著休息腳。</div></div>
+      </div>
+      <div class="row">
+        <div class="time">17:00</div>
+        <div class="what"><div class="h">🌅 廣安里海灘散步</div><div class="d"><b>日落 17:20</b>、廣安大橋點燈</div></div>
+      </div>
+      <div class="row">
+        <div class="time">18:00</div>
+        <div class="what">
+          <div class="h">🍽 Millac The Market</div>
+          <div class="d">10:00–24:00。落地窗正對廣安大橋，晚餐＋夜景。旁邊<b>民樂水邊夜市</b>（週三 19:00–02:00）。</div>
+          <div class="go">廣安里海灘步行 12–13 分；或廣安站搭 83 號公車</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">20:15</div>
+        <div class="what"><div class="h">回西面</div><div class="go">廣安站 → 2 號線約 25 分</div></div>
+      </div>
+    </div>
+
+    <h3 style="margin:24px 0 0;font-size:15px">🎒 健行準備</h3>
+    <div class="checks" data-store="hike">
+      <label class="chk"><input type="checkbox" id="hike-1"><span>運動鞋（木棧道＋礁岩，別穿新鞋）</span></label>
+      <label class="chk"><input type="checkbox" id="hike-2"><span>薄外套（海岸風大）</span></label>
+      <label class="chk"><input type="checkbox" id="hike-3"><span><b>水 1L ＋ 行動糧</b></span></label>
+      <label class="chk"><input type="checkbox" id="hike-4"><span>出發前先上廁所</span></label>
+      <label class="chk"><input type="checkbox" id="hike-5"><span>Naver Map 離線存好「이기대입구 → 동생말」</span></label>
+      <label class="chk"><input type="checkbox" id="hike-6"><span>行動電源</span></label>
+    </div>
+    <div class="note"><b>務必 동생말 → 五六島方向走</b>（反向上坡較累）。11 月 17:20 天黑，10:15 出發、14:00 結束，安全。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== DAY 3 ===== -->
+  <section id="d3">
+    <div class="sechead"><span class="daytag">Day 3</span><h2>海雲台 Pass 日</h2><span class="dateline">11/5 (四)</span></div>
+    <div class="route">동백역 → 冬柏島 → 海灘 → 尾浦/달맞이길 → 青沙浦 → LCT → 市場 → LCT</div>
+    <div class="note"><b>傍晚的順序是關鍵</b>：先泡湯在露天足湯看日落 → 市場吃晚餐（趕上黃金時段）→ 最後上 X the SKY 看夜景。三件事都不衝突。</div>
+    <div class="tl">
+      <div class="row">
+        <div class="time">09:30</div>
+        <div class="what">
+          <div class="h">西面出發</div>
+          <div class="go">2 號線 →「<b>동백</b>」站約 38 分</div>
+          <div class="d">동백是 해운대 的<b>前一站</b>，不用多坐</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">10:10</div>
+        <div class="what"><div class="h">→ 冬柏島入口</div><div class="go">동백역 1 號出口步行約 12 分</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">10:25</div>
+        <div class="what">
+          <div class="h">🌲 冬柏島海岸散策路<span class="free">免費 24h</span></div>
+          <div class="d">環島木棧道 <b>900m</b>：누리마루 APEC 世峰樓 → 人魚像 → 崔致遠像 → 燈塔。同時看得到<b>廣安大橋</b>與海雲台天際線。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">11:40</div>
+        <div class="what"><div class="h">🏖 沿海雲台海灘往東走到尾浦</div><div class="d">1.5km 平沙灘，步行約 30 分</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">12:15</div>
+        <div class="what">
+          <div class="h">🍲 해운대 기와집대구탕</div>
+          <div class="d"><b>달맞이길104번길 46</b>（달맞이고개 入口）・08:00–21:00・<b>대구탕 ₩15,000 單一菜單</b>・051-731-5020<br>老瓦房改建，窗邊看得到海灘＋廣安大橋</div>
+          <div class="go">尾浦往上走 10–15 分（上坡）</div>
+          <a class="jump" href="#bk-food">沒開的話 →</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">13:45</div>
+        <div class="what"><div class="h">走回尾浦站（미포）</div><div class="d">約 10–15 分</div></div>
+      </div>
+      <div class="row key-row pin">
+        <div class="time">14:00</div>
+        <div class="what">
+          <div class="h">🎫 尾浦 1F 櫃檯兌票 → Pass 啟用</div>
+          <div class="d">14:00 前後是公認容易買到現場票的時段</div>
+          <div class="warnline">換票櫃檯在 <b>1F</b>，別跑到月台層</div>
+          <a class="jump" href="#bk-train">沒票怎麼辦 →</a>
+        </div>
+      </div>
+      <div class="row key-row">
+        <div class="time">14:20</div>
+        <div class="what">
+          <div class="h"><span class="tok">①</span>海雲台海岸列車 尾浦 → 青沙浦</div>
+          <div class="d">約 20 分。換到的是<b>全區間自由券</b>，可中途下車。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">14:40</div>
+        <div class="what"><div class="h">☕ 青沙浦</div><div class="d">踏石展望台（다릿돌전망대，海上玻璃觀景台）＋海景咖啡廳</div></div>
+      </div>
+      <div class="row">
+        <div class="time">15:45</div>
+        <div class="what"><div class="h">海岸列車 青沙浦 → 尾浦</div><div class="d">約 20 分（同券）</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">16:20</div>
+        <div class="what">
+          <div class="h"><span class="tok">②</span>Club D Oasis　<span style="color:var(--muted);font-weight:400;font-size:13px">LCT 4–6F</span></div>
+          <div class="d">5F <b>MIRAGE</b> 室內外海景溫泉浴場<br>6F <b>HORIZON 海景露天足湯</b> — 戶外長條溫泉足浴步道<br>☀️ <b>就在這裡看日落 17:20</b>，海灘全景盡收眼底</div>
+          <div class="go">尾浦步行約 10 分　｜　16:20 兌票，遠離 19:30 截止線</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">18:30</div>
+        <div class="what"><div class="h">→ 해운대역</div><div class="go">公車 100／139／141／200 約 10 分；或步行 20 分</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">18:45</div>
+        <div class="what">
+          <div class="h">🍽 海雲台傳統市場晚餐</div>
+          <div class="d">黃金時段 17:00–19:30，20:00 後小吃攤陸續收。<br>
+          <b>一人內用推薦</b>：31cm 海鮮刀削麵 ₩10,000（座位少，約等 10 分）／마산이모집 煎魚定食／봉자네실비집 海鮮煎餅／상국이네 飯捲、辣炒年糕</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">19:45</div>
+        <div class="what"><div class="h">回 LCT</div><div class="go">公車約 10 分</div></div>
+      </div>
+      <div class="row key-row pin">
+        <div class="time">20:00</div>
+        <div class="what">
+          <div class="h"><span class="tok">③</span>BUSAN X the SKY 夜景　<span style="color:var(--muted);font-weight:400;font-size:13px">98–100F</span></div>
+          <div class="d">世界最高星巴克</div>
+          <div class="warnline">最後入場 <b>20:30</b>、21:00 關，別拖</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">21:05</div>
+        <div class="what">
+          <div class="h">回西面（約 22:00 到）</div>
+          <div class="go">LCT 步行<b>中洞站約 15 分</b> → 2 號線「<b>양산 방면</b>」約 40 分</div>
+          <div class="d">中洞站末班 <b>23:45</b>，時間充裕</div>
+        </div>
+      </div>
+    </div>
+    <div class="note warn"><b>搭車方向別搞錯</b>：2 號線是「장산 ↔ 양산」，中洞站靠 장산 那端，回西面要搭 <b>양산 방면</b>。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== DAY 4 ===== -->
+  <section id="d4">
+    <div class="sechead"><span class="daytag">Day 4</span><h2>換飯店 → 松島 → 南浦採買</h2><span class="dateline">11/6 (五)</span></div>
+    <div class="route">釜山站(寄行李) → 札嘎其 → 松島 → 南浦(午餐) → 釜山站(check in 休息) → 南浦(逛街/晚餐/超市)</div>
+    <div class="note">南浦 ↔ 釜山站只有 <b>1 號線 2 站、6 分鐘</b>，中間繞回飯店休息 45 分鐘，<b>晚上全程不用提東西</b>。</div>
+    <div class="tl">
+      <div class="row">
+        <div class="time">09:00</div>
+        <div class="what"><div class="h">🍳 飯店早餐</div><div class="d">東橫INN 早餐常只到 09:00–09:30，<b>先確認</b></div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">09:45</div>
+        <div class="what"><div class="h">🧳 退房</div><div class="d">退房時間 10:00 前</div></div>
+      </div>
+      <div class="row">
+        <div class="time">09:55</div>
+        <div class="what">
+          <div class="h">西面站 → 釜山站</div>
+          <div class="go">1 號線約 12 分　｜　<b>11 號出口</b>進站搭電梯</div>
+        </div>
+      </div>
+      <div class="row key-row">
+        <div class="time">10:10</div>
+        <div class="what">
+          <div class="h">🧳 東橫INN 釜山站 寄放行李</div>
+          <div class="d">免費，跟櫃台索取置物櫃密碼・6／8 號出口步行 2 分</div>
+          <div class="warnline">16:00 才能 check in，所以先寄放</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">10:30</div>
+        <div class="what"><div class="h">釜山站 → 札嘎其站</div><div class="go">1 號線約 8 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">10:50</div>
+        <div class="what">
+          <div class="h">→ 松島</div>
+          <div class="go">札嘎其 2 號出口「忠武洞交叉路」搭 <b>6／26／30／71／96</b> →「岩南洞居民中心」，再步行約 10 分</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">11:15</div>
+        <div class="what"><div class="h">松島天空步道<span class="free">免費</span></div><div class="d">纜車站旁・06:00–23:00</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">11:40</div>
+        <div class="what">
+          <div class="h"><span class="tok">④</span>松島海上纜車 水晶車廂</div>
+          <div class="d">松島灣站 → Sky Park 站。全長 1.62km、離海面 86m。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">12:05</div>
+        <div class="what"><div class="h">Sky Park 觀景台、小王子裝置</div></div>
+      </div>
+      <div class="row key-row pin">
+        <div class="time">12:45</div>
+        <div class="what">
+          <div class="h"><span class="tok">⑤</span>松島龍宮雲橋</div>
+          <div class="d">Sky Park 站旁斜坡下走 5 分</div>
+          <div class="warnline">Pass 14:00 到期，只剩 <b>1 小時 15 分</b>緩衝</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">13:10</div>
+        <div class="what"><div class="h">纜車回松島灣站</div><div class="d">來回票含</div></div>
+      </div>
+      <div class="row">
+        <div class="time">13:40</div>
+        <div class="what"><div class="h">回南浦站</div><div class="go">公車約 25 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">14:10</div>
+        <div class="what"><div class="h">🍽 南浦洞午餐</div><div class="d">札嘎其海鮮／豬肉湯飯／BIFF 廣場</div></div>
+      </div>
+      <div class="row">
+        <div class="time">15:20</div>
+        <div class="what"><div class="h">南浦 → 釜山站</div><div class="go">1 號線 2 站約 6 分</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">16:00</div>
+        <div class="what"><div class="h">🏨 check in、放行李、換鞋、休息</div><div class="d">這天腳最累，休息完再出門</div></div>
+      </div>
+      <div class="row">
+        <div class="time">16:50</div>
+        <div class="what"><div class="h">釜山站 → 南浦</div><div class="go">1 號線 2 站約 6 分</div></div>
+      </div>
+      <div class="row">
+        <div class="time">17:00</div>
+        <div class="what">
+          <div class="h">🛍 南浦洞逛街</div>
+          <div class="d">光復路、BIFF 廣場、國際市場、札嘎其市場、Olive Young 南浦店（到 22:00）。全在步行圈。</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">18:15</div>
+        <div class="what"><div class="h">🍽 南浦洞晚餐</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">19:30</div>
+        <div class="what">
+          <div class="h">🛒 樂天超市 光復店</div>
+          <div class="d">10:00–23:00・<b>滿 ₩15,000 出示護照現場退稅</b><br>公休為每月第 2、4 個週一，11/6 正常營業</div>
+          <div class="go">南浦站 <b>8 號出口地下道直達 B1</b></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="time">21:55</div>
+        <div class="what"><div class="h">南浦 → 釜山站</div><div class="go">1 號線 2 站約 6 分，提伴手禮一下就到</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">22:10</div>
+        <div class="what"><div class="h">🏨 回房</div></div>
+      </div>
+    </div>
+    <div class="note"><b>想讓超市有 3 小時</b>：把 17:00–18:15 的逛街縮成 45 分鐘（光復路＋Olive Young），18:00 吃晚餐，19:00 進超市。</div>
+    <div class="note warn"><b>若早上延誤</b>：優先保住纜車（11:40）與龍宮雲橋（12:45），Pass 14:00 到期，最多往後推 1 小時。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== DAY 5 ===== -->
+  <section id="d5">
+    <div class="sechead"><span class="daytag">Day 5</span><h2>回程</h2><span class="dateline">11/7 (六)</span></div>
+    <div class="tl">
+      <div class="row">
+        <div class="time">08:00</div>
+        <div class="what"><div class="h">🍳 飯店早餐</div></div>
+      </div>
+      <div class="row">
+        <div class="time">09:30</div>
+        <div class="what"><div class="h">🧳 退房</div></div>
+      </div>
+      <div class="row key-row pin">
+        <div class="time">09:45</div>
+        <div class="what">
+          <div class="h">釜山站 → 金海機場</div>
+          <div class="d">約 60–70 分，<b>要轉兩次</b></div>
+          <div class="go">1 號線「서면」12 分 → 2 號線「사상」17 分 → 金海輕軌「공항역」12 分</div>
+          <div class="warnline">釜山站<b>沒有機場巴士</b>（只有海雲台／機張線、西面／釜田線）</div>
+        </div>
+      </div>
+      <div class="row key-row">
+        <div class="time">11:00</div>
+        <div class="what"><div class="h">抵達 PUS</div><div class="d">起飛前 3 小時</div></div>
+      </div>
+      <div class="row key-row">
+        <div class="time">14:00</div>
+        <div class="what"><div class="h">✈️ LJ585 起飛 → 15:15 抵台中</div></div>
+      </div>
+    </div>
+    <div class="note">伴手禮已在 Day 4 買完，這天不排任何採買。西面站 1↔2 號線、沙上站地鐵↔輕軌的通道都不短，拖行李抓寬鬆。想多睡可 10:15 出發、11:30 抵達，仍有 2.5 小時。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== CHECKLIST ===== -->
+  <section id="check">
+    <div class="sechead"><h2>出發前待確認</h2></div>
+
+    <h3 style="margin:18px 0 0;font-size:14px"><span class="grade g1">最重要</span>影響當天能不能成行</h3>
+    <div class="checks" data-store="pre">
+      <label class="chk"><input type="checkbox" id="pre-1"><span><b>기와집대구탕 公休日</b> — D3 午餐全押這家（單一菜單），韓國老店常有不定期公休</span></label>
+      <label class="chk"><input type="checkbox" id="pre-2"><span><b>二妓台海岸散策路是否全線開放</b> — 偶有落石或工程封閉，查釜山南區廳／갈맷길 公告</span></label>
+      <label class="chk"><input type="checkbox" id="pre-3"><span><b>Club D Oasis 營業時間與 Pass 兌票截止</b> — 現查汗蒸幕 10:00–21:30、兌票到 19:30，會隨季節調整</span></label>
+      <label class="chk"><input type="checkbox" id="pre-4"><span><b>BUSAN X the SKY 最後入場</b> — 10:00–21:00、最後入場 20:30；D3 排 20:00 進場</span></label>
+    </div>
+
+    <h3 style="margin:22px 0 0;font-size:14px"><span class="grade g2">次要</span>影響時間安排</h3>
+    <div class="checks" data-store="pre">
+      <label class="chk"><input type="checkbox" id="pre-5"><span><b>海岸列車 11 月末班車</b> — 查到 09:00–19:00 vs 冬季 09:30–17:00 兩種說法，影響 15:45 從青沙浦回程那班</span></label>
+      <label class="chk"><input type="checkbox" id="pre-6"><span><b>東橫INN 西面早餐時段</b> — D4 要 09:45 退房，早餐常只到 09:00–09:30</span></label>
+      <label class="chk"><input type="checkbox" id="pre-7"><span><b>東橫INN 釜山站 check-in／寄行李規定</b> — 行程按 16:00 排；早上 10:10 要先寄行李</span></label>
+      <label class="chk"><input type="checkbox" id="pre-8"><span><b>松島龍宮雲橋開放時間</b> — 09:00–17:00</span></label>
+      <label class="chk"><input type="checkbox" id="pre-9"><span><b>11/4、11/5 日落時間</b> — 本行程以 17:20 推算，健行日尤其重要</span></label>
+    </div>
+
+    <h3 style="margin:22px 0 0;font-size:14px"><span class="grade g3">一般</span></h3>
+    <div class="checks" data-store="pre">
+      <label class="chk"><input type="checkbox" id="pre-10"><span><b>Gate 4 自助兌換機運作時間</b> — 19:35 落地，機台若夜間停用就靠 WiFi Dosirak（到 21:30）</span></label>
+      <label class="chk"><input type="checkbox" id="pre-11"><span><b>「이기대입구」到 동생말 步行路線</b> — 支線公車已停駛，先存離線地圖</span></label>
+      <label class="chk"><input type="checkbox" id="pre-12"><span><b>樂天超市光復店公休日</b> — 每月第 2、4 個週一；11/6 正常營業</span></label>
+    </div>
+
+    <h3 style="margin:26px 0 0;font-size:15px">💰 概略預算</h3>
+    <p class="sub" style="margin-top:4px;font-size:13px">單人，不含機票、住宿、伴手禮</p>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>項目</th><th class="num">₩</th></tr></thead>
+        <tbody>
+          <tr><td>Visit Busan Pass 24H</td><td class="num">55,000</td></tr>
+          <tr><td>交通卡儲值</td><td class="num">25,000</td></tr>
+          <tr><td>餐費 5 天</td><td class="num">120,000–150,000</td></tr>
+          <tr><td>非 Pass 門票／咖啡</td><td class="num">約 25,000</td></tr>
+          <tr><td>健行補給</td><td class="num">約 10,000</td></tr>
+          <tr class="total"><td>小計</td><td class="num">235,000–265,000<br><span style="font-weight:400;color:var(--muted)">約 NT$5,400–6,100</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">二妓台、五六島、冬柏島、松島天空步道、龍頭山公園 <b>全部免費</b>。伴手禮滿 ₩15,000 可退稅。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== BACKUP ===== -->
+  <section id="backup">
+    <div class="sechead"><h2>備案</h2><span class="dateline">臨時狀況對策</span></div>
+    <p class="sub" style="margin-top:6px">遇到狀況時翻這裡，不用重新想。</p>
+
+    <!-- 海岸列車 -->
+    <div class="card" id="bk-train">
+      <h3>🎫 Day 3 海岸列車換不到票</h3>
+      <p><b>先理解一件事：兌票 = 啟用 Pass。</b>所以不能為了保票提早去換 —— 那會把 24 小時窗口往前推，隔天松島的纜車和龍宮雲橋就會掉出範圍。</p>
+      <p><b>風險其實不高</b>：不需線上預約、每小時約 3 班（20 分一班），14:00 前後又是公認容易買到現場票的時段，11/5 是 11 月平日（週四）。會換完主要發生在旺季假日。</p>
+
+      <h4>決策樹 · 14:00 到尾浦 1F 櫃檯先問最近一班幾點</h4>
+      <div class="tscroll">
+        <table>
+          <thead><tr><th>櫃檯給的班次</th><th>怎麼走</th></tr></thead>
+          <tbody>
+            <tr><td><b>14:20 / 14:40</b></td><td>照原案，青沙浦待 60 分</td></tr>
+            <tr><td><b>15:00</b></td><td>青沙浦縮成 40 分（展望台優先、咖啡外帶），15:40 搭回。<b>不影響 16:20 進 Club D Oasis</b></td></tr>
+            <tr><td><b>15:20 以後</b><br>或隊伍超過 30 分</td><td>走 <b>備案 B</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>🅱 備案 B：走路去青沙浦兌票</h4>
+      <p>尾浦 ↔ 青沙浦沿著列車軌道旁有海岸步道，約 <b>2km／步行 35 分</b>，風景跟搭列車一樣好。</p>
+      <ol>
+        <li><b>14:00</b> 看情況不對 → 直接沿海岸步道走去青沙浦</li>
+        <li><b>14:35</b> 到青沙浦，在青沙浦櫃檯兌票（人比尾浦少很多，也有自動售票機）</li>
+        <li><b>14:40–15:40</b> 青沙浦踏石展望台＋海景咖啡</li>
+        <li><b>15:45</b> 搭「青沙浦 → 尾浦」回去 —— 這個方向比「尾浦→青沙浦」好搶</li>
+        <li><b>16:20</b> 進 Club D Oasis，後面完全不受影響</li>
+      </ol>
+
+      <h4>🅲 備案 C：真的完全換不到</h4>
+      <p><b>不要硬等。放掉海岸列車，Pass 改從 16:20 的 Club D Oasis 啟用。</b></p>
+      <ul>
+        <li>下午 14:00–16:00 改走 <b>문탠로드 月光路</b>（釜山八景之一，松林海景步道，<b>尾浦就是入口</b>）</li>
+        <li>기와집대구탕 本來就在 달맞이길 上，吃完飯人已經在月光嶺，<b>直接往前走就是步道</b>，完全順路</li>
+        <li>Pass 啟用延到 16:20 → 到期變成 <b>11/6 16:20</b>，Day 4 緩衝從 1 小時 15 分變超大</li>
+        <li>順勢<b>把釜山塔加回 Day 4</b>（南浦站 7 號出口，₩12,000，15:15–16:00 去，16:30 再 check in），剛好補回損失</li>
+      </ul>
+    </div>
+
+    <!-- 鱈魚湯沒開 -->
+    <div class="card" id="bk-food">
+      <h3>🍲 Day 3 기와집대구탕 沒開</h3>
+      <p>單一菜單的老店，公休不固定。撲空的話：</p>
+      <div class="tscroll">
+        <table>
+          <thead><tr><th>選項</th><th>怎麼走</th></tr></thead>
+          <tbody>
+            <tr><td>🍔 <b>麥當勞맥런치</b><br>（最快）</td><td>맥런치 <b>10:30–14:00 每天都有</b>，套餐 <b>₩5,200 起</b>。D3 午餐 12:15–13:30 正好在優惠時段內。位置用 Naver Map 查「맥도날드」最近的一間。</td></tr>
+            <tr><td><b>就近解決</b></td><td>달맞이길／尾浦一帶有其他餐廳咖啡廳，吃完一樣 14:00 回尾浦兌票</td></tr>
+            <tr><td><b>回市場吃</b></td><td>走回海雲台傳統市場（約 20 分），31cm 海鮮刀削麵 ₩10,000 是最接近的替代。<b>但動線會繞</b>，兌票要往後推到 14:30–15:00</td></tr>
+            <tr><td><b>超商墊一下</b></td><td>韓國超商幾乎都有內用區（桌椅、微波爐、熱水機），海灘沿線 CU／GS25 還有海景座位</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>💡 吃麥當勞或超商的好處是<b>不會壓到 14:00 兌票時間</b>，Pass 窗口維持原狀；回市場吃則要往後推 30–60 分鐘。</p>
+
+      <h4>🍔 韓國麥當勞：菜單與點餐</h4>
+      <p><b>有賣套餐。</b>韓國麥當勞的套餐叫 <b>세트（Set）</b>，和台灣一樣是漢堡＋薯條＋飲料；只買漢堡叫 <b>단품（單品）</b>。<br>
+      <b>맥런치（McLunch）</b>是午餐限定折扣套餐，<b>每天 10:30–14:00</b>（不限平日），共 7 種可選。</p>
+      <div class="tscroll">
+        <table>
+          <thead><tr><th>中文</th><th>韓文</th><th>English</th><th class="num">單品</th><th class="num">套餐</th><th class="num">맥런치</th></tr></thead>
+          <tbody>
+            <tr><td>大麥克</td><td>빅맥</td><td>Big Mac</td><td class="num">5,700</td><td class="num">7,600</td><td class="num"><b>6,500</b></td></tr>
+            <tr><td>麥辣上海雞腿堡</td><td>맥스파이시 상하이버거</td><td>McSpicy Shanghai</td><td class="num">5,900</td><td class="num">7,700</td><td class="num"><b>6,600</b></td></tr>
+            <tr><td>番茄起司牛肉堡</td><td>토마토 치즈 비프 버거</td><td>Tomato Cheese Beef</td><td class="num">—</td><td class="num">—</td><td class="num"><b>5,200</b></td></tr>
+            <tr><td>烤肉堡</td><td>불고기버거</td><td>Bulgogi Burger</td><td class="num">3,800</td><td class="num">約 5,500</td><td class="num">—</td></tr>
+            <tr><td>麥香雞</td><td>맥치킨</td><td>McChicken</td><td class="num">3,500</td><td class="num">5,600</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>⚠️ 2026/2/20 有 35 項調漲（₩100–400），上表為調漲後資料，各店仍可能略有差異，<b>以現場價目板為準</b>。</p>
+      <ul>
+        <li>🖥 <b>點餐機（키오스크）可切換英文介面</b>，完全不用講韓文 —— 獨旅最省事的一點</li>
+        <li>流程：選 <b>매장 식사（For Here）／포장（To Go）</b> → 選餐點 → 選 <b>세트</b> 或 <b>단품</b> → 結帳</li>
+        <li>⏰ 想吃 맥런치 要在 <b>14:00 前完成點餐</b></li>
+        <li>💳 可刷信用卡；部分門市也收 T-money</li>
+      </ul>
+    </div>
+
+    <!-- 健行取消 -->
+    <div class="card">
+      <h3>🌧 Day 2 健行取消（下雨／步道封閉）</h3>
+      <p><b>整天改成影島日。</b>太宗台 ＋ THRILL ON THE MUG 約 5 小時，兩個綁在一起，因為 THRILL ON THE MUG 只能靠太宗台的公車到。</p>
+      <p><b>交通</b>：南浦站 6 號出口「影島大橋·南浦站」搭公車 <b>8／30／88</b> → 太宗台，約 25–30 分</p>
+      <h4>太宗台</h4>
+      <ul>
+        <li><b>Danubi 列車停駛中</b>（2026/4、7 兩次連結器事故，安全檢證中，未公布復駛日），改搭<b>免費接駁巴士</b>隨站上下</li>
+        <li>太宗臺觀景台（海蝕斷崖）→ 影島燈塔 → 神仙岩／望夫石 → 자갈마당 石灘、海女村</li>
+        <li>體力夠可走循環道路 <b>4.3km／1.5 小時</b></li>
+      </ul>
+      <h4>THRILL ON THE MUG!</h4>
+      <ul>
+        <li>영도구 해양힐링로 55，太宗台旁，2–3F 階梯式落地窗海景第一排，<b>10:00–22:00</b></li>
+        <li>日落 17:20 最美</li>
+        <li>從太宗台入口步行約 20 分；或公車在「부산해양경찰서 중리출장소」下車</li>
+      </ul>
+      <p>傍晚回南浦，晚餐吃札嘎其／BIFF 廣場。太宗台<b>不在 Pass 省錢試算內</b>，所以不影響 Pass 回本。</p>
+    </div>
+
+    <!-- 釜山塔 -->
+    <div class="card">
+      <h3>🏙 想多看一個夜景：釜山塔</h3>
+      <p>原本是 Pass 加碼第 6 項，但 Day 4 改成 09:45 退房後，回到南浦已約 14:10，趕不上 Pass 14:00 到期，因此移出。</p>
+      <ul>
+        <li><b>南浦站 7 號出口</b>，可搭手扶梯上龍頭山公園</li>
+        <li><b>₩12,000</b>，10:00–22:00（最後入場 21:30），120m 高俯瞰釜山港</li>
+        <li><b>Day 4 晚上若還有力氣可自費上去</b> —— 夜景比白天好看，就在南浦洞逛街範圍內</li>
+        <li>若觸發<b>備案 C</b>，Pass 到期延後，這項就能免費加回來</li>
+      </ul>
+    </div>
+
+    <!-- 其他 -->
+    <div class="card">
+      <h3>☕🌲 其他備案</h3>
+      <h4>Raw & Sweet 海雲台（로우앤스윗）</h4>
+      <p>해리단길，海雲台站 4 號出口步行 5 分，<b>09:00–20:00</b>，拿鐵＋蛋塔可頌。位在海雲台站北邊內陸，<b>不在 Day 3 的海岸動線上</b>，繞過去多走約 18 分鐘，因此移出。Day 3 若提早出發（09:30 前）可先來吃早午餐再去冬柏島。<br>
+      ※ 原筆記寫「Low &amp; Sweet Roastery」，實際店名應為此間，去之前請確認。</p>
+      <h4>문탠로드 月光路（달맞이길）</h4>
+      <p>釜山八景之一，松林海景步道，<b>尾浦就是入口</b>。備案 C 用這個。</p>
+      <h4>多大浦海水浴場＋峨嵋山展望台</h4>
+      <p>1 號線終點站，釜山最有名的夕陽，需半天。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0 0 10px"><a href="../">← 所有行程</a></p>
+    行程與價格為 2026/10 查證資料，出發前請再確認一次營業時間與票價。<br>
+    <div class="srcs">
+      <a href="https://www.visitbusanpass.com/" target="_blank" rel="noopener">Visit Busan Pass</a>
+      <a href="https://www.bluelinepark.com/" target="_blank" rel="noopener">藍線公園</a>
+      <a href="https://clubdoasis.com/cn" target="_blank" rel="noopener">Club D Oasis</a>
+      <a href="https://www.toyoko-inn.com/china/search/detail/00194/" target="_blank" rel="noopener">東橫INN 釜山站1</a>
+      <a href="https://www.mcdonalds.co.kr/kor/menu/mc-lunch" target="_blank" rel="noopener">맥런치</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- checklist persistence (per-viewer convenience) ---- */
+  var KEY = "busan2611.checks";
+  function load(){
+    try{
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function save(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  var state = load();
+  var boxes = document.querySelectorAll('.chk input[type="checkbox"]');
+  Array.prototype.forEach.call(boxes, function(box){
+    if(state[box.id]) box.checked = true;
+    box.addEventListener("change", function(){
+      state[box.id] = box.checked;
+      save(state);
+    });
+  });
+
+  /* ---- sticky nav: highlight the section in view ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav a"));
+  var targets = links.map(function(a){
+    return document.getElementById(a.getAttribute("href").slice(1));
+  }).filter(Boolean);
+
+  function markActive(id){
+    links.forEach(function(a){
+      a.classList.toggle("on", a.getAttribute("href") === "#" + id);
+    });
+  }
+
+  if("IntersectionObserver" in window){
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting; });
+      for(var i = 0; i < targets.length; i++){
+        if(visible[targets[i].id]){ markActive(targets[i].id); break; }
+      }
+    }, { rootMargin: "-80px 0px -70% 0px", threshold: 0 });
+    targets.forEach(function(t){ io.observe(t); });
+  }
+  markActive("overview");
+
+  /* keep the active pill scrolled into view inside the nav strip */
+  var strip = document.querySelector(".navin");
+  var lastOn = null;
+  setInterval(function(){
+    var on = document.querySelector("nav a.on");
+    if(on && on !== lastOn && strip){
+      lastOn = on;
+      var l = on.offsetLeft, r = l + on.offsetWidth;
+      if(l < strip.scrollLeft || r > strip.scrollLeft + strip.clientWidth){
+        strip.scrollTo({ left: Math.max(0, l - 12), behavior: "smooth" });
+      }
+    }
+  }, 400);
+})();
+</script>
+</body>
+</html>

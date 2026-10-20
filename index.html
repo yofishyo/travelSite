@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Yoga 的旅遊行程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#F4F6F7;
+    --surface:#FFFFFF;
+    --surface-2:#EDF1F2;
+    --ink:#16232B;
+    --muted:#5F7480;
+    --faint:#8EA1AA;
+    --line:#DDE4E7;
+    --line-soft:#E8EDEF;
+    --camellia:#C32F4A;
+    --camellia-soft:#FBEDEF;
+    --sea:#2B6E8C;
+    --sea-soft:#EAF2F6;
+    --on-camellia:#FFFFFF;
+    --ok:#1C6B63;
+    --ok-soft:#E6F2F0;
+
+    --cjk:"PingFang TC","Hiragino Sans TC","Microsoft JhengHei","Noto Sans CJK TC","Noto Sans TC","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    --latin:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --font:var(--latin),var(--cjk);
+
+    --gutter:16px;
+    --maxw:720px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0F181D;
+      --surface:#18242B;
+      --surface-2:#1E2C34;
+      --ink:#E7EDEF;
+      --muted:#93A6AF;
+      --faint:#6F848E;
+      --line:#2A3A43;
+      --line-soft:#223038;
+      --camellia:#F0607A;
+      --camellia-soft:#2E1A20;
+      --sea:#62ACCB;
+      --sea-soft:#152831;
+      --on-camellia:#17110F;
+      --ok:#6FC3B7;
+      --ok-soft:#142725;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F181D;
+    --surface:#18242B;
+    --surface-2:#1E2C34;
+    --ink:#E7EDEF;
+    --muted:#93A6AF;
+    --faint:#6F848E;
+    --line:#2A3A43;
+    --line-soft:#223038;
+    --camellia:#F0607A;
+    --camellia-soft:#2E1A20;
+    --sea:#62ACCB;
+    --sea-soft:#152831;
+    --on-camellia:#17110F;
+    --ok:#6FC3B7;
+    --ok-soft:#142725;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:15px;
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+
+  /* ---------- masthead ---------- */
+  .mast{padding-block:36px 22px}
+  .eyebrow{
+    font-family:var(--latin);
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--camellia);
+  }
+  h1{
+    margin:6px 0 0;
+    font-size:clamp(28px,8vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.1;
+    text-wrap:balance;
+  }
+  .sub{margin:8px 0 0;color:var(--muted);font-size:14px}
+
+  hr.rule{border:0;border-top:1px solid var(--line);margin:0}
+
+  /* ---------- trip cards ---------- */
+  .trips{display:grid;gap:12px;padding-block:24px}
+  .trip{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;
+  }
+  .trip:hover{border-color:var(--camellia);background:var(--surface-2)}
+  .triptop{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .trip h2{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .chip{
+    font-family:var(--latin);font-size:10.5px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;
+    padding:2px 7px;border-radius:4px;white-space:nowrap;
+  }
+  .chip.next{background:var(--camellia);color:var(--on-camellia)}
+  .chip.done{background:var(--ok-soft);color:var(--ok)}
+  .trip .dates{
+    margin:7px 0 0;font-family:var(--latin);font-size:13px;
+    font-variant-numeric:tabular-nums;color:var(--sea);font-weight:600;
+  }
+  .trip .meta{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .trip .go{
+    margin-top:10px;font-size:12.5px;font-weight:600;color:var(--camellia);
+    display:flex;align-items:baseline;gap:6px;
+  }
+  .trip .go::after{content:"→";opacity:.7}
+
+  footer{padding-block:8px 40px;color:var(--faint);font-size:12px;line-height:1.7}
+
+  a:focus-visible{outline:2px solid var(--camellia);outline-offset:2px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow">Travel · Itineraries</div>
+    <h1>Yoga 的旅遊行程</h1>
+    <p class="sub">點選行程查看每日細節、交通與備案。手機瀏覽已最佳化。</p>
+  </header>
+</div>
+
+<hr class="rule">
+
+<div class="wrap">
+  <main class="trips">
+
+    <a class="trip" href="busan-2026/">
+      <div class="triptop">
+        <h2>釜山五天四夜</h2>
+        <span class="chip next">即將出發</span>
+      </div>
+      <p class="dates">2026/11/03（二）– 11/07（六）</p>
+      <p class="meta">一人 · 不自駕，全程大眾運輸 · Visit Busan Pass 24H</p>
+      <p class="go">看行程</p>
+    </a>
+
+    <a class="trip" href="okinawa-2026/">
+      <div class="triptop">
+        <h2>沖繩五天四夜</h2>
+        <span class="chip done">已完成</span>
+      </div>
+      <p class="dates">2026/09/28（一）– 10/02（五）</p>
+      <p class="meta">台中 ↔ 那霸 · 自助行程</p>
+      <p class="go">看行程</p>
+    </a>
+
+  </main>
+
+  <footer>
+    行程資訊僅供參考，出發前請再確認營業時間與票價。
+  </footer>
+</div>
+
+</body>
+</html>
