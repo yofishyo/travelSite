@@ -1,23 +1,34 @@
 /* ===========================================================
-   travelSite 共用明暗主題機制
+   travelSite 共用顯示設定：明暗主題 ＋ 字級
    -----------------------------------------------------------
    這支只管「切換」這件事，不定義任何行程頁的配色。
    每個行程頁自己維護三段式配色（釜山用 --bg/--camellia、
    沖繩用 --ground/--accent），互不干擾。
 
    每頁要做的事：
-   1. <head> 內 inline 防閃爍 script（讀 travelsite.theme）
+   1. <head> 內 inline 防閃爍 script（讀 travelsite.theme / travelsite.fontscale）
    2. <link rel="stylesheet" href="../assets/theme.css">
    3. <script defer src="../assets/theme.js"></script>
    4. 導覽列外層加 .themebar，裡面放 #themeBtn.themebtn
+   5. 版頭放 .fsbar（裡面是 #fsGroup 與幾顆 .fsbtn）
+   6. 頁面所有 px 字級寫成 calc(Npx * var(--fs))
+
+   注意：這支自己的尺寸一律固定，不吃 --fs ——
+   字放到最大時，控制項本身還要維持可按。
    =========================================================== */
 
 :root{
   color-scheme:light;
+
+  /* 字級倍率。頁面的設計基準是 15px，1.133 ≒ 內文 17px */
+  --fs:1.133;
+
   --t-fg:#5F7480;
   --t-fg-on:#16232B;
   --t-bg:rgba(0,0,0,.045);
   --t-line:#D7DFE2;
+  --t-sel:#16232B;
+  --t-on-sel:#FFFFFF;
 }
 
 @media (prefers-color-scheme:dark){
@@ -27,6 +38,8 @@
     --t-fg-on:#F2F7F9;
     --t-bg:rgba(255,255,255,.08);
     --t-line:#3B4F5A;
+    --t-sel:#E7EDEF;
+    --t-on-sel:#101A1F;
   }
 }
 
@@ -36,9 +49,12 @@
   --t-fg-on:#F2F7F9;
   --t-bg:rgba(255,255,255,.08);
   --t-line:#3B4F5A;
+  --t-sel:#E7EDEF;
+  --t-on-sel:#101A1F;
 }
 
-/* 導覽列版面：第一個子元素（可橫向捲動的連結列）吃掉剩餘空間，
+/* ---------- 導覽列的明暗鈕 ---------- */
+/* 第一個子元素（可橫向捲動的連結列）吃掉剩餘空間，
    切換鈕固定在右端不會被捲走 */
 .themebar{
   display:flex;
@@ -71,6 +87,50 @@
 .themebtn:hover{color:var(--t-fg-on);border-color:var(--t-fg)}
 .themebtn:focus-visible{outline:2px solid var(--t-fg-on);outline-offset:2px}
 
+/* ---------- 版頭的字級控制 ---------- */
+.fsbar{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+  padding-block:14px 2px;
+}
+.fsbar .fslabel{
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--t-fg);
+}
+.fsgroup{
+  display:flex;
+  gap:5px;
+}
+.fsbtn{
+  min-width:46px;
+  height:38px;
+  padding:0 10px;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+  color:var(--t-fg);
+  background:var(--t-bg);
+  border:1px solid var(--t-line);
+  border-radius:9px;
+  cursor:pointer;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:color .15s,background .15s,border-color .15s;
+}
+.fsbtn:hover{color:var(--t-fg-on);border-color:var(--t-fg)}
+.fsbtn:focus-visible{outline:2px solid var(--t-fg-on);outline-offset:2px}
+.fsbtn[aria-pressed="true"]{
+  color:var(--t-on-sel);
+  background:var(--t-sel);
+  border-color:var(--t-sel);
+}
+
 @media (prefers-reduced-motion:reduce){
-  .themebtn{transition:none}
+  .themebtn,.fsbtn{transition:none}
 }

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
-<script>try{var t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>try{var d=document.documentElement,t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")d.setAttribute("data-theme",t);var f=parseFloat(localStorage.getItem("travelsite.fontscale"));if(f>0)d.style.setProperty("--fs",f/15);}catch(e){}</script>
 <link rel="stylesheet" href="assets/theme.css">
 <script defer src="assets/theme.js"></script>
 <style>
@@ -83,7 +83,7 @@
     background:var(--bg);
     color:var(--ink);
     font-family:var(--font);
-    font-size:15px;
+    font-size:calc(15px * var(--fs));
     line-height:1.6;
     -webkit-text-size-adjust:100%;
   }
@@ -93,15 +93,15 @@
   .mast{padding-block:36px 22px}
   .eyebrow{
     font-family:var(--latin);
-    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    font-size:calc(11px * var(--fs));font-weight:600;letter-spacing:.14em;text-transform:uppercase;
     color:var(--camellia);
   }
   h1{
     margin:6px 0 0;
-    font-size:clamp(28px,8vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.1;
+    font-size:clamp(calc(28px * var(--fs)),8vw,calc(38px * var(--fs)));font-weight:700;letter-spacing:-.02em;line-height:1.1;
     text-wrap:balance;
   }
-  .sub{margin:8px 0 0;color:var(--muted);font-size:14px}
+  .sub{margin:8px 0 0;color:var(--muted);font-size:calc(14px * var(--fs))}
 
   hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 
@@ -114,26 +114,26 @@
   }
   .trip:hover{border-color:var(--camellia);background:var(--surface-2)}
   .triptop{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
-  .trip h2{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .trip h2{margin:0;font-size:calc(19px * var(--fs));font-weight:700;letter-spacing:-.01em}
   .chip{
-    font-family:var(--latin);font-size:10.5px;font-weight:700;
+    font-family:var(--latin);font-size:calc(10.5px * var(--fs));font-weight:700;
     letter-spacing:.08em;text-transform:uppercase;
     padding:2px 7px;border-radius:4px;white-space:nowrap;
   }
   .chip.next{background:var(--camellia);color:var(--on-camellia)}
   .chip.done{background:var(--ok-soft);color:var(--ok)}
   .trip .dates{
-    margin:7px 0 0;font-family:var(--latin);font-size:13px;
+    margin:7px 0 0;font-family:var(--latin);font-size:calc(13px * var(--fs));
     font-variant-numeric:tabular-nums;color:var(--sea);font-weight:600;
   }
-  .trip .meta{margin:4px 0 0;color:var(--body);font-size:13px}
+  .trip .meta{margin:4px 0 0;color:var(--body);font-size:calc(13px * var(--fs))}
   .trip .go{
-    margin-top:10px;font-size:12.5px;font-weight:600;color:var(--camellia);
+    margin-top:10px;font-size:calc(12.5px * var(--fs));font-weight:600;color:var(--camellia);
     display:flex;align-items:baseline;gap:6px;
   }
   .trip .go::after{content:"→";opacity:.7}
 
-  footer{padding-block:8px 40px;color:var(--faint);font-size:12.5px;line-height:1.7}
+  footer{padding-block:8px 40px;color:var(--faint);font-size:calc(12.5px * var(--fs));line-height:1.7}
 
   a:focus-visible{outline:2px solid var(--camellia);outline-offset:2px;border-radius:4px}
 </style>
@@ -142,6 +142,15 @@
 
 <div class="wrap">
   <header class="mast">
+    <div class="fsbar">
+      <span class="fslabel">字級</span>
+      <div class="fsgroup" id="fsGroup" role="group" aria-label="字級">
+        <button class="fsbtn" type="button" data-px="17" aria-pressed="true">17</button>
+        <button class="fsbtn" type="button" data-px="19" aria-pressed="false">19</button>
+        <button class="fsbtn" type="button" data-px="21" aria-pressed="false">21</button>
+        <button class="fsbtn" type="button" data-px="24" aria-pressed="false">24</button>
+      </div>
+    </div>
     <div class="themebar">
       <div class="eyebrow">Travel · Itineraries</div>
       <button id="themeBtn" class="themebtn" type="button" aria-label="切換明暗模式">◌</button>

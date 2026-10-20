@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Roboto+Mono:wght@400;500&display=swap">
 <title>沖繩五天四夜</title>
-<script>try{var t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>try{var d=document.documentElement,t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")d.setAttribute("data-theme",t);var f=parseFloat(localStorage.getItem("travelsite.fontscale"));if(f>0)d.style.setProperty("--fs",f/15);}catch(e){}</script>
 <link rel="stylesheet" href="../assets/theme.css">
 <script defer src="../assets/theme.js"></script>
 <style>
@@ -39,25 +39,25 @@
   body{
     margin:0; background:var(--ground); color:var(--ink);
     font-family:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",system-ui,sans-serif;
-    font-size:15px; line-height:1.7; -webkit-text-size-adjust:100%;
+    font-size:calc(15px * var(--fs)); line-height:1.7; -webkit-text-size-adjust:100%;
   }
   .wrap{max-width:720px;margin:0 auto;padding-inline:18px}
 
   .masthead{background:var(--band);color:var(--band-ink)}
   .masthead .wrap{padding-block:32px 26px}
-  .eyebrow{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--band-dim);margin:0 0 10px}
+  .eyebrow{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(11px * var(--fs));letter-spacing:.18em;text-transform:uppercase;color:var(--band-dim);margin:0 0 10px}
   h1{font-family:"Noto Serif TC",serif;font-weight:700;font-size:clamp(28px,7.5vw,40px);line-height:1.25;margin:0 0 6px;text-wrap:balance}
-  .dates{font-family:"Roboto Mono",ui-monospace,monospace;font-size:14px;color:var(--band-dim);margin:0 0 20px;font-variant-numeric:tabular-nums}
+  .dates{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(14px * var(--fs));color:var(--band-dim);margin:0 0 20px;font-variant-numeric:tabular-nums}
   .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px 18px;border-top:1px solid rgba(157,179,180,.28);padding-top:17px}
-  .fact dt{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--band-dim);margin:0 0 3px}
-  .fact dd{margin:0;font-size:14px;line-height:1.55}
+  .fact dt{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(10.5px * var(--fs));letter-spacing:.14em;text-transform:uppercase;color:var(--band-dim);margin:0 0 3px}
+  .fact dd{margin:0;font-size:calc(14px * var(--fs));line-height:1.55}
   .fact dd b{font-weight:500}
 
   .daynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
   .daynav .themebar{padding-right:18px}
   .daynav .scroller{display:flex;gap:6px;overflow-x:auto;padding:9px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .daynav .scroller::-webkit-scrollbar{display:none}
-  .chip{flex:0 0 auto;text-decoration:none;white-space:nowrap;font-family:"Roboto Mono",ui-monospace,monospace;font-size:12.5px;color:var(--muted);padding:5px 11px;border-radius:999px;border:1px solid transparent;font-variant-numeric:tabular-nums}
+  .chip{flex:0 0 auto;text-decoration:none;white-space:nowrap;font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(12.5px * var(--fs));color:var(--muted);padding:5px 11px;border-radius:999px;border:1px solid transparent;font-variant-numeric:tabular-nums}
   .chip:hover{color:var(--ink)}
   .chip.on{background:var(--sea-soft);color:var(--sea);border-color:var(--sea)}
   .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -65,16 +65,16 @@
   .day{padding-block:32px 8px;border-top:1px solid var(--line)}
   .day:first-of-type{border-top:0}
   .dayhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-  .daynum{font-family:"Noto Serif TC",serif;font-weight:700;font-size:26px;color:var(--sea);font-variant-numeric:tabular-nums}
-  .daytitle{font-family:"Noto Serif TC",serif;font-weight:600;font-size:19px;margin:0}
-  .daykind{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:2px 6px}
-  .daylede{color:var(--ink-soft);margin:0 0 20px;font-size:14.5px;max-width:62ch}
+  .daynum{font-family:"Noto Serif TC",serif;font-weight:700;font-size:calc(26px * var(--fs));color:var(--sea);font-variant-numeric:tabular-nums}
+  .daytitle{font-family:"Noto Serif TC",serif;font-weight:600;font-size:calc(19px * var(--fs));margin:0}
+  .daykind{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(10.5px * var(--fs));letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:2px 6px}
+  .daylede{color:var(--ink-soft);margin:0 0 20px;font-size:calc(14.5px * var(--fs));max-width:62ch}
 
   .stops{display:flex;flex-direction:column;gap:17px}
   .stop{display:grid;grid-template-columns:50px 12px minmax(0,1fr);gap:0 11px;position:relative}
   .rail{text-align:right;padding-top:11px}
-  .time{font-family:"Roboto Mono",ui-monospace,monospace;font-size:13px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;display:block}
-  .dur{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;color:var(--muted);display:block;margin-top:2px}
+  .time{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(13px * var(--fs));font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;display:block}
+  .dur{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(10.5px * var(--fs));color:var(--muted);display:block;margin-top:2px}
   .spine{position:relative}
   .spine::before{content:"";position:absolute;left:5px;top:16px;width:2px;bottom:-17px;background:var(--line)}
   .stop:last-child .spine::before{display:none}
@@ -87,32 +87,32 @@
   .stop[data-kind="move"] .card{background:transparent;border:0;padding:8px 0 0}
   .cardhead{display:flex;align-items:flex-start;gap:10px}
   .cardhead .names{flex:1;min-width:0}
-  h3{font-family:"Noto Serif TC",serif;font-weight:600;font-size:17px;margin:0;line-height:1.4;text-wrap:balance}
-  .stop[data-kind="move"] h3{font-family:inherit;font-weight:500;font-size:15px;color:var(--ink-soft)}
-  .jp{display:block;font-size:12px;color:var(--muted);margin-top:2px;font-weight:400}
-  .lede{margin:9px 0 0;color:var(--ink-soft);font-size:14.5px}
+  h3{font-family:"Noto Serif TC",serif;font-weight:600;font-size:calc(17px * var(--fs));margin:0;line-height:1.4;text-wrap:balance}
+  .stop[data-kind="move"] h3{font-family:inherit;font-weight:500;font-size:calc(15px * var(--fs));color:var(--ink-soft)}
+  .jp{display:block;font-size:calc(12px * var(--fs));color:var(--muted);margin-top:2px;font-weight:400}
+  .lede{margin:9px 0 0;color:var(--ink-soft);font-size:calc(14.5px * var(--fs))}
   ul.points{margin:10px 0 0;padding-left:1.05em;display:flex;flex-direction:column;gap:5px}
-  ul.points li{font-size:14px;line-height:1.62}
+  ul.points li{font-size:calc(14px * var(--fs));line-height:1.62}
   ul.points li::marker{color:var(--sea)}
-  .note{margin-top:12px;padding:8px 0 8px 12px;border-left:3px solid var(--accent);font-size:13.5px;line-height:1.62;color:var(--ink-soft)}
+  .note{margin-top:12px;padding:8px 0 8px 12px;border-left:3px solid var(--accent);font-size:calc(13.5px * var(--fs));line-height:1.62;color:var(--ink-soft)}
   .note b{color:var(--accent);font-weight:500}
   .note.calm{border-left-color:var(--sea)}
   .note.calm b{color:var(--sea)}
   .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:11px;border-top:1px dashed var(--line)}
-  .tag{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;color:var(--muted);background:var(--surface-2);border-radius:4px;padding:3px 7px;font-variant-numeric:tabular-nums}
+  .tag{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(11px * var(--fs));color:var(--muted);background:var(--surface-2);border-radius:4px;padding:3px 7px;font-variant-numeric:tabular-nums}
   .tag.free{color:var(--sea);background:var(--sea-soft)}
   .tag.warn{color:var(--accent);background:var(--accent-soft)}
 
-  .subhead{font-family:"Noto Serif TC",serif;font-weight:600;font-size:14px;margin:15px 0 4px;color:var(--ink)}
+  .subhead{font-family:"Noto Serif TC",serif;font-weight:600;font-size:calc(14px * var(--fs));margin:15px 0 4px;color:var(--ink)}
   .tablewrap{overflow-x:auto;margin-top:6px;-webkit-overflow-scrolling:touch}
-  table.mini{border-collapse:collapse;width:100%;min-width:250px;font-size:13px}
+  table.mini{border-collapse:collapse;width:100%;min-width:250px;font-size:calc(13px * var(--fs))}
   table.mini th,table.mini td{border-bottom:1px solid var(--line);padding:6px 10px 6px 0;text-align:left;vertical-align:top}
-  table.mini th{font-family:"Roboto Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;white-space:nowrap}
+  table.mini th{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(10.5px * var(--fs));letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:400;white-space:nowrap}
   table.mini td{font-variant-numeric:tabular-nums;line-height:1.55}
   table.mini td:first-child{font-family:"Roboto Mono",ui-monospace,monospace;white-space:nowrap;color:var(--ink-soft)}
   table.mini tr.hi td,table.mini tr.hi td b{color:var(--accent)}
 
-  .tick{flex:0 0 auto;width:22px;height:22px;margin-top:2px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;padding:0;color:transparent;font-size:12px;line-height:1;transition:border-color .15s,color .15s,background .15s}
+  .tick{flex:0 0 auto;width:calc(22px * var(--fs));height:calc(22px * var(--fs));margin-top:2px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;padding:0;color:transparent;font-size:calc(12px * var(--fs));line-height:1;transition:border-color .15s,color .15s,background .15s}
   .tick:hover{border-color:var(--sea)}
   .tick:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .tick[aria-pressed="true"]{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
@@ -120,13 +120,13 @@
   .stop.done h3{text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:var(--muted)}
 
   .block{padding-block:32px;border-top:1px solid var(--line)}
-  h2{font-family:"Noto Serif TC",serif;font-weight:600;font-size:21px;margin:0 0 16px;text-wrap:balance}
+  h2{font-family:"Noto Serif TC",serif;font-weight:600;font-size:calc(21px * var(--fs));margin:0 0 16px;text-wrap:balance}
   .memo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-  .memo li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.62}
-  .memo .n{font-family:"Roboto Mono",ui-monospace,monospace;font-size:11px;color:var(--sea);border:1px solid var(--sea);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;margin-top:3px}
+  .memo li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;font-size:calc(14px * var(--fs));line-height:1.62}
+  .memo .n{font-family:"Roboto Mono",ui-monospace,monospace;font-size:calc(11px * var(--fs));color:var(--sea);border:1px solid var(--sea);border-radius:50%;width:calc(22px * var(--fs));height:calc(22px * var(--fs));display:grid;place-items:center;margin-top:3px}
   .memo b{font-weight:500}
 
-  footer{background:var(--surface-2);color:var(--muted);font-size:12.5px;line-height:1.65}
+  footer{background:var(--surface-2);color:var(--muted);font-size:calc(12.5px * var(--fs));line-height:1.65}
   footer .wrap{padding-block:20px 26px}
   footer p{margin:0 0 6px}
   footer b{color:var(--ink-soft);font-weight:500}
@@ -141,6 +141,15 @@
 
 <header class="masthead">
   <div class="wrap">
+    <div class="fsbar">
+      <span class="fslabel">字級</span>
+      <div class="fsgroup" id="fsGroup" role="group" aria-label="字級">
+        <button class="fsbtn" type="button" data-px="17" aria-pressed="true">17</button>
+        <button class="fsbtn" type="button" data-px="19" aria-pressed="false">19</button>
+        <button class="fsbtn" type="button" data-px="21" aria-pressed="false">21</button>
+        <button class="fsbtn" type="button" data-px="24" aria-pressed="false">24</button>
+      </div>
+    </div>
     <p class="eyebrow">Okinawa · 自助行程</p>
     <h1>沖繩五天四夜</h1>
     <p class="dates">2026/09/28（一）– 10/02（五）· 台中 ↔ 那霸</p>
