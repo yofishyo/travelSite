@@ -1,0 +1,76 @@
+/* ===========================================================
+   travelSite 共用明暗主題機制
+   -----------------------------------------------------------
+   這支只管「切換」這件事，不定義任何行程頁的配色。
+   每個行程頁自己維護三段式配色（釜山用 --bg/--camellia、
+   沖繩用 --ground/--accent），互不干擾。
+
+   每頁要做的事：
+   1. <head> 內 inline 防閃爍 script（讀 travelsite.theme）
+   2. <link rel="stylesheet" href="../assets/theme.css">
+   3. <script defer src="../assets/theme.js"></script>
+   4. 導覽列外層加 .themebar，裡面放 #themeBtn.themebtn
+   =========================================================== */
+
+:root{
+  color-scheme:light;
+  --t-fg:#5F7480;
+  --t-fg-on:#16232B;
+  --t-bg:rgba(0,0,0,.045);
+  --t-line:#D7DFE2;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --t-fg:#A9BBC4;
+    --t-fg-on:#F2F7F9;
+    --t-bg:rgba(255,255,255,.08);
+    --t-line:#3B4F5A;
+  }
+}
+
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --t-fg:#A9BBC4;
+  --t-fg-on:#F2F7F9;
+  --t-bg:rgba(255,255,255,.08);
+  --t-line:#3B4F5A;
+}
+
+/* 導覽列版面：第一個子元素（可橫向捲動的連結列）吃掉剩餘空間，
+   切換鈕固定在右端不會被捲走 */
+.themebar{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.themebar > :first-child{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.themebtn{
+  flex:0 0 auto;
+  display:inline-grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  padding:0;
+  font-size:15px;
+  line-height:1;
+  color:var(--t-fg);
+  background:var(--t-bg);
+  border:1px solid var(--t-line);
+  border-radius:999px;
+  cursor:pointer;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:color .15s,border-color .15s;
+}
+.themebtn:hover{color:var(--t-fg-on);border-color:var(--t-fg)}
+.themebtn:focus-visible{outline:2px solid var(--t-fg-on);outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){
+  .themebtn{transition:none}
+}

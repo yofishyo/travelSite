@@ -9,12 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+<script>try{var t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="stylesheet" href="assets/theme.css">
+<script defer src="assets/theme.js"></script>
 <style>
   :root{
     --bg:#F4F6F7;
     --surface:#FFFFFF;
     --surface-2:#EDF1F2;
     --ink:#16232B;
+    --body:#3B4F59;
     --muted:#5F7480;
     --faint:#8EA1AA;
     --line:#DDE4E7;
@@ -36,39 +40,41 @@
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --bg:#0F181D;
-      --surface:#18242B;
-      --surface-2:#1E2C34;
-      --ink:#E7EDEF;
-      --muted:#93A6AF;
-      --faint:#6F848E;
-      --line:#2A3A43;
-      --line-soft:#223038;
-      --camellia:#F0607A;
-      --camellia-soft:#2E1A20;
-      --sea:#62ACCB;
-      --sea-soft:#152831;
-      --on-camellia:#17110F;
-      --ok:#6FC3B7;
-      --ok-soft:#142725;
+      --bg:#0D161B;
+      --surface:#16222A;
+      --surface-2:#1C2B34;
+      --ink:#F2F7F9;
+      --body:#D2DEE4;
+      --muted:#A9BBC4;
+      --faint:#8A9EA8;
+      --line:#384C57;
+      --line-soft:#2B3C45;
+      --camellia:#FF8098;
+      --camellia-soft:#3A1F26;
+      --sea:#8ACFEA;
+      --sea-soft:#15303C;
+      --on-camellia:#1A0D11;
+      --ok:#87DCCB;
+      --ok-soft:#12302B;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0F181D;
-    --surface:#18242B;
-    --surface-2:#1E2C34;
-    --ink:#E7EDEF;
-    --muted:#93A6AF;
-    --faint:#6F848E;
-    --line:#2A3A43;
-    --line-soft:#223038;
-    --camellia:#F0607A;
-    --camellia-soft:#2E1A20;
-    --sea:#62ACCB;
-    --sea-soft:#152831;
-    --on-camellia:#17110F;
-    --ok:#6FC3B7;
-    --ok-soft:#142725;
+    --bg:#0D161B;
+    --surface:#16222A;
+    --surface-2:#1C2B34;
+    --ink:#F2F7F9;
+    --body:#D2DEE4;
+    --muted:#A9BBC4;
+    --faint:#8A9EA8;
+    --line:#384C57;
+    --line-soft:#2B3C45;
+    --camellia:#FF8098;
+    --camellia-soft:#3A1F26;
+    --sea:#8ACFEA;
+    --sea-soft:#15303C;
+    --on-camellia:#1A0D11;
+    --ok:#87DCCB;
+    --ok-soft:#12302B;
   }
 
   *{box-sizing:border-box}
@@ -120,14 +126,14 @@
     margin:7px 0 0;font-family:var(--latin);font-size:13px;
     font-variant-numeric:tabular-nums;color:var(--sea);font-weight:600;
   }
-  .trip .meta{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .trip .meta{margin:4px 0 0;color:var(--body);font-size:13px}
   .trip .go{
     margin-top:10px;font-size:12.5px;font-weight:600;color:var(--camellia);
     display:flex;align-items:baseline;gap:6px;
   }
   .trip .go::after{content:"→";opacity:.7}
 
-  footer{padding-block:8px 40px;color:var(--faint);font-size:12px;line-height:1.7}
+  footer{padding-block:8px 40px;color:var(--faint);font-size:12.5px;line-height:1.7}
 
   a:focus-visible{outline:2px solid var(--camellia);outline-offset:2px;border-radius:4px}
 </style>
@@ -136,7 +142,10 @@
 
 <div class="wrap">
   <header class="mast">
-    <div class="eyebrow">Travel · Itineraries</div>
+    <div class="themebar">
+      <div class="eyebrow">Travel · Itineraries</div>
+      <button id="themeBtn" class="themebtn" type="button" aria-label="切換明暗模式">◌</button>
+    </div>
     <h1>Yoga 的旅遊行程</h1>
     <p class="sub">點選行程查看每日細節、交通與備案。手機瀏覽已最佳化。</p>
   </header>

@@ -9,12 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
+<script>try{var t=localStorage.getItem("travelsite.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="stylesheet" href="../assets/theme.css">
+<script defer src="../assets/theme.js"></script>
 <style>
   :root{
     --bg:#F4F6F7;
     --surface:#FFFFFF;
     --surface-2:#EDF1F2;
     --ink:#16232B;
+    --body:#3B4F59;
     --muted:#5F7480;
     --faint:#8EA1AA;
     --line:#DDE4E7;
@@ -31,6 +35,7 @@
 
     --cjk:"PingFang TC","Hiragino Sans TC","Microsoft JhengHei","Noto Sans CJK TC","Noto Sans TC","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
     --latin:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --ko:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",var(--cjk);
     --font:var(--latin),var(--cjk);
 
     --rail:58px;
@@ -39,43 +44,45 @@
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --bg:#0F181D;
-      --surface:#18242B;
-      --surface-2:#1E2C34;
-      --ink:#E7EDEF;
-      --muted:#93A6AF;
-      --faint:#6F848E;
-      --line:#2A3A43;
-      --line-soft:#223038;
-      --camellia:#F0607A;
-      --camellia-soft:#2E1A20;
-      --sea:#62ACCB;
-      --sea-soft:#152831;
-      --on-camellia:#17110F;
-      --warn:#E0A851;
-      --warn-soft:#2A2314;
-      --ok:#6FC3B7;
-      --ok-soft:#142725;
+      --bg:#0D161B;
+      --surface:#16222A;
+      --surface-2:#1C2B34;
+      --ink:#F2F7F9;
+      --body:#D2DEE4;
+      --muted:#A9BBC4;
+      --faint:#8A9EA8;
+      --line:#384C57;
+      --line-soft:#2B3C45;
+      --camellia:#FF8098;
+      --camellia-soft:#3A1F26;
+      --sea:#8ACFEA;
+      --sea-soft:#15303C;
+      --on-camellia:#1A0D11;
+      --warn:#FFCB73;
+      --warn-soft:#352A12;
+      --ok:#87DCCB;
+      --ok-soft:#12302B;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0F181D;
-    --surface:#18242B;
-    --surface-2:#1E2C34;
-    --ink:#E7EDEF;
-    --muted:#93A6AF;
-    --faint:#6F848E;
-    --line:#2A3A43;
-    --line-soft:#223038;
-    --camellia:#F0607A;
-    --camellia-soft:#2E1A20;
-    --sea:#62ACCB;
-    --sea-soft:#152831;
-    --on-camellia:#17110F;
-    --warn:#E0A851;
-    --warn-soft:#2A2314;
-    --ok:#6FC3B7;
-    --ok-soft:#142725;
+    --bg:#0D161B;
+    --surface:#16222A;
+    --surface-2:#1C2B34;
+    --ink:#F2F7F9;
+    --body:#D2DEE4;
+    --muted:#A9BBC4;
+    --faint:#8A9EA8;
+    --line:#384C57;
+    --line-soft:#2B3C45;
+    --camellia:#FF8098;
+    --camellia-soft:#3A1F26;
+    --sea:#8ACFEA;
+    --sea-soft:#15303C;
+    --on-camellia:#1A0D11;
+    --warn:#FFCB73;
+    --warn-soft:#352A12;
+    --ok:#87DCCB;
+    --ok-soft:#12302B;
   }
 
   *{box-sizing:border-box}
@@ -137,8 +144,8 @@
     border-bottom:1px solid var(--line);
     margin-top:18px;
   }
+  nav .themebar{max-width:var(--maxw);margin:0 auto;padding-right:var(--gutter)}
   .navin{
-    max-width:var(--maxw);margin:0 auto;
     display:flex;gap:4px;overflow-x:auto;padding:8px var(--gutter);
     scrollbar-width:none;
   }
@@ -167,11 +174,11 @@
   .route{
     margin:12px 0 0;padding:10px 12px;border-radius:8px;
     background:var(--sea-soft);color:var(--sea);
-    font-size:12.5px;line-height:1.7;word-break:break-word;
+    font-size:13px;line-height:1.7;word-break:break-word;
   }
   .note{
     margin:12px 0 0;padding:11px 13px;border-radius:8px;
-    background:var(--surface-2);font-size:13px;color:var(--muted);
+    background:var(--surface-2);font-size:13.5px;color:var(--body);
   }
   .note b{color:var(--ink)}
   .note.warn{background:var(--warn-soft);color:var(--warn)}
@@ -206,16 +213,17 @@
   .row.pin{
     border-left:3px solid var(--warn);
     padding-left:9px;
-    background:linear-gradient(90deg,var(--warn-soft),transparent 70%);
+    background:linear-gradient(90deg,var(--warn-soft),transparent 80%);
   }
   .row.pin .time{margin-left:-3px}
   .what{min-width:0}
   .what .h{font-weight:600;font-size:14.5px;line-height:1.45}
-  .what .d{color:var(--muted);font-size:13px;margin-top:3px}
+  .what .d{color:var(--body);font-size:13.5px;margin-top:3px}
   .what .go{
-    color:var(--sea);font-size:12.5px;margin-top:5px;display:flex;gap:6px;align-items:baseline;
+    color:var(--sea);font-size:13px;margin-top:5px;
+    position:relative;padding-left:15px;
   }
-  .what .go::before{content:"→";flex:0 0 auto;opacity:.6}
+  .what .go::before{content:"→";position:absolute;left:0;top:0;opacity:.6}
   .what .warnline{color:var(--warn);font-size:12.5px;margin-top:5px;font-weight:500}
 
   .tok{
@@ -278,16 +286,56 @@
   }
   .card h3{margin:0 0 4px;font-size:16px;font-weight:700}
   .card h4{margin:16px 0 4px;font-size:13.5px;font-weight:700;color:var(--camellia)}
-  .card p{margin:6px 0 0;font-size:13.5px;color:var(--muted)}
+  .card p{margin:6px 0 0;font-size:13.5px;color:var(--body)}
   .card p b,.card li b{color:var(--ink)}
-  .card ul,.card ol{margin:8px 0 0;padding-left:20px;font-size:13.5px;color:var(--muted)}
+  .card ul,.card ol{margin:8px 0 0;padding-left:20px;font-size:13.5px;color:var(--body)}
   .card li{margin:4px 0}
   .card .tscroll table{font-size:12.5px}
+
+  /* ---------- 中韓英對照 ---------- */
+  .ko{
+    margin-top:3px;font-size:12.5px;line-height:1.55;
+    color:var(--muted);font-family:var(--ko);
+  }
+  .ko .en{color:var(--faint);font-family:var(--latin)}
+  .ko .addr{color:var(--faint)}
+  [data-copy]{
+    cursor:pointer;
+    border-bottom:1px dotted currentColor;
+  }
+  .ko [data-copy],td [data-copy]{
+    color:var(--body);font-weight:600;font-family:var(--ko);
+    border-bottom-color:var(--line);
+  }
+  [data-copy]:hover{opacity:.7}
+  #names table{min-width:600px}
+  #names th,#names td{white-space:nowrap}
+  #names td:last-child{white-space:normal;min-width:190px}
+  #names .scrollhint{
+    margin:8px 0 0;font-size:12px;color:var(--faint);
+  }
+  .names-intro{margin:10px 0 0;font-size:13.5px;color:var(--body)}
+  .names-intro b{color:var(--ink)}
+  h3.namehead{
+    margin:24px 0 0;font-size:15px;font-weight:700;
+  }
+  td .en{color:var(--muted);font-family:var(--latin);font-size:12.5px}
+  .toast{
+    position:fixed;left:50%;bottom:24px;z-index:90;
+    transform:translateX(-50%) translateY(8px);
+    pointer-events:none;opacity:0;
+    background:var(--ink);color:var(--bg);
+    font-size:13px;font-weight:600;
+    padding:8px 15px;border-radius:999px;
+    transition:opacity .18s,transform .18s;
+  }
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media (prefers-reduced-motion:reduce){.toast{transition:none}}
 
   hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 
   footer{
-    padding-block:26px 40px;color:var(--faint);font-size:12px;line-height:1.7;
+    padding-block:26px 40px;color:var(--faint);font-size:12.5px;line-height:1.7;
   }
   footer a{color:var(--sea)}
   .srcs{margin-top:8px}
@@ -320,7 +368,9 @@
       <div class="key">
         <h3>住宿</h3>
         <p>11/3–11/6　東橫INN <b>釜山西面</b><br>
+        <span class="ko"><span data-copy>토요코인 부산서면</span> · <span class="en">Toyoko Inn Busan Seomyeon</span></span><br>
         11/6–11/7　東橫INN <b>釜山站1號店</b><br>
+        <span class="ko"><span data-copy>토요코인 부산역1</span> · <span class="en">Toyoko Inn Busan Station No.1</span></span><br>
         <span style="color:var(--warn)">退房 10:00 前・入住 16:00</span></p>
       </div>
     </div>
@@ -328,16 +378,20 @@
 </div>
 
 <nav>
-  <div class="navin">
-    <a href="#overview">總覽</a>
-    <a href="#pass">Pass</a>
-    <a href="#d1">D1</a>
-    <a href="#d2">D2</a>
-    <a href="#d3">D3</a>
-    <a href="#d4">D4</a>
-    <a href="#d5">D5</a>
-    <a href="#check">待確認</a>
-    <a href="#backup">備案</a>
+  <div class="themebar">
+    <div class="navin">
+      <a href="#overview">總覽</a>
+      <a href="#pass">Pass</a>
+      <a href="#d1">D1</a>
+      <a href="#d2">D2</a>
+      <a href="#d3">D3</a>
+      <a href="#d4">D4</a>
+      <a href="#d5">D5</a>
+      <a href="#names">對照</a>
+      <a href="#check">待確認</a>
+      <a href="#backup">備案</a>
+    </div>
+    <button id="themeBtn" class="themebtn" type="button" aria-label="切換明暗模式">◌</button>
   </div>
 </nav>
 
@@ -436,21 +490,36 @@
         <div class="what">
           <div class="h">機場 → 西面</div>
           <div class="d">約 55–65 分，<b>2 號線直達不用轉車</b>，拖行李最輕鬆的一段</div>
-          <div class="go">輕軌「공항」→「사상」17 分 → 2 號線「서면」20 分</div>
+          <div class="go">金海輕軌 <span data-copy>공항</span> 公航／Airport ④ → <span data-copy>사상</span> 沙上／Sasang ①　17 分</div>
+          <div class="go">轉 2 號線 <span data-copy>서면</span> 西面／Seomyeon ②219　20 分</div>
           <div class="go">西面站走 <b>11 號出口有電梯</b></div>
         </div>
       </div>
       <div class="row">
         <div class="time">21:30</div>
-        <div class="what"><div class="h">🏨 東橫INN 釜山西面 check in</div><div class="d">24h 櫃台・西面站步行 5 分</div></div>
+        <div class="what">
+          <div class="h">🏨 東橫INN 釜山西面 check in</div>
+          <div class="ko"><span data-copy>토요코인 부산서면</span> · <span class="en">Toyoko Inn Busan Seomyeon</span><br>
+          <span class="addr">📍 <span data-copy>부산광역시 부산진구 서전로 39</span></span></div>
+          <div class="d">24h 櫃台・西面站步行 5–8 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">21:45</div>
-        <div class="what"><div class="h">🍽 西面覓食</div><div class="d">豬肉湯飯一條街（多家 24 小時）／西面市場</div></div>
+        <div class="what">
+          <div class="h">🍽 西面覓食</div>
+          <div class="ko">豬肉湯飯一條街 <span data-copy>돼지국밥 골목</span> · <span class="en">Dwaeji-gukbap Alley</span><br>
+          西面市場 <span data-copy>서면시장</span> · <span class="en">Seomyeon Market</span></div>
+          <div class="d">豬肉湯飯一條街多家 24 小時</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">22:15</div>
-        <div class="what"><div class="h">🛍 Olive Young 西面店</div><div class="d">多數分店到 22:30–23:00</div></div>
+        <div class="what">
+          <div class="h">🛍 Olive Young 西面店</div>
+          <div class="ko"><span data-copy>올리브영 서면점</span> · <span class="en">Olive Young Seomyeon</span></div>
+          <div class="d">多數分店到 22:30–23:00</div>
+        </div>
       </div>
     </div>
     <div class="note">💤 隔天健行 4.5 小時，早點休息。輕軌末班 <b>23:48</b>、2 號線西面站末班 <b>23:59</b>。</div>
@@ -461,7 +530,7 @@
   <!-- ===== DAY 2 ===== -->
   <section id="d2">
     <div class="sechead"><span class="daytag">Day 2</span><h2>二妓台海岸步道 → 五六島</h2><span class="dateline">11/4 (三)</span></div>
-    <div class="route">경성대역 → 이기대입구 → 동생말 → 海岸步道 4.7km → 五六島 → 廣安里</div>
+    <div class="route">경성대·부경대역 慶星大 → 이기대입구 二妓台入口 → 동생말 東生末 → 海岸步道 4.7km → 오륙도 五六島 → 광안리 廣安里</div>
     <div class="tl">
       <div class="row">
         <div class="time">08:00</div>
@@ -469,19 +538,24 @@
       </div>
       <div class="row">
         <div class="time">09:00</div>
-        <div class="what"><div class="h">西面出發</div><div class="go">2 號線 →「경성대·부경대역」約 22 分</div></div>
+        <div class="what">
+          <div class="h">西面出發</div>
+          <div class="go">2 號線 → <span data-copy>경성대·부경대역</span> 慶星大·釜慶大／Kyungsung Univ.·Pukyong Univ. ②212　約 22 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">09:35</div>
         <div class="what">
-          <div class="h">→「이기대입구」下車</div>
-          <div class="go">5 號出口搭 <b>20／22／24／27／39／131</b> 或小巴 <b>남구2／2-1</b>，約 15 分</div>
+          <div class="h">→ 二妓台入口 下車</div>
+          <div class="ko"><span data-copy>이기대입구</span> · <span class="en">Igidae Entrance</span></div>
+          <div class="go">5 號出口搭 <b>20／22／24／27／39／131</b> 或小巴 <b>남구2／남구8</b>，約 15 分</div>
         </div>
       </div>
       <div class="row">
         <div class="time">09:50</div>
         <div class="what">
-          <div class="h">步行上坡至 동생말 步道入口</div>
+          <div class="h">步行上坡至 東生末 步道入口</div>
+          <div class="ko"><span data-copy>동생말</span> · <span class="en">Dongsaengmal</span></div>
           <div class="d">約 15–20 分</div>
           <div class="warnline">往 동생말 的支線公車 2024/5 起停駛，只能走路</div>
         </div>
@@ -490,6 +564,7 @@
         <div class="time">10:15</div>
         <div class="what">
           <div class="h">🥾 二妓台海岸散策路 4.7km<span class="free">免費</span></div>
+          <div class="ko"><span data-copy>이기대 해안산책로</span> · <span class="en">Igidae Coastal Walk</span></div>
           <div class="d">約 2.5–3 小時。釜山國家地質公園，可見約 8,000 萬年前火山岩地層；木棧道、吊橋、礁岩交替，起伏不大但路面變化多。</div>
           <div class="warnline">沿途無商店，第一個廁所在約 3km 處的 어울마당</div>
         </div>
@@ -498,40 +573,65 @@
         <div class="time">13:00</div>
         <div class="what">
           <div class="h">🌲 五六島天空步道<span class="free">免費</span></div>
+          <div class="ko"><span data-copy>오륙도 스카이워크</span> · <span class="en">Oryukdo Skywalk</span>　｜　公車站牌 <span data-copy>오륙도스카이워크</span></div>
           <div class="d">09:00–18:00。懸崖上的玻璃棧道，需套鞋套。旁邊有海波朗路起點諮詢處與廁所，坐下來休息。</div>
         </div>
       </div>
       <div class="row">
         <div class="time">14:05</div>
-        <div class="what"><div class="h">→ 慶星大</div><div class="go">公車 <b>27／남구2</b> 約 25 分</div></div>
+        <div class="what">
+          <div class="h">→ 慶星大</div>
+          <div class="go">公車 <b>27／남구2</b> → <span data-copy>경성대·부경대역</span> ②212　約 25 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">14:35</div>
-        <div class="what"><div class="h">🍽 慶星大商圈午餐</div><div class="d">大學城，一人食堂、小吃多，價格便宜</div></div>
+        <div class="what">
+          <div class="h">🍽 慶星大商圈午餐</div>
+          <div class="ko"><span data-copy>경성대 상권</span> · <span class="en">Kyungsung Univ. area</span></div>
+          <div class="d">大學城，一人食堂、小吃多，價格便宜</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">15:45</div>
-        <div class="what"><div class="h">→ 廣安里</div><div class="go">2 號線 2 站約 6 分</div></div>
+        <div class="what">
+          <div class="h">→ 廣安里</div>
+          <div class="go">2 號線 2 站 → <span data-copy>광안역</span> 廣安／Gwangan ②209　約 6 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">16:00</div>
-        <div class="what"><div class="h">☕ All Sunday Bagel</div><div class="d">10:00–21:30。廣安里海景貝果，坐著休息腳。</div></div>
+        <div class="what">
+          <div class="h">☕ All Sunday Bagel</div>
+          <div class="ko"><span data-copy>올선데이</span> · <span class="en">All Sunday</span></div>
+          <div class="d">10:00–21:30。廣安里海景貝果，坐著休息腳。</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">17:00</div>
-        <div class="what"><div class="h">🌅 廣安里海灘散步</div><div class="d"><b>日落 17:20</b>、廣安大橋點燈</div></div>
+        <div class="what">
+          <div class="h">🌅 廣安里海灘散步</div>
+          <div class="ko"><span data-copy>광안리해수욕장</span> · <span class="en">Gwangalli Beach</span><br>
+          廣安大橋 <span data-copy>광안대교</span> · <span class="en">Gwangan Bridge</span></div>
+          <div class="d"><b>日落 17:20</b>、廣安大橋點燈</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">18:00</div>
         <div class="what">
           <div class="h">🍽 Millac The Market</div>
+          <div class="ko"><span data-copy>밀락더마켓</span> · <span class="en">Millak The Market</span><br>
+          民樂水邊公園 <span data-copy>민락수변공원</span> · <span class="en">Millak Waterside Park</span></div>
           <div class="d">10:00–24:00。落地窗正對廣安大橋，晚餐＋夜景。旁邊<b>民樂水邊夜市</b>（週三 19:00–02:00）。</div>
-          <div class="go">廣安里海灘步行 12–13 分；或廣安站搭 83 號公車</div>
+          <div class="go">廣安里海灘步行 12–13 分；或 <span data-copy>광안역</span> 廣安站搭 83 號公車</div>
         </div>
       </div>
       <div class="row">
         <div class="time">20:15</div>
-        <div class="what"><div class="h">回西面</div><div class="go">廣安站 → 2 號線約 25 分</div></div>
+        <div class="what">
+          <div class="h">回西面</div>
+          <div class="go"><span data-copy>광안역</span> 廣安站 → 2 號線 <span data-copy>서면</span> 西面 ②219　約 25 分</div>
+        </div>
       </div>
     </div>
 
@@ -541,7 +641,7 @@
       <label class="chk"><input type="checkbox" id="hike-2"><span>薄外套（海岸風大）</span></label>
       <label class="chk"><input type="checkbox" id="hike-3"><span><b>水 1L ＋ 行動糧</b></span></label>
       <label class="chk"><input type="checkbox" id="hike-4"><span>出發前先上廁所</span></label>
-      <label class="chk"><input type="checkbox" id="hike-5"><span>Naver Map 離線存好「이기대입구 → 동생말」</span></label>
+      <label class="chk"><input type="checkbox" id="hike-5"><span>Naver Map 離線存好「<span data-copy>이기대입구</span> → <span data-copy>동생말</span>」</span></label>
       <label class="chk"><input type="checkbox" id="hike-6"><span>行動電源</span></label>
     </div>
     <div class="note"><b>務必 동생말 → 五六島方向走</b>（反向上坡較累）。11 月 17:20 天黑，10:15 出發、14:00 結束，安全。</div>
@@ -552,44 +652,60 @@
   <!-- ===== DAY 3 ===== -->
   <section id="d3">
     <div class="sechead"><span class="daytag">Day 3</span><h2>海雲台 Pass 日</h2><span class="dateline">11/5 (四)</span></div>
-    <div class="route">동백역 → 冬柏島 → 海灘 → 尾浦/달맞이길 → 青沙浦 → LCT → 市場 → LCT</div>
+    <div class="route">동백역 冬柏 → 동백섬 冬柏島 → 해운대해수욕장 海灘 → 미포 尾浦／달맞이길 → 청사포 青沙浦 → 엘시티 LCT → 해운대전통시장 市場 → 엘시티 LCT</div>
     <div class="note"><b>傍晚的順序是關鍵</b>：先泡湯在露天足湯看日落 → 市場吃晚餐（趕上黃金時段）→ 最後上 X the SKY 看夜景。三件事都不衝突。</div>
     <div class="tl">
       <div class="row">
         <div class="time">09:30</div>
         <div class="what">
           <div class="h">西面出發</div>
-          <div class="go">2 號線 →「<b>동백</b>」站約 38 分</div>
-          <div class="d">동백是 해운대 的<b>前一站</b>，不用多坐</div>
+          <div class="go">2 號線 → <span data-copy>동백역</span> 冬柏／Dongbaek ②204　約 38 分</div>
+          <div class="d">동백 是 해운대（②203）的<b>前一站</b>，不用多坐</div>
         </div>
       </div>
       <div class="row">
         <div class="time">10:10</div>
-        <div class="what"><div class="h">→ 冬柏島入口</div><div class="go">동백역 1 號出口步行約 12 分</div></div>
+        <div class="what">
+          <div class="h">→ 冬柏島入口</div>
+          <div class="ko"><span data-copy>동백섬</span> · <span class="en">Dongbaekseom Island</span></div>
+          <div class="go"><span data-copy>동백역</span> 冬柏站 <b>1 號出口</b>步行約 12 分</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">10:25</div>
         <div class="what">
           <div class="h">🌲 冬柏島海岸散策路<span class="free">免費 24h</span></div>
+          <div class="ko"><span data-copy>동백섬 해안산책로</span> · <span class="en">Dongbaekseom Coastal Walk</span><br>
+          APEC 世峰樓 <span data-copy>누리마루 APEC하우스</span> · <span class="en">Nurimaru APEC House</span></div>
           <div class="d">環島木棧道 <b>900m</b>：누리마루 APEC 世峰樓 → 人魚像 → 崔致遠像 → 燈塔。同時看得到<b>廣安大橋</b>與海雲台天際線。</div>
         </div>
       </div>
       <div class="row">
         <div class="time">11:40</div>
-        <div class="what"><div class="h">🏖 沿海雲台海灘往東走到尾浦</div><div class="d">1.5km 平沙灘，步行約 30 分</div></div>
+        <div class="what">
+          <div class="h">🏖 沿海雲台海灘往東走到尾浦</div>
+          <div class="ko"><span data-copy>해운대해수욕장</span> · <span class="en">Haeundae Beach</span> → <span data-copy>미포</span> 尾浦 · <span class="en">Mipo</span></div>
+          <div class="d">1.5km 平沙灘，步行約 30 分</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">12:15</div>
         <div class="what">
-          <div class="h">🍲 해운대 기와집대구탕</div>
-          <div class="d"><b>달맞이길104번길 46</b>（달맞이고개 入口）・08:00–21:00・<b>대구탕 ₩15,000 單一菜單</b>・051-731-5020<br>老瓦房改建，窗邊看得到海灘＋廣安大橋</div>
+          <div class="h">🍲 海雲台 瓦房鱈魚湯</div>
+          <div class="ko"><span data-copy>해운대 기와집대구탕</span> · <span class="en">Haeundae Giwajip Daegutang</span><br>
+          <span class="addr">📍 <span data-copy>해운대구 달맞이길104번길 46</span></span></div>
+          <div class="d">（달맞이고개 月光嶺入口）・08:00–21:00・<b>대구탕 ₩15,000 單一菜單</b>・051-731-5020<br>老瓦房改建，窗邊看得到海灘＋廣安大橋</div>
           <div class="go">尾浦往上走 10–15 分（上坡）</div>
           <a class="jump" href="#bk-food">沒開的話 →</a>
         </div>
       </div>
       <div class="row">
         <div class="time">13:45</div>
-        <div class="what"><div class="h">走回尾浦站（미포）</div><div class="d">約 10–15 分</div></div>
+        <div class="what">
+          <div class="h">走回尾浦站</div>
+          <div class="ko"><span data-copy>미포정거장</span> · <span class="en">Mipo Station</span>（海岸列車，非地鐵站）</div>
+          <div class="d">約 10–15 分</div>
+        </div>
       </div>
       <div class="row key-row pin">
         <div class="time">14:00</div>
@@ -604,12 +720,19 @@
         <div class="time">14:20</div>
         <div class="what">
           <div class="h"><span class="tok">①</span>海雲台海岸列車 尾浦 → 青沙浦</div>
+          <div class="ko"><span data-copy>해운대 블루라인파크 해변열차</span> · <span class="en">Haeundae Blueline Park Beach Train</span><br>
+          <span data-copy>미포</span> 尾浦 → <span data-copy>청사포</span> 青沙浦</div>
           <div class="d">約 20 分。換到的是<b>全區間自由券</b>，可中途下車。</div>
         </div>
       </div>
       <div class="row">
         <div class="time">14:40</div>
-        <div class="what"><div class="h">☕ 青沙浦</div><div class="d">踏石展望台（다릿돌전망대，海上玻璃觀景台）＋海景咖啡廳</div></div>
+        <div class="what">
+          <div class="h">☕ 青沙浦</div>
+          <div class="ko"><span data-copy>청사포</span> · <span class="en">Cheongsapo</span><br>
+          踏石展望台 <span data-copy>청사포 다릿돌전망대</span> · <span class="en">Cheongsapo Daritdol Observatory</span></div>
+          <div class="d">海上玻璃觀景台＋海景咖啡廳</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">15:45</div>
@@ -619,30 +742,41 @@
         <div class="time">16:20</div>
         <div class="what">
           <div class="h"><span class="tok">②</span>Club D Oasis　<span style="color:var(--muted);font-weight:400;font-size:13px">LCT 4–6F</span></div>
+          <div class="ko"><span data-copy>클럽디 오아시스</span> · <span class="en">Club D Oasis</span>　｜　LCT <span data-copy>엘시티</span></div>
           <div class="d">5F <b>MIRAGE</b> 室內外海景溫泉浴場<br>6F <b>HORIZON 海景露天足湯</b> — 戶外長條溫泉足浴步道<br>☀️ <b>就在這裡看日落 17:20</b>，海灘全景盡收眼底</div>
           <div class="go">尾浦步行約 10 分　｜　16:20 兌票，遠離 19:30 截止線</div>
         </div>
       </div>
       <div class="row">
         <div class="time">18:30</div>
-        <div class="what"><div class="h">→ 해운대역</div><div class="go">公車 100／139／141／200 約 10 分；或步行 20 分</div></div>
+        <div class="what">
+          <div class="h">→ 海雲台站</div>
+          <div class="ko"><span data-copy>해운대역</span> · <span class="en">Haeundae</span> ②203</div>
+          <div class="go">公車 100／139／141／200 約 10 分；或步行 20 分</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">18:45</div>
         <div class="what">
           <div class="h">🍽 海雲台傳統市場晚餐</div>
+          <div class="ko"><span data-copy>해운대전통시장</span> · <span class="en">Haeundae Traditional Market</span></div>
           <div class="d">黃金時段 17:00–19:30，20:00 後小吃攤陸續收。<br>
           <b>一人內用推薦</b>：31cm 海鮮刀削麵 ₩10,000（座位少，約等 10 分）／마산이모집 煎魚定食／봉자네실비집 海鮮煎餅／상국이네 飯捲、辣炒年糕</div>
         </div>
       </div>
       <div class="row">
         <div class="time">19:45</div>
-        <div class="what"><div class="h">回 LCT</div><div class="go">公車約 10 分</div></div>
+        <div class="what">
+          <div class="h">回 LCT</div>
+          <div class="ko"><span data-copy>엘시티</span> · <span class="en">LCT The Sharp</span></div>
+          <div class="go">公車約 10 分</div>
+        </div>
       </div>
       <div class="row key-row pin">
         <div class="time">20:00</div>
         <div class="what">
           <div class="h"><span class="tok">③</span>BUSAN X the SKY 夜景　<span style="color:var(--muted);font-weight:400;font-size:13px">98–100F</span></div>
+          <div class="ko"><span data-copy>부산엑스더스카이</span> · <span class="en">BUSAN X the SKY</span></div>
           <div class="d">世界最高星巴克</div>
           <div class="warnline">最後入場 <b>20:30</b>、21:00 關，別拖</div>
         </div>
@@ -651,7 +785,8 @@
         <div class="time">21:05</div>
         <div class="what">
           <div class="h">回西面（約 22:00 到）</div>
-          <div class="go">LCT 步行<b>中洞站約 15 分</b> → 2 號線「<b>양산 방면</b>」約 40 分</div>
+          <div class="go">LCT 步行至 <span data-copy>중동역</span> 中洞／Jung-dong ②202 約 15 分</div>
+          <div class="go">轉 2 號線「<b><span data-copy>양산 방면</span></b> 往梁山」約 40 分</div>
           <div class="d">中洞站末班 <b>23:45</b>，時間充裕</div>
         </div>
       </div>
@@ -664,7 +799,7 @@
   <!-- ===== DAY 4 ===== -->
   <section id="d4">
     <div class="sechead"><span class="daytag">Day 4</span><h2>換飯店 → 松島 → 南浦採買</h2><span class="dateline">11/6 (五)</span></div>
-    <div class="route">釜山站(寄行李) → 札嘎其 → 松島 → 南浦(午餐) → 釜山站(check in 休息) → 南浦(逛街/晚餐/超市)</div>
+    <div class="route">부산역 釜山站(寄行李) → 자갈치 札嘎其 → 송도 松島 → 남포 南浦(午餐) → 부산역 釜山站(check in) → 남포 南浦(逛街/晚餐/超市)</div>
     <div class="note">南浦 ↔ 釜山站只有 <b>1 號線 2 站、6 分鐘</b>，中間繞回飯店休息 45 分鐘，<b>晚上全程不用提東西</b>。</div>
     <div class="tl">
       <div class="row">
@@ -679,66 +814,98 @@
         <div class="time">09:55</div>
         <div class="what">
           <div class="h">西面站 → 釜山站</div>
-          <div class="go">1 號線約 12 分　｜　<b>11 號出口</b>進站搭電梯</div>
+          <div class="go">1 號線 <span data-copy>서면</span> 西面 ①119 → <span data-copy>부산역</span> 釜山站／Busan Station ①113　約 12 分</div>
+          <div class="go"><b>11 號出口</b>進站搭電梯</div>
         </div>
       </div>
       <div class="row key-row">
         <div class="time">10:10</div>
         <div class="what">
           <div class="h">🧳 東橫INN 釜山站 寄放行李</div>
+          <div class="ko"><span data-copy>토요코인 부산역1</span> · <span class="en">Toyoko Inn Busan Station No.1</span><br>
+          <span class="addr">📍 <span data-copy>부산광역시 동구 중앙대로196번길 12</span></span></div>
           <div class="d">免費，跟櫃台索取置物櫃密碼・6／8 號出口步行 2 分</div>
           <div class="warnline">16:00 才能 check in，所以先寄放</div>
         </div>
       </div>
       <div class="row">
         <div class="time">10:30</div>
-        <div class="what"><div class="h">釜山站 → 札嘎其站</div><div class="go">1 號線約 8 分</div></div>
+        <div class="what">
+          <div class="h">釜山站 → 札嘎其站</div>
+          <div class="go">1 號線 → <span data-copy>자갈치역</span> 札嘎其／Jagalchi ①110　約 8 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">10:50</div>
         <div class="what">
           <div class="h">→ 松島</div>
-          <div class="go">札嘎其 2 號出口「忠武洞交叉路」搭 <b>6／26／30／71／96</b> →「岩南洞居民中心」，再步行約 10 分</div>
+          <div class="ko">松島 <span data-copy>송도</span> · <span class="en">Songdo</span></div>
+          <div class="go">札嘎其 <b>2 號出口</b>　忠武洞交叉路 <span data-copy>충무동교차로</span> 搭 <b>6／26／30／71／96</b></div>
+          <div class="go">→ 岩南洞居民中心 <span data-copy>암남동주민센터</span> 下車，再步行約 10 分</div>
         </div>
       </div>
       <div class="row">
         <div class="time">11:15</div>
-        <div class="what"><div class="h">松島天空步道<span class="free">免費</span></div><div class="d">纜車站旁・06:00–23:00</div></div>
+        <div class="what">
+          <div class="h">松島天空步道<span class="free">免費</span></div>
+          <div class="ko"><span data-copy>송도구름산책로</span> · <span class="en">Songdo Skywalk</span></div>
+          <div class="d">纜車站旁・06:00–23:00</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">11:40</div>
         <div class="what">
           <div class="h"><span class="tok">④</span>松島海上纜車 水晶車廂</div>
-          <div class="d">松島灣站 → Sky Park 站。全長 1.62km、離海面 86m。</div>
+          <div class="ko"><span data-copy>송도해상케이블카</span>（<span data-copy>부산에어크루즈</span>） · <span class="en">Busan Air Cruise</span><br>
+          水晶車廂 <span data-copy>크리스탈크루즈</span> · <span class="en">Crystal Cruise</span></div>
+          <div class="d">松島灣站 <span data-copy>송도베이스테이션</span> → Sky Park 站 <span data-copy>송도스카이파크</span>。全長 1.62km、離海面 86m。</div>
         </div>
       </div>
       <div class="row">
         <div class="time">12:05</div>
-        <div class="what"><div class="h">Sky Park 觀景台、小王子裝置</div></div>
+        <div class="what">
+          <div class="h">Sky Park 觀景台、小王子裝置</div>
+          <div class="ko"><span data-copy>송도스카이파크</span> · <span class="en">Songdo Sky Park</span></div>
+        </div>
       </div>
       <div class="row key-row pin">
         <div class="time">12:45</div>
         <div class="what">
           <div class="h"><span class="tok">⑤</span>松島龍宮雲橋</div>
+          <div class="ko"><span data-copy>송도용궁구름다리</span> · <span class="en">Songdo Yonggung Suspension Bridge</span></div>
           <div class="d">Sky Park 站旁斜坡下走 5 分</div>
           <div class="warnline">Pass 14:00 到期，只剩 <b>1 小時 15 分</b>緩衝</div>
         </div>
       </div>
       <div class="row">
         <div class="time">13:10</div>
-        <div class="what"><div class="h">纜車回松島灣站</div><div class="d">來回票含</div></div>
+        <div class="what">
+          <div class="h">纜車回松島灣站</div>
+          <div class="ko"><span data-copy>송도베이스테이션</span> · <span class="en">Songdo Bay Station</span></div>
+          <div class="d">來回票含</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">13:40</div>
-        <div class="what"><div class="h">回南浦站</div><div class="go">公車約 25 分</div></div>
+        <div class="what">
+          <div class="h">回南浦站</div>
+          <div class="go">公車約 25 分 → <span data-copy>남포역</span> 南浦／Nampo ①111</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">14:10</div>
-        <div class="what"><div class="h">🍽 南浦洞午餐</div><div class="d">札嘎其海鮮／豬肉湯飯／BIFF 廣場</div></div>
+        <div class="what">
+          <div class="h">🍽 南浦洞午餐</div>
+          <div class="ko"><span data-copy>남포동</span> · <span class="en">Nampo-dong</span>　｜　札嘎其市場 <span data-copy>자갈치시장</span> · <span class="en">Jagalchi Market</span></div>
+          <div class="d">札嘎其海鮮／豬肉湯飯／BIFF 廣場</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">15:20</div>
-        <div class="what"><div class="h">南浦 → 釜山站</div><div class="go">1 號線 2 站約 6 分</div></div>
+        <div class="what">
+          <div class="h">南浦 → 釜山站</div>
+          <div class="go">1 號線 2 站 <span data-copy>남포역</span> ①111 → <span data-copy>부산역</span> ①113　約 6 分</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">16:00</div>
@@ -746,13 +913,18 @@
       </div>
       <div class="row">
         <div class="time">16:50</div>
-        <div class="what"><div class="h">釜山站 → 南浦</div><div class="go">1 號線 2 站約 6 分</div></div>
+        <div class="what">
+          <div class="h">釜山站 → 南浦</div>
+          <div class="go">1 號線 2 站 <span data-copy>부산역</span> ①113 → <span data-copy>남포역</span> ①111　約 6 分</div>
+        </div>
       </div>
       <div class="row">
         <div class="time">17:00</div>
         <div class="what">
           <div class="h">🛍 南浦洞逛街</div>
-          <div class="d">光復路、BIFF 廣場、國際市場、札嘎其市場、Olive Young 南浦店（到 22:00）。全在步行圈。</div>
+          <div class="ko">光復路 <span data-copy>광복로</span>　｜　BIFF 廣場 <span data-copy>BIFF광장</span>　｜　國際市場 <span data-copy>국제시장</span><br>
+          札嘎其市場 <span data-copy>자갈치시장</span>　｜　<span data-copy>올리브영 남포점</span> · <span class="en">Olive Young Nampo</span></div>
+          <div class="d">Olive Young 南浦店到 22:00。全在步行圈。</div>
         </div>
       </div>
       <div class="row">
@@ -763,13 +935,17 @@
         <div class="time">19:30</div>
         <div class="what">
           <div class="h">🛒 樂天超市 光復店</div>
+          <div class="ko"><span data-copy>롯데마트 광복점</span> · <span class="en">Lotte Mart Gwangbok</span></div>
           <div class="d">10:00–23:00・<b>滿 ₩15,000 出示護照現場退稅</b><br>公休為每月第 2、4 個週一，11/6 正常營業</div>
-          <div class="go">南浦站 <b>8 號出口地下道直達 B1</b></div>
+          <div class="go"><span data-copy>남포역</span> 南浦站 <b>8 號出口地下道直達 B1</b></div>
         </div>
       </div>
       <div class="row">
         <div class="time">21:55</div>
-        <div class="what"><div class="h">南浦 → 釜山站</div><div class="go">1 號線 2 站約 6 分，提伴手禮一下就到</div></div>
+        <div class="what">
+          <div class="h">南浦 → 釜山站</div>
+          <div class="go">1 號線 2 站 <span data-copy>남포역</span> → <span data-copy>부산역</span>　約 6 分，提伴手禮一下就到</div>
+        </div>
       </div>
       <div class="row key-row">
         <div class="time">22:10</div>
@@ -799,7 +975,9 @@
         <div class="what">
           <div class="h">釜山站 → 金海機場</div>
           <div class="d">約 60–70 分，<b>要轉兩次</b></div>
-          <div class="go">1 號線「서면」12 分 → 2 號線「사상」17 分 → 金海輕軌「공항역」12 分</div>
+          <div class="go">1 號線 <span data-copy>부산역</span> ①113 → <span data-copy>서면</span> 西面 ①119　12 分</div>
+          <div class="go">轉 2 號線 → <span data-copy>사상</span> 沙上／Sasang ②227　17 分</div>
+          <div class="go">轉金海輕軌 → <span data-copy>공항역</span> 公航／Airport ④　12 分</div>
           <div class="warnline">釜山站<b>沒有機場巴士</b>（只有海雲台／機張線、西面／釜田線）</div>
         </div>
       </div>
@@ -813,6 +991,124 @@
       </div>
     </div>
     <div class="note">伴手禮已在 Day 4 買完，這天不排任何採買。西面站 1↔2 號線、沙上站地鐵↔輕軌的通道都不短，拖行李抓寬鬆。想多睡可 10:15 出發、11:30 抵達，仍有 2.5 小時。</div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== NAMES ===== -->
+  <section id="names">
+    <div class="sechead"><h2>名稱對照表</h2><span class="dateline">中文 · 한국어 · English</span></div>
+    <p class="names-intro">找路、問路、貼進 Naver Map 都用這頁。<b>點一下韓文就複製</b>。地鐵站的 ① ② 是路線，後面三碼是站號，月台與出口指標都看得到這個號碼。</p>
+
+    <p class="scrollhint">↔ 表格可左右滑動</p>
+
+    <h3 class="namehead">🚇 地鐵站</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>中文</th><th>한국어</th><th>English</th><th>路線·站號</th><th>出口／用在哪</th></tr></thead>
+        <tbody>
+          <tr><td>西面</td><td><span data-copy>서면</span></td><td class="en">Seomyeon</td><td>①119　②219</td><td>11 號出口有電梯・住宿與轉乘</td></tr>
+          <tr><td>釜山站</td><td><span data-copy>부산역</span></td><td class="en">Busan Station</td><td>①113</td><td>6／8 號出口 → 東橫INN 釜山站1</td></tr>
+          <tr><td>南浦</td><td><span data-copy>남포</span></td><td class="en">Nampo</td><td>①111</td><td>7 號出口→釜山塔・8 號出口→樂天超市 B1</td></tr>
+          <tr><td>札嘎其</td><td><span data-copy>자갈치</span></td><td class="en">Jagalchi</td><td>①110</td><td>2 號出口 → 轉松島公車</td></tr>
+          <tr><td>多大浦海水浴場</td><td><span data-copy>다대포해수욕장</span></td><td class="en">Dadaepo Beach</td><td>①095</td><td>1 號線終點（備案）</td></tr>
+          <tr><td>中洞</td><td><span data-copy>중동</span></td><td class="en">Jung-dong</td><td>②202</td><td>D3 回程，搭 <span data-copy>양산 방면</span></td></tr>
+          <tr><td>海雲台</td><td><span data-copy>해운대</span></td><td class="en">Haeundae</td><td>②203</td><td>D3 傳統市場晚餐</td></tr>
+          <tr><td>冬柏</td><td><span data-copy>동백</span></td><td class="en">Dongbaek</td><td>②204</td><td>1 號出口 → 冬柏島</td></tr>
+          <tr><td>廣安</td><td><span data-copy>광안</span></td><td class="en">Gwangan</td><td>②209</td><td>D2 傍晚廣安里</td></tr>
+          <tr><td>慶星大·釜慶大</td><td><span data-copy>경성대·부경대</span></td><td class="en">Kyungsung Univ.·Pukyong Univ.</td><td>②212</td><td>5 號出口 → 轉二妓台公車</td></tr>
+          <tr><td>沙上</td><td><span data-copy>사상</span></td><td class="en">Sasang</td><td>②227／輕軌①</td><td>地鐵 ↔ 金海輕軌轉乘</td></tr>
+          <tr><td>公航（金海機場）</td><td><span data-copy>공항</span></td><td class="en">Airport</td><td>金海輕軌④</td><td>D1 入境／D5 回程</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="namehead">🚌 公車站牌</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>中文</th><th>한국어</th><th>English</th><th>在哪搭・搭什麼</th></tr></thead>
+        <tbody>
+          <tr><td>二妓台入口</td><td><span data-copy>이기대입구</span></td><td class="en">Igidae Entrance</td><td>경성대·부경대역 <b>5 號出口</b>：20／22／24／27／39／131，小巴 남구2／남구8</td></tr>
+          <tr><td>東生末</td><td><span data-copy>동생말</span></td><td class="en">Dongsaengmal</td><td>步道入口。支線公車 2024/5 起停駛，從 이기대입구 <b>步行 15–20 分</b></td></tr>
+          <tr><td>五六島天空步道</td><td><span data-copy>오륙도스카이워크</span></td><td class="en">Oryukdo Skywalk</td><td>回程 27／남구2 → 경성대·부경대역</td></tr>
+          <tr><td>忠武洞交叉路</td><td><span data-copy>충무동교차로</span></td><td class="en">Chungmu-dong Intersection</td><td>자갈치역 <b>2 號出口</b>：6／26／30／71／96 往松島。站牌也可能標示為 <span data-copy>자갈치역·충무동해안시장</span></td></tr>
+          <tr><td>岩南洞居民中心</td><td><span data-copy>암남동주민센터</span></td><td class="en">Amnam-dong Community Center</td><td>松島下車站，到纜車站步行約 10 分</td></tr>
+          <tr><td>影島大橋·南浦站</td><td><span data-copy>영도대교·남포역</span></td><td class="en">Yeongdodaegyo·Nampo Stn.</td><td>備案：南浦站 6 號出口，8／30／88 往太宗台</td></tr>
+          <tr><td>太宗台</td><td><span data-copy>태종대</span></td><td class="en">Taejongdae</td><td>備案終點</td></tr>
+          <tr><td>釜山海洋警察署中里出張所</td><td><span data-copy>부산해양경찰서 중리출장소</span></td><td class="en">Busan Coast Guard Jungni Office</td><td>備案：THRILL ON THE MUG 下車</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">公車站牌名稱偶有改版，<b>出發前用 Naver Map 再確認一次</b>。D3 從 Club D Oasis 回 해운대역 的 100／139／141／200 是沿海雲台主幹道的路線，站牌直接認「해운대역」。</div>
+
+    <h3 class="namehead">🏨 住宿</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>中文</th><th>한국어 · English</th><th>地址</th><th>最近站</th></tr></thead>
+        <tbody>
+          <tr><td>東橫INN<br>釜山西面</td><td><span data-copy>토요코인 부산서면</span><br><span class="en">Toyoko Inn Busan Seomyeon</span></td><td><span data-copy>부산광역시 부산진구 서전로 39</span></td><td>서면 ①119 ②219<br>步行 5–8 分</td></tr>
+          <tr><td>東橫INN<br>釜山站1號店</td><td><span data-copy>토요코인 부산역1</span><br><span class="en">Toyoko Inn Busan Station No.1</span></td><td><span data-copy>부산광역시 동구 중앙대로196번길 12</span></td><td>부산역 ①113<br>6／8 號出口步行 2 分</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="namehead">📍 景點・店家</h3>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>日</th><th>中文</th><th>한국어</th><th>English</th></tr></thead>
+        <tbody>
+          <tr><td>D1</td><td>豬肉湯飯一條街</td><td><span data-copy>돼지국밥 골목</span></td><td class="en">Dwaeji-gukbap Alley</td></tr>
+          <tr><td>D1</td><td>西面市場</td><td><span data-copy>서면시장</span></td><td class="en">Seomyeon Market</td></tr>
+          <tr><td>D1</td><td>Olive Young 西面店</td><td><span data-copy>올리브영 서면점</span></td><td class="en">Olive Young Seomyeon</td></tr>
+          <tr><td>D2</td><td>二妓台海岸散策路</td><td><span data-copy>이기대 해안산책로</span></td><td class="en">Igidae Coastal Walk</td></tr>
+          <tr><td>D2</td><td>어울마당（步道中段廁所）</td><td><span data-copy>어울마당</span></td><td class="en">Eoulmadang</td></tr>
+          <tr><td>D2</td><td>五六島天空步道</td><td><span data-copy>오륙도 스카이워크</span></td><td class="en">Oryukdo Skywalk</td></tr>
+          <tr><td>D2</td><td>廣安里海水浴場</td><td><span data-copy>광안리해수욕장</span></td><td class="en">Gwangalli Beach</td></tr>
+          <tr><td>D2</td><td>廣安大橋</td><td><span data-copy>광안대교</span></td><td class="en">Gwangan Bridge</td></tr>
+          <tr><td>D2</td><td>All Sunday（貝果咖啡）</td><td><span data-copy>올선데이</span></td><td class="en">All Sunday</td></tr>
+          <tr><td>D2</td><td>Millac The Market</td><td><span data-copy>밀락더마켓</span></td><td class="en">Millak The Market</td></tr>
+          <tr><td>D2</td><td>民樂水邊公園（夜市）</td><td><span data-copy>민락수변공원</span></td><td class="en">Millak Waterside Park</td></tr>
+          <tr><td>D3</td><td>冬柏島</td><td><span data-copy>동백섬</span></td><td class="en">Dongbaekseom Island</td></tr>
+          <tr><td>D3</td><td>APEC 世峰樓</td><td><span data-copy>누리마루 APEC하우스</span></td><td class="en">Nurimaru APEC House</td></tr>
+          <tr><td>D3</td><td>海雲台海水浴場</td><td><span data-copy>해운대해수욕장</span></td><td class="en">Haeundae Beach</td></tr>
+          <tr><td>D3</td><td>尾浦</td><td><span data-copy>미포</span></td><td class="en">Mipo</td></tr>
+          <tr><td>D3</td><td>月光嶺（달맞이고개）</td><td><span data-copy>달맞이길</span></td><td class="en">Dalmaji-gil</td></tr>
+          <tr><td>D3</td><td>海雲台瓦房鱈魚湯</td><td><span data-copy>해운대 기와집대구탕</span></td><td class="en">Haeundae Giwajip Daegutang</td></tr>
+          <tr><td>D3</td><td>海雲台海岸列車</td><td><span data-copy>해운대 블루라인파크 해변열차</span></td><td class="en">Haeundae Blueline Park Beach Train</td></tr>
+          <tr><td>D3</td><td>青沙浦</td><td><span data-copy>청사포</span></td><td class="en">Cheongsapo</td></tr>
+          <tr><td>D3</td><td>青沙浦踏石展望台</td><td><span data-copy>청사포 다릿돌전망대</span></td><td class="en">Cheongsapo Daritdol Observatory</td></tr>
+          <tr><td>D3</td><td>Club D Oasis（汗蒸幕）</td><td><span data-copy>클럽디 오아시스</span></td><td class="en">Club D Oasis</td></tr>
+          <tr><td>D3</td><td>LCT（大樓本體）</td><td><span data-copy>엘시티</span></td><td class="en">LCT The Sharp</td></tr>
+          <tr><td>D3</td><td>海雲台傳統市場</td><td><span data-copy>해운대전통시장</span></td><td class="en">Haeundae Traditional Market</td></tr>
+          <tr><td>D3</td><td>BUSAN X the SKY</td><td><span data-copy>부산엑스더스카이</span></td><td class="en">BUSAN X the SKY</td></tr>
+          <tr><td>D4</td><td>松島</td><td><span data-copy>송도</span></td><td class="en">Songdo</td></tr>
+          <tr><td>D4</td><td>松島天空步道</td><td><span data-copy>송도구름산책로</span></td><td class="en">Songdo Skywalk</td></tr>
+          <tr><td>D4</td><td>松島海上纜車</td><td><span data-copy>송도해상케이블카</span><br><span data-copy>부산에어크루즈</span></td><td class="en">Busan Air Cruise</td></tr>
+          <tr><td>D4</td><td>松島灣站（纜車起點）</td><td><span data-copy>송도베이스테이션</span></td><td class="en">Songdo Bay Station</td></tr>
+          <tr><td>D4</td><td>Sky Park 站（纜車終點）</td><td><span data-copy>송도스카이파크</span></td><td class="en">Songdo Sky Park</td></tr>
+          <tr><td>D4</td><td>松島龍宮雲橋</td><td><span data-copy>송도용궁구름다리</span></td><td class="en">Songdo Yonggung Suspension Bridge</td></tr>
+          <tr><td>D4</td><td>南浦洞</td><td><span data-copy>남포동</span></td><td class="en">Nampo-dong</td></tr>
+          <tr><td>D4</td><td>光復路</td><td><span data-copy>광복로</span></td><td class="en">Gwangbok-ro</td></tr>
+          <tr><td>D4</td><td>BIFF 廣場</td><td><span data-copy>BIFF광장</span></td><td class="en">BIFF Square</td></tr>
+          <tr><td>D4</td><td>國際市場</td><td><span data-copy>국제시장</span></td><td class="en">Gukje Market</td></tr>
+          <tr><td>D4</td><td>札嘎其市場</td><td><span data-copy>자갈치시장</span></td><td class="en">Jagalchi Market</td></tr>
+          <tr><td>D4</td><td>Olive Young 南浦店</td><td><span data-copy>올리브영 남포점</span></td><td class="en">Olive Young Nampo</td></tr>
+          <tr><td>D4</td><td>樂天超市 光復店</td><td><span data-copy>롯데마트 광복점</span></td><td class="en">Lotte Mart Gwangbok</td></tr>
+          <tr><td>備案</td><td>月光路</td><td><span data-copy>문탠로드</span></td><td class="en">Moontan Road</td></tr>
+          <tr><td>備案</td><td>太宗台</td><td><span data-copy>태종대</span></td><td class="en">Taejongdae</td></tr>
+          <tr><td>備案</td><td>太宗臺觀景台</td><td><span data-copy>태종대 전망대</span></td><td class="en">Taejongdae Observatory</td></tr>
+          <tr><td>備案</td><td>影島燈塔</td><td><span data-copy>영도등대</span></td><td class="en">Yeongdo Lighthouse</td></tr>
+          <tr><td>備案</td><td>THRILL ON THE MUG!</td><td><span data-copy>스릴온더머그</span></td><td class="en">Thrill on the Mug</td></tr>
+          <tr><td>備案</td><td>釜山塔</td><td><span data-copy>부산타워</span></td><td class="en">Busan Tower</td></tr>
+          <tr><td>備案</td><td>龍頭山公園</td><td><span data-copy>용두산공원</span></td><td class="en">Yongdusan Park</td></tr>
+          <tr><td>備案</td><td>Raw &amp; Sweet</td><td><span data-copy>로우앤스윗</span></td><td class="en">Raw &amp; Sweet</td></tr>
+          <tr><td>備案</td><td>海里團路</td><td><span data-copy>해리단길</span></td><td class="en">Haeridan-gil</td></tr>
+          <tr><td>備案</td><td>多大浦海水浴場</td><td><span data-copy>다대포해수욕장</span></td><td class="en">Dadaepo Beach</td></tr>
+          <tr><td>備案</td><td>峨嵋山展望台</td><td><span data-copy>아미산전망대</span></td><td class="en">Amisan Observatory</td></tr>
+          <tr><td>備案</td><td>麥當勞</td><td><span data-copy>맥도날드</span></td><td class="en">McDonald's</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <hr class="rule">
@@ -901,10 +1197,10 @@
       <h4>🅲 備案 C：真的完全換不到</h4>
       <p><b>不要硬等。放掉海岸列車，Pass 改從 16:20 的 Club D Oasis 啟用。</b></p>
       <ul>
-        <li>下午 14:00–16:00 改走 <b>문탠로드 月光路</b>（釜山八景之一，松林海景步道，<b>尾浦就是入口</b>）</li>
+        <li>下午 14:00–16:00 改走 <b>月光路</b> <span data-copy>문탠로드</span>（Moontan Road，釜山八景之一，松林海景步道，<b>尾浦就是入口</b>）</li>
         <li>기와집대구탕 本來就在 달맞이길 上，吃完飯人已經在月光嶺，<b>直接往前走就是步道</b>，完全順路</li>
         <li>Pass 啟用延到 16:20 → 到期變成 <b>11/6 16:20</b>，Day 4 緩衝從 1 小時 15 分變超大</li>
-        <li>順勢<b>把釜山塔加回 Day 4</b>（南浦站 7 號出口，₩12,000，15:15–16:00 去，16:30 再 check in），剛好補回損失</li>
+        <li>順勢<b>把釜山塔加回 Day 4</b>（<span data-copy>부산타워</span> Busan Tower，南浦站 7 號出口，₩12,000，15:15–16:00 去，16:30 再 check in），剛好補回損失</li>
       </ul>
     </div>
 
@@ -953,18 +1249,18 @@
     <div class="card">
       <h3>🌧 Day 2 健行取消（下雨／步道封閉）</h3>
       <p><b>整天改成影島日。</b>太宗台 ＋ THRILL ON THE MUG 約 5 小時，兩個綁在一起，因為 THRILL ON THE MUG 只能靠太宗台的公車到。</p>
-      <p><b>交通</b>：南浦站 6 號出口「影島大橋·南浦站」搭公車 <b>8／30／88</b> → 太宗台，約 25–30 分</p>
-      <h4>太宗台</h4>
+      <p><b>交通</b>：南浦站 6 號出口　影島大橋·南浦站 <span data-copy>영도대교·남포역</span> 搭公車 <b>8／30／88</b> → 太宗台 <span data-copy>태종대</span>，約 25–30 分</p>
+      <h4>太宗台 <span data-copy>태종대</span> · Taejongdae</h4>
       <ul>
         <li><b>Danubi 列車停駛中</b>（2026/4、7 兩次連結器事故，安全檢證中，未公布復駛日），改搭<b>免費接駁巴士</b>隨站上下</li>
-        <li>太宗臺觀景台（海蝕斷崖）→ 影島燈塔 → 神仙岩／望夫石 → 자갈마당 石灘、海女村</li>
+        <li>太宗臺觀景台 <span data-copy>태종대 전망대</span>（海蝕斷崖）→ 影島燈塔 <span data-copy>영도등대</span> → 神仙岩 <span data-copy>신선바위</span>／望夫石 <span data-copy>망부석</span> → <span data-copy>자갈마당</span> 石灘、海女村</li>
         <li>體力夠可走循環道路 <b>4.3km／1.5 小時</b></li>
       </ul>
-      <h4>THRILL ON THE MUG!</h4>
+      <h4>THRILL ON THE MUG! <span data-copy>스릴온더머그</span></h4>
       <ul>
-        <li>영도구 해양힐링로 55，太宗台旁，2–3F 階梯式落地窗海景第一排，<b>10:00–22:00</b></li>
+        <li><span data-copy>부산광역시 영도구 해양힐링로 55</span>，太宗台旁，2–3F 階梯式落地窗海景第一排，<b>10:00–22:00</b></li>
         <li>日落 17:20 最美</li>
-        <li>從太宗台入口步行約 20 分；或公車在「부산해양경찰서 중리출장소」下車</li>
+        <li>從太宗台入口步行約 20 分；或公車在 釜山海洋警察署中里出張所 <span data-copy>부산해양경찰서 중리출장소</span> 下車</li>
       </ul>
       <p>傍晚回南浦，晚餐吃札嘎其／BIFF 廣場。太宗台<b>不在 Pass 省錢試算內</b>，所以不影響 Pass 回本。</p>
     </div>
@@ -972,6 +1268,7 @@
     <!-- 釜山塔 -->
     <div class="card">
       <h3>🏙 想多看一個夜景：釜山塔</h3>
+      <p class="ko"><span data-copy>부산타워</span> · <span class="en">Busan Tower</span>　｜　龍頭山公園 <span data-copy>용두산공원</span> · <span class="en">Yongdusan Park</span></p>
       <p>原本是 Pass 加碼第 6 項，但 Day 4 改成 09:45 退房後，回到南浦已約 14:10，趕不上 Pass 14:00 到期，因此移出。</p>
       <ul>
         <li><b>南浦站 7 號出口</b>，可搭手扶梯上龍頭山公園</li>
@@ -984,12 +1281,15 @@
     <!-- 其他 -->
     <div class="card">
       <h3>☕🌲 其他備案</h3>
-      <h4>Raw & Sweet 海雲台（로우앤스윗）</h4>
-      <p>해리단길，海雲台站 4 號出口步行 5 分，<b>09:00–20:00</b>，拿鐵＋蛋塔可頌。位在海雲台站北邊內陸，<b>不在 Day 3 的海岸動線上</b>，繞過去多走約 18 分鐘，因此移出。Day 3 若提早出發（09:30 前）可先來吃早午餐再去冬柏島。<br>
+      <h4>Raw &amp; Sweet 海雲台</h4>
+      <p class="ko"><span data-copy>로우앤스윗</span> · <span class="en">Raw &amp; Sweet</span>　｜　海里團路 <span data-copy>해리단길</span> · <span class="en">Haeridan-gil</span></p>
+      <p>海雲台站 4 號出口步行 5 分，<b>09:00–20:00</b>，拿鐵＋蛋塔可頌。位在海雲台站北邊內陸，<b>不在 Day 3 的海岸動線上</b>，繞過去多走約 18 分鐘，因此移出。Day 3 若提早出發（09:30 前）可先來吃早午餐再去冬柏島。<br>
       ※ 原筆記寫「Low &amp; Sweet Roastery」，實際店名應為此間，去之前請確認。</p>
-      <h4>문탠로드 月光路（달맞이길）</h4>
+      <h4>月光路</h4>
+      <p class="ko"><span data-copy>문탠로드</span> · <span class="en">Moontan Road</span>　｜　月光嶺 <span data-copy>달맞이길</span> · <span class="en">Dalmaji-gil</span></p>
       <p>釜山八景之一，松林海景步道，<b>尾浦就是入口</b>。備案 C 用這個。</p>
       <h4>多大浦海水浴場＋峨嵋山展望台</h4>
+      <p class="ko"><span data-copy>다대포해수욕장</span> · <span class="en">Dadaepo Beach</span> ①095　｜　<span data-copy>아미산전망대</span> · <span class="en">Amisan Observatory</span></p>
       <p>1 號線終點站，釜山最有名的夕陽，需半天。</p>
     </div>
   </section>
@@ -1030,6 +1330,55 @@
       state[box.id] = box.checked;
       save(state);
     });
+  });
+
+  /* ---- 點韓文名稱即複製，方便貼進 Naver Map ---- */
+  var toastEl = null, toastTimer = null;
+  function flash(msg){
+    try{
+      if(!toastEl){
+        toastEl = document.createElement("div");
+        toastEl.className = "toast";
+        toastEl.setAttribute("role", "status");
+        document.body.appendChild(toastEl);
+      }
+      toastEl.textContent = msg;
+      toastEl.classList.add("on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toastEl.classList.remove("on"); }, 1600);
+    }catch(e){}
+  }
+  function legacyCopy(text){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){ return false; }
+  }
+  function report(text, ok){
+    flash(ok ? "已複製　" + text : "複製失敗，請長按選取");
+  }
+  document.addEventListener("click", function(ev){
+    var el = ev.target && ev.target.closest ? ev.target.closest("[data-copy]") : null;
+    if(!el) return;
+    var text = (el.textContent || "").trim();
+    if(!text) return;
+    ev.preventDefault();   /* 避免點到 label 裡的韓文時順手勾掉 checkbox */
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(
+        function(){ report(text, true); },
+        function(){ report(text, legacyCopy(text)); }
+      );
+    }else{
+      report(text, legacyCopy(text));
+    }
   });
 
   /* ---- sticky nav: highlight the section in view ---- */
