@@ -242,6 +242,11 @@
 
     nav a {
       flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
       font-family: var(--latin);
       font-size: calc(12.5px * var(--fs));
       font-weight: 600;
@@ -262,6 +267,14 @@
       background: var(--camellia);
       color: var(--on-camellia);
       border-color: var(--camellia)
+    }
+
+    nav a .nsub {
+      font-family: var(--font);
+      font-size: calc(10px * var(--fs));
+      font-weight: 500;
+      letter-spacing: 0;
+      opacity: .72;
     }
 
     /* ---------- overview ---------- */
@@ -295,6 +308,11 @@
       background: var(--camellia);
       padding: 3px 8px;
       border-radius: 5px;
+    }
+
+    .daytag.opt {
+      color: var(--sea);
+      background: var(--sea-soft);
     }
 
     .dateline {
@@ -351,7 +369,7 @@
 
     .ov a {
       display: grid;
-      grid-template-columns: 46px 1fr;
+      grid-template-columns: 68px 1fr;
       gap: 12px;
       padding: 12px 2px;
       border-bottom: 1px solid var(--line-soft);
@@ -370,6 +388,17 @@
       font-size: calc(13px * var(--fs));
       color: var(--camellia);
       padding-top: 1px
+    }
+
+    .ov .ovdate {
+      display: block;
+      margin-top: 3px;
+      font-family: var(--font);
+      font-weight: 500;
+      font-size: calc(11px * var(--fs));
+      letter-spacing: 0;
+      white-space: nowrap;
+      color: var(--muted);
     }
 
     .ov .t {
@@ -729,7 +758,7 @@
       min-width: 190px
     }
 
-    #names .scrollhint {
+    .scrollhint {
       margin: 8px 0 0;
       font-size: calc(12px * var(--fs));
       color: var(--faint);
@@ -879,11 +908,12 @@
       <div class="navin">
         <a href="#overview">總覽</a>
         <a href="#tickets">門票</a>
-        <a href="#d1">D1</a>
-        <a href="#d2">D2</a>
-        <a href="#d3">D3</a>
-        <a href="#d4">D4</a>
-        <a href="#d5">D5</a>
+        <a href="#d1">D1<span class="nsub">11/3(二)</span></a>
+        <a href="#d2">D2<span class="nsub">11/4(三)</span></a>
+        <a href="#d3">D3<span class="nsub">11/5(四)</span></a>
+        <a href="#d4">D4<span class="nsub">11/6(五)</span></a>
+        <a href="#d5">D5<span class="nsub">11/7(六)</span></a>
+        <a href="#dx">D?</a>
         <a href="#names">對照</a>
         <a href="#check">待確認</a>
         <a href="#backup">備案</a>
@@ -900,17 +930,25 @@
         <h2>五天總覽</h2>
       </div>
       <div class="ov">
-        <a href="#d1"><span class="d">D1</span><span><span class="t">抵達</span>&nbsp;<span class="m">買
+        <a href="#d1"><span class="d">D1<span class="ovdate">11/3(二)</span></span><span><span
+              class="t">抵達</span>&nbsp;<span class="m">買
               T-money、西面覓食</span></span></a>
-        <a href="#d2"><span class="d">D2</span><span><span class="t">健行主場</span>&nbsp;<span class="m">二妓台海岸步道 4.7km →
+        <a href="#d2"><span class="d">D2<span class="ovdate">11/4(三)</span></span><span><span
+              class="t">健行主場</span>&nbsp;<span class="m">二妓台海岸步道
+              4.7km →
               五六島天空步道
               → 慶星大午餐(肚子餓再去) → 回西面</span></span></a>
-        <a href="#d3"><span class="d">D3</span><span><span class="t">海雲台</span>&nbsp;<span class="m">冬柏島 → 鱈魚湯 → 海岸列車 →
+        <a href="#d3"><span class="d">D3<span class="ovdate">11/5(四)</span></span><span><span
+              class="t">海雲台</span>&nbsp;<span class="m">冬柏島 → 鱈魚湯
+              → 海岸列車 →
               海灘散步 →
               足湯看日落</span></span></a>
-        <a href="#d4"><span class="d">D4</span><span><span class="t">換飯店＋採買</span>&nbsp;<span class="m">龜島 → 松島纜車 → 南浦 →
+        <a href="#d4"><span class="d">D4<span class="ovdate">11/6(五)</span></span><span><span
+              class="t">換飯店＋採買</span>&nbsp;<span class="m">龜島 →
+              松島纜車 → 南浦 →
               樂天超市掃貨</span></span></a>
-        <a href="#d5"><span class="d">D5</span><span><span class="t">回程</span>&nbsp;<span class="m">早餐 → 退房 →
+        <a href="#d5"><span class="d">D5<span class="ovdate">11/7(六)</span></span><span><span
+              class="t">回程</span>&nbsp;<span class="m">早餐 → 退房 →
               機場免稅店(幫阿母買)</span></span></a>
       </div>
       <div class="note">
@@ -1025,7 +1063,7 @@
     <!-- ===== DAY 1 ===== -->
     <section id="d1">
       <div class="sechead"><span class="daytag">Day 1</span>
-        <h2>抵達</h2><span class="dateline">11/3 (二)</span>
+        <h2>抵達</h2><span class="dateline">11/3(二)</span>
       </div>
       <div class="tl">
         <div class="row key-row">
@@ -1084,7 +1122,7 @@
     <!-- ===== DAY 2 ===== -->
     <section id="d2">
       <div class="sechead"><span class="daytag">Day 2</span>
-        <h2>二妓台海岸步道 → 五六島</h2><span class="dateline">11/4 (三)</span>
+        <h2>二妓台海岸步道 → 五六島</h2><span class="dateline">11/4(三)</span>
       </div>
       <div class="route">西面 Seomyeon →〔慶星大·釜慶大 Kyungsung Univ. 轉乘〕→ 二妓台入口 Igidae Entrance → 東生末 Dongsaengmal → 海岸步道
         4.7km → 五六島 Oryukdo → 慶星大 Kyungsung Univ. → 西面 Seomyeon
@@ -1250,7 +1288,7 @@
     <!-- ===== DAY 3 ===== -->
     <section id="d3">
       <div class="sechead"><span class="daytag">Day 3</span>
-        <h2>海雲台</h2><span class="dateline">11/5 (四)</span>
+        <h2>海雲台</h2><span class="dateline">11/5(四)</span>
       </div>
       <div class="route">冬柏 Dongbaek → 冬柏島 Dongbaekseom → 海雲台海灘 Haeundae Beach → 尾浦 Mipo／月光嶺 Dalmaji-gil → 青沙浦
         Cheongsapo → 海灘散步 → LCT 汗蒸幕
@@ -1412,7 +1450,7 @@
     <!-- ===== DAY 4 ===== -->
     <section id="d4">
       <div class="sechead"><span class="daytag">Day 4</span>
-        <h2>換飯店 → 松島 → 南浦採買</h2><span class="dateline">11/6 (五)</span>
+        <h2>換飯店 → 松島 → 南浦採買</h2><span class="dateline">11/6(五)</span>
       </div>
       <div class="route">釜山站 Busan Station(寄行李) → 札嘎其 Jagalchi → 松島 Songdo → 龜島 Geobukseom → 纜車 Cable Car → 南浦 Nampo(午餐)
         → 釜山站(check in) → 南浦(逛街/晚餐/超市)
@@ -1638,7 +1676,7 @@
     <!-- ===== DAY 5 ===== -->
     <section id="d5">
       <div class="sechead"><span class="daytag">Day 5</span>
-        <h2>回程</h2><span class="dateline">11/7 (六)</span>
+        <h2>回程</h2><span class="dateline">11/7(六)</span>
       </div>
       <div class="tl">
         <div class="row">
@@ -1680,6 +1718,340 @@
         </div>
       </div>
       <div class="note">機場免稅店，幫阿母買保養品。</div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ===== DAY ?  (備用・未排入正式行程) ===== -->
+    <section id="dx">
+      <div class="sechead"><span class="daytag opt">Day ?</span>
+        <h2>梵魚寺一日遊</h2><span class="dateline">備用・未排入</span>
+      </div>
+
+      <div class="note"><b>這天不在正式行程裡。</b>D1–D5 一格沒動 —— 這是獨立的一天，想啟用再決定插哪天。<br>
+        梵魚寺、釜山大學、溫泉場<b>全在 1 號線上，而且是回程順路一路往南撿</b>，不用折返，西面出發也不用轉車。<br>
+        上午爬階梯、下午泡腳，收在足湯剛剛好。<b>08:40 出發・16:30 回西面</b>，除了車資<b>幾乎全免費</b>。</div>
+
+      <div class="route">西面 Seomyeon → 梵魚寺 Beomeosa → 釜山大學 Pusan Nat'l Univ. → 溫泉川 Oncheoncheon → 溫泉場 Oncheonjang
+        足湯 → 西面 Seomyeon
+        <div class="route-ko"><span data-copy>서면</span> → <span data-copy>범어사</span> → <span data-copy>부산대</span> →
+          <span data-copy>온천천</span> → <span data-copy>온천장</span> → <span data-copy>서면</span>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="row">
+          <div class="time">08:00</div>
+          <div class="what">
+            <div class="h">🍳 飯店早餐</div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">08:40</div>
+          <div class="what">
+            <div class="h">西面 → 梵魚寺</div>
+            <div class="d">14 站約 30 分，<b>1 號線直達不用轉車</b></div>
+            <div class="go">1 號線 西面 Seomyeon ①119 <span data-copy>서면</span> → 梵魚寺 Beomeosa ①133 <span
+                data-copy>범어사역</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">09:10</div>
+          <div class="what">
+            <div class="h">出站 → 公車站牌</div>
+            <div class="d"><b>5／7 號出口中間</b>，步行約 <b>300m／5 分</b></div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">09:15</div>
+          <div class="what">
+            <div class="h">🚌 90 號公車 → 梵魚寺售票處</div>
+            <div class="ko"><span class="en">Beomeosa Ticket Office</span><span class="kr"><span
+                  data-copy>범어사매표소</span></span></div>
+            <div class="d">車程 10–15 分。<b>循環線，上下山同一個站牌</b>，全車幾乎都在同一站下，不用怕坐過站。</div>
+            <div class="go">首班 07:50／末班 20:00・班距 平日 <b>17 分</b>・尖峰 15 分・<b>假日 11 分</b></div>
+            <div class="warnline">賞楓季等車的人很多。多坐 1 站到老圃 Nopo ①134 <span data-copy>노포역</span>（2 號出口）＝ 90
+              號的<b>起點站</b>，上車一定有位子</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">09:30</div>
+          <div class="what">
+            <div class="h">下車 → 過化行橋 → 上山</div>
+            <div class="ko"><span class="en">Hwahaenggyo Bridge</span><span class="kr"><span data-copy>화행교</span></span>
+            </div>
+            <div class="d">約 10 分，<b>有階梯</b></div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">09:40</div>
+          <div class="what">
+            <div class="h">🏯 梵魚寺<span class="free">免費</span></div>
+            <div class="ko"><span class="en">Beomeosa Temple</span><span class="kr"><span data-copy>범어사</span></span>
+              <span class="addr">📍 金井區 梵魚寺路 250<br><span data-copy>부산광역시 금정구 범어사로 250</span></span>
+            </div>
+            <div class="d">678 年創建，嶺南三大寺之一、釜山第一古剎。<b>08:00–17:00・全年無休・免門票</b>。<br>
+              停留 <b>2 小時 20 分</b>，慢慢走＋拍照。動線與賞楓位置見下方。</div>
+            <div class="go">🍁 <b>11 月上旬正是梵魚寺的楓紅高峰</b></div>
+          </div>
+        </div>
+        <div class="row pin">
+          <div class="time">12:00</div>
+          <div class="what">
+            <div class="h">🍚 寺內食堂 免費齋飯<span class="free">免費</span></div>
+            <div class="d">午餐時段供應、現場排隊、完全免費。內容很簡單（主要給登山客）。</div>
+            <div class="warnline"><b>確切供應時間網路查不到</b> —— 到現場問遊客服務中心。沒吃到就留到釜山大學商圈再吃</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">12:40</div>
+          <div class="what">
+            <div class="h">下山走回 <span data-copy>범어사매표소</span> 站牌</div>
+            <div class="d">約 10 分。回程在<b>同一個站牌</b>等車</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">12:50</div>
+          <div class="what">
+            <div class="h">🚌 90 號公車 → 梵魚寺站</div>
+            <div class="d">13:05 到站</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">13:10</div>
+          <div class="what">
+            <div class="h">梵魚寺 → 釜山大學</div>
+            <div class="d"><b>5 站約 10 分</b>（回程順路）</div>
+            <div class="go">1 號線 梵魚寺 ①133 <span data-copy>범어사역</span> → 釜山大學 Pusan Nat'l Univ. ①128 <span
+                data-copy>부산대역</span></div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">13:20</div>
+          <div class="what">
+            <div class="h">🛍 釜山大學商圈</div>
+            <div class="ko"><span class="en">Pusan Nat'l Univ. area</span><span class="kr"><span data-copy>부산대
+                  상권</span></span></div>
+            <div class="d">大學城，一人食堂多、價格便宜。有 Olive Young、咖啡廳、服飾街。</div>
+            <div class="go">💡 齋飯沒吃到或沒吃飽，<b>就在這裡補午餐</b></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">14:20</div>
+          <div class="what">
+            <div class="h">🌊 溫泉川步道<span class="free">免費</span></div>
+            <div class="ko"><span class="en">Oncheoncheon Stream Trail</span><span class="kr"><span
+                  data-copy>온천천</span></span></div>
+            <div class="d">釜山大學站 <b>1 號出口左轉</b>直走，往下看就是溫泉川，走階梯下去。<br>
+              沿河道一路走到溫泉場站，約 <b>40 分</b>。</div>
+            <div class="go">💡 不想走就搭地鐵 1 站、2 分鐘</div>
+          </div>
+        </div>
+        <div class="row key-row pin">
+          <div class="time">15:15</div>
+          <div class="what">
+            <div class="h">♨️ 東萊溫泉 露天足湯<span class="free">免費</span></div>
+            <div class="ko"><span class="en">Dongnae Oncheon Foot Bath</span><span class="kr"><span data-copy>동래온천
+                  노천족탕</span></span>
+              <span class="addr">📍 東萊區 金剛公園路26番街 21<br><span data-copy>부산광역시 동래구 금강공원로26번길 21</span></span>
+            </div>
+            <div class="d">龍頭雕像噴出 40℃ 以上溫泉水，東萊是韓國最古老的溫泉之一。</div>
+            <div class="go">溫泉場 Oncheonjang ①127 <span data-copy>온천장역</span> <b>1 號出口</b>步行約 15 分</div>
+            <div class="warnline"><b>11–2 月只開 11:00–16:00</b>・<b>每週三、五公休</b>・雨天／惡劣天氣停開</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">16:10</div>
+          <div class="what">
+            <div class="h">回西面</div>
+            <div class="d">8 站約 16 分</div>
+            <div class="go">1 號線 溫泉場 ①127 <span data-copy>온천장역</span> → 西面 Seomyeon ①119 <span data-copy>서면</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">16:30</div>
+          <div class="what">
+            <div class="h">🏨 回西面，晚餐自由</div>
+            <div class="d">豬肉湯飯一條街 <span data-copy>돼지국밥 골목</span>／西面市場 <span data-copy>서면시장</span> 都在步行圈</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin:24px 0 0;font-size:calc(15px * var(--fs))">🔴 公休日對照 —— 這天最大的地雷</h3>
+      <p class="scrollhint">↔ 表格可左右滑動</p>
+      <div class="tscroll">
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>梵魚寺</th>
+              <th>露天足湯<br>每週三、五休</th>
+              <th>金剛公園纜車<br>每週一休</th>
+              <th>90 號班距</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>11/3（二）</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>17 分</td>
+            </tr>
+            <tr>
+              <td><b>11/4（三）</b></td>
+              <td>✅</td>
+              <td><b>❌ 休</b></td>
+              <td>✅</td>
+              <td>17 分</td>
+            </tr>
+            <tr>
+              <td>11/5（四）</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>17 分</td>
+            </tr>
+            <tr>
+              <td><b>11/6（五）</b></td>
+              <td>✅</td>
+              <td><b>❌ 休</b></td>
+              <td>✅</td>
+              <td>17 分</td>
+            </tr>
+            <tr>
+              <td>11/7（六）</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td>✅</td>
+              <td><b>11 分</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">足湯另外還有<b>雨天及惡劣天氣停開</b>。下雨就直接跳過，從釜山大學商圈收工回西面。梵魚寺本身<b>全年無休</b>，不用擔心。</div>
+
+      <h3 style="margin:24px 0 0;font-size:calc(15px * var(--fs))">🔀 下午兩個替代路線</h3>
+
+      <div class="card">
+        <h4>🅰️ 纜車版（想看展望）</h4>
+        <p>把 13:10 之後整段換掉。</p>
+        <div class="tl">
+          <div class="row">
+            <div class="time">13:10</div>
+            <div class="what">
+              <div class="h">梵魚寺 ①133 → 溫泉場 ①127</div>
+              <div class="d"><b>6 站約 12 分</b></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="time">13:30</div>
+            <div class="what">
+              <div class="h">溫泉場站 → 金剛公園</div>
+              <div class="ko"><span class="en">Geumgang Park</span><span class="kr"><span data-copy>금강공원</span></span>
+              </div>
+              <div class="d">步行約 20 分，或轉東萊區 <b>1-1 號</b>村落巴士</div>
+            </div>
+          </div>
+          <div class="row key-row">
+            <div class="time">14:00</div>
+            <div class="what">
+              <div class="h">🚡 金剛公園纜車</div>
+              <div class="ko"><span class="en">Geumgang Park Cable Car</span><span class="kr"><span data-copy>금강공원
+                    케이블카</span></span></div>
+              <div class="d">往返 <b>₩11,000</b>／單程 ₩7,000。上去接金井山城南門 <span data-copy>금정산성 남문</span>，
+                登高眥望東萊區與廣安大橋，秋天也是賞楓點。<br>
+                平日（二–五）10:00–17:30・週末假日 09:30–17:30</div>
+              <div class="warnline"><b>只能現場買票</b>（可刷卡）・<b>每週一公休</b></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="time">16:15</div>
+            <div class="what">
+              <div class="h">溫泉場 ①127 → 西面 ①119</div>
+              <div class="d">8 站約 16 分</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>🅱️ 健行版（整日版）</h4>
+        <p><b>不搭地鐵</b>，直接從梵魚寺後方往上。</p>
+        <ul>
+          <li>梵魚寺 → <b>金井山城北門</b> Geumjeongsanseong North Gate <span data-copy>금정산성 북문</span>，約 <b>4km</b></li>
+          <li>前段緩上坡森林 → 接第四望樓的開闊稜脈 → 北門</li>
+          <li><b>＋3–4 小時</b>，下山一樣可以接溫泉場足湯</li>
+          <li>需要正式登山裝備與足夠的水</li>
+        </ul>
+        <div class="note warn">跟二妓台 4.7km 排在<b>相鄰兩天會太操</b>，要隔開。</div>
+      </div>
+
+      <h3 style="margin:24px 0 0;font-size:calc(15px * var(--fs))">🎒 準備</h3>
+      <div class="checks" data-store="beomeo">
+        <label class="chk"><input type="checkbox" id="beomeo-1"><span><b>好走的鞋</b> —— 梵魚寺階梯多（跟二妓台同一雙就夠）</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-2"><span>薄外套，山上比市區冷</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-3"><span>自備水，山上商店少</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-4"><span><b>小毛巾</b>（要泡足湯的話，現場不提供）</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-5"><span>上山前先在遊客服務中心上廁所</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-6"><span>Naver Map 離線存好「<span data-copy>범어사역</span> → <span
+              data-copy>범어사</span>」與「<span data-copy>온천장역</span> → <span data-copy>동래온천 노천족탕</span>」</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-7"><span>走纜車版要帶卡（現場刷卡），其餘全程免費</span></label>
+        <label class="chk"><input type="checkbox" id="beomeo-8"><span>行動電源</span></label>
+      </div>
+
+      <h3 style="margin:24px 0 0;font-size:calc(15px * var(--fs))">🚶 寺內動線</h3>
+      <div class="tl">
+        <div class="row">
+          <div class="time">起點</div>
+          <div class="what">
+            <div class="h">下車 → 化行橋 <span data-copy>화행교</span></div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">一柱門</div>
+          <div class="what">
+            <div class="h">曹溪門 <span data-copy>조계문</span></div>
+            <div class="d">梵魚寺最知名地標 —— <b>遠山楓紅的畫面都在這</b></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">天王門</div>
+          <div class="what">
+            <div class="h"><span data-copy>천왕문</span>（四大天王）</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">不二門</div>
+          <div class="what">
+            <div class="h"><span data-copy>불이문</span></div>
+            <div class="d">🍁 <b>這段往上的階梯是賞楓重點</b></div>
+          </div>
+        </div>
+        <div class="row key-row">
+          <div class="time">大雄殿</div>
+          <div class="what">
+            <div class="h"><span data-copy>대웅전</span></div>
+            <div class="d">寺院中心。三層石塔 <span data-copy>삼층석탑</span>、鐘樓 <span data-copy>종루</span> 都在旁邊</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">側邊</div>
+          <div class="what">
+            <div class="h">地藏殿 <span data-copy>지장전</span>／羅漢殿 <span data-copy>나한전</span></div>
+            <div class="d">🍁 <b>楓紅顏色最明顯</b></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="time">下山</div>
+          <div class="what">
+            <div class="h">折回曹溪門 → 遊客服務中心 → 下山</div>
+          </div>
+        </div>
+      </div>
+      <div class="note"><b>小東西別錯過</b>：泉水許願點、堆石頭許願區、屋簷下的<b>魚形風鈴</b>（寺名「梵魚」的由來）。</div>
+      <div class="note warn"><b>殿內不拍照、需脫鞋</b>，遇到法會進行中請繞道。佛教大學區域<b>部分禁止進入</b>，看到告示就別往裡走。<br>
+        回程公車<b>班距最長 17 分鐘</b> —— 要接後面行程的話預留 20 分緩衝。楓況每年浮動，出發前查當週的 <span data-copy>단풍 현황</span>。</div>
     </section>
 
     <hr class="rule">
